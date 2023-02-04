@@ -24,9 +24,11 @@
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-react": "^7.32.2",
+    "firebase": "^9.17.1",
     "prettier": "^2.8.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-firebase-hooks": "^5.1.1",
     "stream-browserify": "^3.0.0",
     "util": "^0.12.5"
   },

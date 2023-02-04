@@ -39,11 +39,11 @@ export const getGameFromBggThing = (sourceName: string, bggThing?: BggThing): Ga
   };
 };
 
-export const loadAllGames = async (games: string[]): Promise<Game[]> => {
-  const results = await Promise.all(games.map((gameName) => processGame(gameName)));
-  const gamesData = results.map(({ sourceName, bggThing }) => getGameFromBggThing(sourceName, bggThing));
+export const getGameList = async (gameNameList: string[]): Promise<Game[]> => {
+  const results = await Promise.all(gameNameList.map((gameName) => processGame(gameName)));
+  const gameList = results.map(({ sourceName, bggThing }) => getGameFromBggThing(sourceName, bggThing));
 
-  return gamesData;
+  return gameList;
 };
 
 /**
@@ -54,7 +54,6 @@ export const processGame = async (sourceName: string) => {
   const searchResult = await loadSearchData(sourceName);
   const thingId = searchResult[0].id;
   const bggThing = await loadThingData(thingId);
-  console.log('bggThing', bggThing);
 
   return { sourceName, bggThing };
 };
