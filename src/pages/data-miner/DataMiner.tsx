@@ -1,11 +1,11 @@
 import { Box, Button, CircularProgress, Stack, Typography } from '@mui/material';
 import { useState } from 'react';
+import { GameDetail } from '../../components';
 import { saveGameList, useFetchGameNameList } from '../../fetch';
 import { Game } from '../../types';
-import GameDetail from '../game-detail/GameDetail';
 import { getGameList } from './utils';
 
-const DataMiner = () => {
+export const DataMiner = () => {
   const [gameList, setGameList] = useState<Game[]>();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -74,5 +74,3 @@ const DataMiner = () => {
     </>
   );
 };
-
-export default DataMiner;

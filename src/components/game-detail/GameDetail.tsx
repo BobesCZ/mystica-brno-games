@@ -6,7 +6,7 @@ interface GameDetailProps {
   game: Game;
 }
 
-const GameDetail = ({ game }: GameDetailProps) => {
+export const GameDetail = ({ game }: GameDetailProps) => {
   const {
     sourceName,
     id,
@@ -77,5 +77,3 @@ const GameDetail = ({ game }: GameDetailProps) => {
     </Card>
   );
 };
-
-export default GameDetail;
