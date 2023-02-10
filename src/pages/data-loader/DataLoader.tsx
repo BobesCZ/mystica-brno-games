@@ -1,4 +1,4 @@
-import { Box, Button, CircularProgress, Stack, Typography } from '@mui/material';
+import { Box, Button, CircularProgress, Container, Stack, Typography } from '@mui/material';
 import { useState } from 'react';
 import { GameList } from '../../components';
 import { saveGameList, useFetchGameList, useFetchGameNameList } from '../../fetch';
@@ -38,7 +38,7 @@ export const DataLoader = () => {
   };
 
   return (
-    <>
+    <Container>
       <MysticaLoader />
 
       <Box my={4}>
@@ -78,6 +78,6 @@ export const DataLoader = () => {
       </Typography>
 
       <GameList gameList={tempGameList} />
-    </>
+    </Container>
   );
 };

@@ -1,5 +1,5 @@
 import { KeyboardArrowDown, KeyboardArrowUp, Launch } from '@mui/icons-material';
-import { Box, Card, CardContent, CardMedia, Chip, Collapse, Grid, Link, Stack, Typography } from '@mui/material';
+import { Box, Card, CardActions, CardContent, CardMedia, Chip, Collapse, Link, Stack, Typography } from '@mui/material';
 import { useState } from 'react';
 import { Game } from '../../types';
 
@@ -25,13 +25,13 @@ export const GameCard = ({ game }: GameCardProps) => {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <Card sx={{ p: 1 }} elevation={4}>
+    <Card sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', p: 1 }} elevation={3}>
       <CardContent>
         <Box position="relative">
           <CardMedia component="img" image={image} alt="" sx={{ objectFit: 'contain', height: 280, mb: 3 }} />
         </Box>
 
-        <Typography variant="h5">
+        <Typography variant="h5" gutterBottom>
           {sourceName}{' '}
           <Typography variant="h5" component="span" color="text.secondary">
             ({yearpublished})
@@ -55,27 +55,6 @@ export const GameCard = ({ game }: GameCardProps) => {
             <Chip key={item} label={item} />
           ))}
         </Stack>
-
-        <Link
-          component="button"
-          variant="body2"
-          onClick={(e) => {
-            e.preventDefault();
-            setExpanded((prev) => !prev);
-          }}
-          display="flex"
-        >
-          {expanded ? (
-            <>
-              Skrýt <KeyboardArrowUp fontSize="small" />
-            </>
-          ) : (
-            <>
-              Více informací
-              <KeyboardArrowDown fontSize="small" />
-            </>
-          )}
-        </Link>
 
         <Collapse in={expanded}>
           <Box mt={2}>
@@ -103,6 +82,30 @@ export const GameCard = ({ game }: GameCardProps) => {
           </Box>
         </Collapse>
       </CardContent>
+      <CardActions>
+        <Link
+          component="button"
+          variant="body2"
+          onClick={(e) => {
+            e.preventDefault();
+            setExpanded((prev) => !prev);
+          }}
+          display="flex"
+          underline="hover"
+          sx={{ m: 'auto' }}
+        >
+          {expanded ? (
+            <>
+              Skrýt <KeyboardArrowUp fontSize="small" />
+            </>
+          ) : (
+            <>
+              Více o hře
+              <KeyboardArrowDown fontSize="small" />
+            </>
+          )}
+        </Link>
+      </CardActions>
     </Card>
   );
 };

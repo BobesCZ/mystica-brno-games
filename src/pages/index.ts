@@ -1,2 +1,2 @@
-export * from './data-miner';
+export * from './data-loader';
 export * from './search';

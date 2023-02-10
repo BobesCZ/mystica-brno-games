@@ -1,23 +1,14 @@
-import { Container, createTheme, CssBaseline, ThemeProvider } from '@mui/material';
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import { useCustomTheme } from './hooks';
 import { Search } from './pages/';
 
 function App() {
-  const theme = createTheme({
-    palette: {
-      mode: 'dark',
-    },
-  });
+  const theme = useCustomTheme();
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Container>
-        <Search />
-      </Container>
+      <Search />
     </ThemeProvider>
   );
 }

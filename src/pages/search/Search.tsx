@@ -1,6 +1,6 @@
-import { Alert, AlertTitle, Box, CircularProgress, Typography } from '@mui/material';
+import { Box, CircularProgress, Container, Typography } from '@mui/material';
 import { FormProvider, useForm } from 'react-hook-form';
-import { GameCard, GameList } from '../../components';
+import { GameList } from '../../components';
 import { useFetchGameList } from '../../fetch';
 import { Filters } from '../../types';
 import { SearchForm } from './components';
@@ -18,25 +18,28 @@ export const Search = () => {
 
   return (
     <>
-      <Box mt={4}>
-        <Typography variant="h4" gutterBottom>
-          Nevíte, co hrát?
-        </Typography>
+      <Box pt={4} sx={(theme) => ({ backgroundColor: theme.palette.secondary.main })}>
+        <Container>
+          <Typography variant="h3" textAlign="center">
+            Nevíte, co hrát?
+          </Typography>
+        </Container>
       </Box>
 
-      {loading ? (
-        <Box height={600} display="flex" alignItems="center" justifyContent="center">
-          <CircularProgress />
-        </Box>
-      ) : (
-        <FormProvider {...methods}>
-          <Box component="form">
+      <FormProvider {...methods}>
+        <Box component="form">
+          {loading ? (
+            <Box height={600} display="flex" alignItems="center" justifyContent="center">
+              <CircularProgress />
+            </Box>
+          ) : (
             <SearchForm categoryOptions={categoryOptions} mechanicsOptions={mechanicsOptions} />
-
+          )}
+          <Container>
             <GameList gameList={gameFilteredList} />
-          </Box>
-        </FormProvider>
-      )}
+          </Container>
+        </Box>
+      </FormProvider>
     </>
   );
 };

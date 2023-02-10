@@ -8,9 +8,14 @@ interface GameListProps {
 
 export const GameList = ({ gameList }: GameListProps) => {
   return (
-    <Box mb={4}>
-      <Box my={2}>
-        <Typography variant="h5">Vyhledané hry</Typography>
+    <Box py={4}>
+      <Box mt={2} mb={4}>
+        <Typography variant="h4" textAlign="center">
+          Vyhledané hry{' '}
+          <Typography variant="h4" component="span" color="text.secondary">
+            ({gameList?.length})
+          </Typography>
+        </Typography>
       </Box>
 
       {gameList?.length ? (
