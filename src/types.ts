@@ -1,7 +1,7 @@
 import { BggGame, BggThing } from '@code-bucket/board-game-geek';
 import { ControlledAutocompleteOption } from './components';
 
-export type Game = Pick<BggThing, 'id' | 'primaryName' | 'yearpublished' | 'image'> &
+export type Game = Pick<BggThing, 'id' | 'primaryName' | 'yearpublished' | 'image' | 'description'> &
   Pick<BggGame, 'playingtime' | 'minplayers' | 'maxplayers' | 'minage'> & {
     sourceName: string;
     categories: string[];
@@ -26,3 +26,11 @@ export type Filters = {
   categories: ControlledAutocompleteOption[];
   mechanics: ControlledAutocompleteOption[];
 };
+
+export enum LogRecordState {
+  SUCCESS = 'success',
+  SKIPPED = 'skipped',
+  ERROR = 'error',
+}
+
+export type LogRecord = { sourceName: string; status: LogRecordState };

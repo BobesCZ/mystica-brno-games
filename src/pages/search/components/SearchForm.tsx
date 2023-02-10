@@ -4,18 +4,18 @@ import { ControlledAutocomplete, ControlledAutocompleteOption, ControlledSelect 
 import { Filters } from '../../../types';
 import { FILTER_PLAYERS_COUNT_OPTIONS, FILTER_PLAYING_TIME_OPTIONS } from '../config';
 
-type GameListFormProps = {
+type SearchFormProps = {
   categoryOptions: ControlledAutocompleteOption[];
   mechanicsOptions: ControlledAutocompleteOption[];
 };
 
-export const GameListForm = ({ categoryOptions, mechanicsOptions }: GameListFormProps) => {
+export const SearchForm = ({ categoryOptions, mechanicsOptions }: SearchFormProps) => {
   const { control } = useFormContext<Filters>();
 
   return (
     <Grid container rowSpacing={3} columnSpacing={3} py={2}>
       <Grid item xs={12}>
-        <Typography variant="h5">Vyberte si hru podle situace</Typography>
+        <Typography variant="h5">Najděte si hru přímo pro vás</Typography>
       </Grid>
       <Grid item xs={12} md={6}>
         <ControlledSelect<Filters, 'playersCount'>

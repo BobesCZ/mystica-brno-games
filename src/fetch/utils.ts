@@ -11,3 +11,5 @@ export const resolveFetchedData = <T>(source: DataSnapshot[]): T =>
 
 export const resolveFetchedDataList = <T>(source: DataSnapshot[]): Array<T> =>
   source?.reduce((result: Array<T>, i) => [...result, i.val()], [] as Array<T>);
+
+export const validateFirebaseKey = (key: string): string => key.replace(/[\[\].#$\/\u0000-\u001F\u007F]/, '');

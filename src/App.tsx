@@ -3,7 +3,7 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-import { GameList } from './pages/';
+import { Search } from './pages/';
 
 function App() {
   const theme = createTheme({
@@ -16,7 +16,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container>
-        <GameList />
+        <Search />
       </Container>
     </ThemeProvider>
   );

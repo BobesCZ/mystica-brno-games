@@ -1,13 +1,13 @@
 import { Alert, AlertTitle, Box, CircularProgress, Typography } from '@mui/material';
 import { FormProvider, useForm } from 'react-hook-form';
-import { GameDetail } from '../../components';
+import { GameCard, GameList } from '../../components';
 import { useFetchGameList } from '../../fetch';
 import { Filters } from '../../types';
-import { GameListForm } from './components';
+import { SearchForm } from './components';
 import { FILTER_DEFAULT_VALUES } from './config';
-import { useFilteredGames } from './useFetchGameNameList';
+import { useFilteredGames } from './useFilteredGames';
 
-export const GameList = () => {
+export const Search = () => {
   const { gameList, loading } = useFetchGameList();
   const methods = useForm<Filters>({
     defaultValues: FILTER_DEFAULT_VALUES,
@@ -19,7 +19,7 @@ export const GameList = () => {
   return (
     <>
       <Box mt={4}>
-        <Typography variant="h3" gutterBottom>
+        <Typography variant="h4" gutterBottom>
           Nevíte, co hrát?
         </Typography>
       </Box>
@@ -31,24 +31,9 @@ export const GameList = () => {
       ) : (
         <FormProvider {...methods}>
           <Box component="form">
-            <GameListForm categoryOptions={categoryOptions} mechanicsOptions={mechanicsOptions} />
+            <SearchForm categoryOptions={categoryOptions} mechanicsOptions={mechanicsOptions} />
 
-            <Box my={4}>
-              <Typography variant="h4">Vyhledané hry</Typography>
-            </Box>
-
-            {gameFilteredList.length ? (
-              <>
-                {gameFilteredList.map((game) => (
-                  <GameDetail key={game.id} game={game} />
-                ))}
-              </>
-            ) : (
-              <Alert variant="outlined" severity="info">
-                <AlertTitle>Nenalezeny žádné hry</AlertTitle>
-                Zkuste změnit parametry vyhledávání.
-              </Alert>
-            )}
+            <GameList gameList={gameFilteredList} />
           </Box>
         </FormProvider>
       )}

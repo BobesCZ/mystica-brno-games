@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { BggThingResponse, IBggThingResponse } from '@code-bucket/board-game-geek';
+import { IBggThingResponse } from '@code-bucket/board-game-geek';
 import { AxiosResponse } from 'axios';
 import { xml2js } from 'xml-js';
+import { BggThingResponse } from './bgg-thing-response.model';
 /**
  * Parses the http response body from BGG XML API 2
  *
