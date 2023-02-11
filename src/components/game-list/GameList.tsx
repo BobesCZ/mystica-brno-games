@@ -13,7 +13,7 @@ export const GameList = ({ gameList }: GameListProps) => {
         <Typography variant="h4" textAlign="center">
           Vyhledané hry{' '}
           <Typography variant="h4" component="span" color="text.secondary">
-            ({gameList?.length})
+            ({gameList?.length || 0})
           </Typography>
         </Typography>
       </Box>

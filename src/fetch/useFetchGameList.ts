@@ -19,8 +19,13 @@ export const useFetchGameList = (): UseFetchGameListReturn => {
   useEffect(() => {
     if (!loading && gameListSource?.length) {
       const gameList = resolveFetchedDataList<Game>(gameListSource);
+      const parsedGameList = gameList.map((game) => ({
+        ...game,
+        categories: game?.categories || [],
+        mechanics: game?.mechanics || [],
+      }));
 
-      setGameList(gameList);
+      setGameList(parsedGameList);
     }
   }, [loading, gameListSource]);
 

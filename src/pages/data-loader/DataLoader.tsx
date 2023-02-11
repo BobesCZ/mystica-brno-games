@@ -5,6 +5,7 @@ import { saveGameList, useFetchGameList, useFetchGameNameList } from '../../fetc
 import { saveFailedGameList } from '../../fetch/saveFailedGameList';
 import { Game, LogRecord } from '../../types';
 import { Log, MysticaLoader } from './components';
+import { GAME_LIST_SLICE } from './config';
 import { getGameList } from './utils';
 
 export const DataLoader = () => {
@@ -24,7 +25,11 @@ export const DataLoader = () => {
 
     setIsLoading(true);
 
-    const { newGameList, newFailedGameList, log: newLog } = await getGameList(gameNameList.slice(0, 50), gameList);
+    const {
+      newGameList,
+      newFailedGameList,
+      log: newLog,
+    } = await getGameList(gameNameList.slice(...GAME_LIST_SLICE), gameList);
 
     setTempGameList(newGameList);
     setFailedGameList(newFailedGameList);

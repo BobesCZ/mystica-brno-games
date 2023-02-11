@@ -1,11 +1,12 @@
 import { BggGame, BggSearch, BggThing, BggThingType } from '@code-bucket/board-game-geek';
 import axios from 'axios';
 import { load } from 'cheerio';
-import { maxBy, uniq } from 'lodash';
+import { maxBy, uniq, uniqBy } from 'lodash';
 import { parseBggXmlApi2SearchResponse, parseBggXmlApi2ThingResponse } from '../../board-game-geek-fixed';
 import { Game, LogRecord, LogRecordState } from '../../types';
 import { mysticaHtml } from '../../data';
 import { stringSimilarity } from 'string-similarity-js';
+import { PROCESS_GAME_TIMEOUT } from './config';
 
 export const getGameFromBggThing = (sourceName: string, bggThing?: BggThing): Game => {
   if (bggThing?.type === BggThingType.boardGame) {
@@ -49,20 +50,25 @@ export const getGameList = async (
   const newGameList: Game[] = [];
   const newFailedGameList: string[] = [];
   const log: LogRecord[] = [];
+  // Throw away duplicit parsed names (parsing game and its expansion may results in equal name)
+  const parsedList = uniqBy(
+    gameNameList.map((sourceName) => ({ sourceName, parsedName: parseSourceName(sourceName) })),
+    'parsedName',
+  );
 
-  for (const sourceName of gameNameList) {
+  for (const { sourceName, parsedName } of parsedList) {
     try {
       if (gameList.find((item) => item.sourceName === sourceName)) {
         log.push({ sourceName, status: LogRecordState.SKIPPED });
       } else {
-        const bggThing = await processGame(sourceName);
+        const bggThing = await processGame(parsedName);
         const game = getGameFromBggThing(sourceName, bggThing);
 
         newGameList.push(game);
         log.push({ sourceName, status: LogRecordState.SUCCESS });
 
         // Slow iteration because of API request limit
-        await new Promise((resolve) => setTimeout(resolve, 2000));
+        await new Promise((resolve) => setTimeout(resolve, PROCESS_GAME_TIMEOUT));
       }
     } catch (error) {
       console.error(error, sourceName);
@@ -112,9 +118,27 @@ export const processGame = async (sourceName: string) => {
   return bggThing;
 };
 
-export const loadSearchData = async (query: string) => {
-  const parsedQuery = query.replace('–', '');
-  const response = await axios.get(`https://api.geekdo.com/xmlapi2/search?query=${parsedQuery}`);
+export const parseSourceName = (sourceName: string) => {
+  const replaceSearchs: (string | RegExp)[] = [
+    // Everything in brackets `()`
+    /\((.*?)\)/,
+    // Everything after `–` or `+`s
+    /[\–\+](.*)/,
+    // `edice` and 1 previous word
+    /(\S+)\s+edice/,
+    '–',
+    'základ',
+    'KS',
+    'CZ',
+    'ENG',
+  ];
+
+  return replaceSearchs.reduce((acc: string, replaceSearch) => acc.replace(replaceSearch, ''), sourceName);
+};
+
+export const loadSearchData = async (sourceName: string) => {
+  const parsedSourceName = parseSourceName(sourceName);
+  const response = await axios.get(`https://api.geekdo.com/xmlapi2/search?query=${parsedSourceName}`);
   const bggResponse = parseBggXmlApi2SearchResponse(response);
   const results = bggResponse?.items;
 
