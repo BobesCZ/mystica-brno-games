@@ -2,11 +2,18 @@ import { Filters, Game } from '../../types';
 import { FILTER_PLAYING_TIME_INTERVALS } from './config';
 
 const hasPlayersCount = (game: Game, { playersCount }: Filters): boolean => {
-  if (playersCount === 200) {
-    // Case: game exactly for two players
-    return game.minplayers === 2 && game.maxplayers === 2;
+  switch (playersCount) {
+    case 0:
+      // Case: allow all options
+      return true;
+
+    case 200:
+      // Case: game exactly for two players
+      return game.minplayers === 2 && game.maxplayers === 2;
+
+    default:
+      return playersCount >= game.minplayers && playersCount <= game.maxplayers;
   }
-  return playersCount >= game.minplayers && playersCount <= game.maxplayers;
 };
 
 const hasPlayingTime = (game: Game, { playingTime }: Filters): boolean => {

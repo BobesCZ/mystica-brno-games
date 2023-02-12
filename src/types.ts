@@ -9,6 +9,7 @@ export type Game = Pick<BggThing, 'id' | 'primaryName' | 'yearpublished' | 'imag
   };
 
 export enum GamePlayingTimeType {
+  ALL = 'all',
   FILLER = 'filler',
   SHORT = 'short',
   MEDIUM = 'medium',
@@ -21,7 +22,7 @@ export type GamePlayingTimeInterval = {
 };
 
 export type Filters = {
-  playersCount: 1 | 2 | 200 | 3 | 4 | 5 | 6 | 7;
+  playersCount: 0 | 1 | 2 | 200 | 3 | 4 | 5 | 6 | 7;
   playingTime: `${GamePlayingTimeType}`;
   categories: ControlledAutocompleteOption[];
   mechanics: ControlledAutocompleteOption[];

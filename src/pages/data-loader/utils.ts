@@ -25,7 +25,7 @@ export const getGameFromBggThing = (sourceName: string, bggThing?: BggThing): Ga
       id: bggThing.id,
       primaryName: bggThing.primaryName,
       yearpublished,
-      image: czechVersion?.image || bggThing.image,
+      image: czechVersion?.image || bggThing.image || '',
       description: (bggThing as BggGame).description,
       playingtime: (bggThing as BggGame).playingtime,
       minplayers: (bggThing as BggGame).minplayers,
@@ -83,14 +83,14 @@ export const getGameList = async (
 /**
  * Find result with exact match (fallback: first result)
  */
-const getBestResult = (sourceName: string, searchResult: BggSearch[]): BggSearch => {
-  const exactMatch = searchResult.find(({ name }) => name === sourceName);
+const getBestResult = (parsedName: string, searchResult: BggSearch[]): BggSearch => {
+  const exactMatch = searchResult.find(({ name }) => name === parsedName);
 
   if (exactMatch) {
     return exactMatch;
   }
 
-  const mostSimilarMatch = maxBy(searchResult, ({ name }) => stringSimilarity(name, sourceName));
+  const mostSimilarMatch = maxBy(searchResult, ({ name }) => stringSimilarity(name, parsedName));
 
   return mostSimilarMatch || searchResult[0];
 };
@@ -99,8 +99,8 @@ const getBestResult = (sourceName: string, searchResult: BggSearch[]): BggSearch
  * 1. Use Search API to get game ID
  * 2. Use Thing API to get game info
  */
-export const processGame = async (sourceName: string) => {
-  const searchResult = await loadSearchData(sourceName);
+export const processGame = async (parsedName: string) => {
+  const searchResult = await loadSearchData(parsedName);
 
   if (!searchResult.length) {
     throw new Error('No results found.');
@@ -112,7 +112,7 @@ export const processGame = async (sourceName: string) => {
     throw new Error('No boardGame found, only expansions.');
   }
 
-  const thingId = getBestResult(sourceName, onlyBoardGameType).id;
+  const thingId = getBestResult(parsedName, onlyBoardGameType).id;
   const bggThing = await loadThingData(thingId);
 
   return bggThing;
@@ -122,8 +122,8 @@ export const parseSourceName = (sourceName: string) => {
   const replaceSearchs: (string | RegExp)[] = [
     // Everything in brackets `()`
     /\((.*?)\)/,
-    // Everything after `–` or `+`s
-    /[\–\+](.*)/,
+    // Everything after `–` or `+`s, except `duel`
+    /[\–\+]((?!duel).)*/,
     // `edice` and 1 previous word
     /(\S+)\s+edice/,
     '–',
@@ -133,12 +133,11 @@ export const parseSourceName = (sourceName: string) => {
     'ENG',
   ];
 
-  return replaceSearchs.reduce((acc: string, replaceSearch) => acc.replace(replaceSearch, ''), sourceName);
+  return replaceSearchs.reduce((acc: string, replaceSearch) => acc.replace(replaceSearch, '').trim(), sourceName);
 };
 
-export const loadSearchData = async (sourceName: string) => {
-  const parsedSourceName = parseSourceName(sourceName);
-  const response = await axios.get(`https://api.geekdo.com/xmlapi2/search?query=${parsedSourceName}`);
+export const loadSearchData = async (parsedName: string) => {
+  const response = await axios.get(`https://api.geekdo.com/xmlapi2/search?query=${parsedName}`);
   const bggResponse = parseBggXmlApi2SearchResponse(response);
   const results = bggResponse?.items;
 

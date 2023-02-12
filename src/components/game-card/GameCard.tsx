@@ -25,7 +25,11 @@ export const GameCard = ({ game }: GameCardProps) => {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <Card sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', p: 1 }} elevation={3}>
+    <Card
+      sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', p: 1 }}
+      elevation={3}
+      data-id={id}
+    >
       <CardContent>
         <Box position="relative">
           <CardMedia component="img" image={image} alt="" sx={{ objectFit: 'contain', height: 280, mb: 3 }} />

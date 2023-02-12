@@ -9,6 +9,7 @@ export const FILTER_DEFAULT_VALUES: Filters = {
 };
 
 export const FILTER_PLAYERS_COUNT_OPTIONS: ControlledSelectOption<Filters, 'playersCount'>[] = [
+  { value: 0, label: '– nezáleží –' },
   { value: 1, label: 'pro 1 hráče' },
   { value: 200, label: 'pro 2 hráče (jen dvojkovky)' },
   { value: 2, label: 'pro 2 hráče' },
@@ -20,6 +21,7 @@ export const FILTER_PLAYERS_COUNT_OPTIONS: ControlledSelectOption<Filters, 'play
 ];
 
 export const FILTER_PLAYING_TIME_OPTIONS: ControlledSelectOption<Filters, 'playingTime'>[] = [
+  { value: GamePlayingTimeType.ALL, label: '– nezáleží –' },
   { value: GamePlayingTimeType.FILLER, label: 'filler (do 20 min)' },
   { value: GamePlayingTimeType.SHORT, label: 'krátká (21 - 60 min)' },
   { value: GamePlayingTimeType.MEDIUM, label: 'středně dlouhá (61 - 90 min)' },
@@ -27,6 +29,7 @@ export const FILTER_PLAYING_TIME_OPTIONS: ControlledSelectOption<Filters, 'playi
 ];
 
 export const FILTER_PLAYING_TIME_INTERVALS: Record<GamePlayingTimeType, GamePlayingTimeInterval> = {
+  [GamePlayingTimeType.ALL]: { min: 0, max: 9999 },
   [GamePlayingTimeType.FILLER]: { min: 1, max: 20 },
   [GamePlayingTimeType.SHORT]: { min: 21, max: 60 },
   [GamePlayingTimeType.MEDIUM]: { min: 61, max: 90 },
