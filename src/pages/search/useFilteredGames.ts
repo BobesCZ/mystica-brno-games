@@ -3,9 +3,9 @@ import { ControlledAutocompleteOption } from '../../components';
 import { Filters, Game } from '../../types';
 import { filterGame } from './utils';
 import { uniq } from 'lodash';
+import { useFetchGameList } from '../../fetch';
 
 type UseFilteredGamesProps = {
-  gameList?: Game[];
   filters: Filters;
 };
 
@@ -13,9 +13,12 @@ type UseFilteredGamesReturn = {
   gameFilteredList: Game[];
   categoryOptions: ControlledAutocompleteOption[];
   mechanicsOptions: ControlledAutocompleteOption[];
+  loading: boolean;
 };
 
-export const useFilteredGames = ({ gameList, filters }: UseFilteredGamesProps): UseFilteredGamesReturn => {
+export const useFilteredGames = ({ filters }: UseFilteredGamesProps): UseFilteredGamesReturn => {
+  const { gameList, loading } = useFetchGameList();
+
   const gameFilteredList = useMemo(
     () => (gameList || []).filter((game) => filterGame(game, filters)),
     [gameList, filters],
@@ -33,5 +36,5 @@ export const useFilteredGames = ({ gameList, filters }: UseFilteredGamesProps): 
     return mechanicsList.map((mechanics): ControlledAutocompleteOption => ({ label: mechanics, value: mechanics }));
   }, [gameList]);
 
-  return { gameFilteredList, categoryOptions, mechanicsOptions };
+  return { gameFilteredList, categoryOptions, mechanicsOptions, loading };
 };

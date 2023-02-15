@@ -35,3 +35,5 @@ export const FILTER_PLAYING_TIME_INTERVALS: Record<GamePlayingTimeType, GamePlay
   [GamePlayingTimeType.MEDIUM]: { min: 61, max: 90 },
   [GamePlayingTimeType.LONG]: { min: 91, max: 9999 },
 };
+
+export const PAGINATION_ITEMS_COUNT = 24;
