@@ -4,16 +4,17 @@ import { Game } from '../../types';
 
 interface GameListProps {
   gameList?: Game[];
+  gameTotalCount?: number;
 }
 
-export const GameList = ({ gameList }: GameListProps) => {
+export const GameList = ({ gameList, gameTotalCount = 0 }: GameListProps) => {
   return (
     <Box py={4}>
       <Box mt={2} mb={4}>
         <Typography variant="h4" textAlign="center">
           Vyhledané hry{' '}
           <Typography variant="h4" component="span" color="text.secondary">
-            ({gameList?.length || 0})
+            ({gameTotalCount})
           </Typography>
         </Typography>
       </Box>

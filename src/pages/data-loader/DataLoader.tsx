@@ -82,7 +82,7 @@ export const DataLoader = () => {
         Úspěšně načteno {tempGameList?.length && `(${tempGameList.length})`}
       </Typography>
 
-      <GameList gameList={tempGameList} />
+      <GameList gameList={tempGameList} gameTotalCount={tempGameList?.length} />
     </Container>
   );
 };

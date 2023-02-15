@@ -57,6 +57,7 @@ export const useCustomTheme = (): Theme => {
       },
       h5: {
         fontWeight: 700,
+        fontSize: 24,
       },
     },
     ...lightTheme,

@@ -32,7 +32,7 @@ export const GameCard = ({ game }: GameCardProps) => {
     >
       <CardContent>
         <Box position="relative">
-          <CardMedia component="img" image={image} alt="" sx={{ objectFit: 'contain', height: 280, mb: 3 }} />
+          <CardMedia component="img" image={image} alt="" sx={{ objectFit: 'contain', height: 250, mb: 3 }} />
         </Box>
 
         <Typography variant="h5" gutterBottom>
@@ -42,19 +42,19 @@ export const GameCard = ({ game }: GameCardProps) => {
           </Typography>
         </Typography>
 
-        <Typography variant="body1" color="text.secondary" gutterBottom>
+        <Typography variant="body2" color="text.secondary" gutterBottom>
           Herní doba: {playingtime} min
         </Typography>
 
-        <Typography variant="body1" color="text.secondary" gutterBottom>
+        <Typography variant="body2" color="text.secondary" gutterBottom>
           Počet hráčů: {minplayers} - {maxplayers}
         </Typography>
 
-        <Typography variant="body1" color="text.secondary" gutterBottom>
+        <Typography variant="body2" color="text.secondary" gutterBottom>
           Doporučený věk: od {minage} let
         </Typography>
 
-        <Stack direction="row" my={2} gap={1} flexWrap="wrap">
+        <Stack direction="row" mt={2} gap={1} flexWrap="wrap">
           {categories.map((item) => (
             <Chip key={item} label={item} />
           ))}
