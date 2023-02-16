@@ -24,6 +24,7 @@ const lightTheme: ThemeOptions = {
     },
     secondary: {
       main: '#ede4d4',
+      dark: '#e7dbc5',
     },
     background: {
       default: '#f9f6f1',

@@ -14,7 +14,7 @@
     "@code-bucket/board-game-geek": "github:spiotr12/board-game-geek",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
-    "@mui/icons-material": "^5.11.0",
+    "@mui/icons-material": "^5.11.9",
     "@mui/material": "^5.11.7",
     "@typescript-eslint/eslint-plugin": "^5.50.0",
     "@typescript-eslint/parser": "^5.50.0",

@@ -1,14 +1,15 @@
-import { ControlledSelectOption } from '../../components';
-import { Filters, GamePlayingTimeInterval, GamePlayingTimeType } from '../../types';
+import { ControlledSelectOption } from '../../../../components';
+import { GamePlayingTimeInterval, GamePlayingTimeType } from '../../../../types';
+import { CategoryFilters } from './types';
 
-export const FILTER_DEFAULT_VALUES: Filters = {
+export const CATEGORY_DEFAULT_VALUES: CategoryFilters = {
   playersCount: 2,
   playingTime: GamePlayingTimeType.FILLER,
   categories: [],
   mechanics: [],
 };
 
-export const FILTER_PLAYERS_COUNT_OPTIONS: ControlledSelectOption<Filters, 'playersCount'>[] = [
+export const CATEGORY_PLAYERS_COUNT_OPTIONS: ControlledSelectOption<CategoryFilters, 'playersCount'>[] = [
   { value: 0, label: '– nezáleží –' },
   { value: 1, label: 'pro 1 hráče' },
   { value: 200, label: 'pro 2 hráče (jen dvojkovky)' },
@@ -20,7 +21,7 @@ export const FILTER_PLAYERS_COUNT_OPTIONS: ControlledSelectOption<Filters, 'play
   { value: 7, label: 'pro 7 a více hráčů' },
 ];
 
-export const FILTER_PLAYING_TIME_OPTIONS: ControlledSelectOption<Filters, 'playingTime'>[] = [
+export const CATEGORY_PLAYING_TIME_OPTIONS: ControlledSelectOption<CategoryFilters, 'playingTime'>[] = [
   { value: GamePlayingTimeType.ALL, label: '– nezáleží –' },
   { value: GamePlayingTimeType.FILLER, label: 'filler (do 20 min)' },
   { value: GamePlayingTimeType.SHORT, label: 'krátká (21 - 60 min)' },
@@ -28,12 +29,10 @@ export const FILTER_PLAYING_TIME_OPTIONS: ControlledSelectOption<Filters, 'playi
   { value: GamePlayingTimeType.LONG, label: 'na celý večer (nad 91 min)' },
 ];
 
-export const FILTER_PLAYING_TIME_INTERVALS: Record<GamePlayingTimeType, GamePlayingTimeInterval> = {
+export const CATEGORY_PLAYING_TIME_INTERVALS: Record<GamePlayingTimeType, GamePlayingTimeInterval> = {
   [GamePlayingTimeType.ALL]: { min: 0, max: 9999 },
   [GamePlayingTimeType.FILLER]: { min: 1, max: 20 },
   [GamePlayingTimeType.SHORT]: { min: 21, max: 60 },
   [GamePlayingTimeType.MEDIUM]: { min: 61, max: 90 },
   [GamePlayingTimeType.LONG]: { min: 91, max: 9999 },
 };
-
-export const PAGINATION_ITEMS_COUNT = 24;
