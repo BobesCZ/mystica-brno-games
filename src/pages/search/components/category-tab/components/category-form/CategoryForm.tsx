@@ -1,47 +1,41 @@
-import { Box, Container, Grid, Typography } from '@mui/material';
+import { Box, Container, Grid } from '@mui/material';
 import { useFormContext } from 'react-hook-form';
-import { ControlledAutocomplete, ControlledAutocompleteOption, ControlledSelect } from '../../../components';
-import { Filters } from '../../../types';
-import { FILTER_PLAYERS_COUNT_OPTIONS, FILTER_PLAYING_TIME_OPTIONS } from '../config';
+import { ControlledAutocomplete, ControlledAutocompleteOption, ControlledSelect } from '../../../../../../components';
+import { CATEGORY_PLAYERS_COUNT_OPTIONS, CATEGORY_PLAYING_TIME_OPTIONS } from '../../config';
+import { CategoryFilters } from '../../types';
 
-type SearchFormProps = {
+type CategoryFormProps = {
   categoryOptions: ControlledAutocompleteOption[];
   mechanicsOptions: ControlledAutocompleteOption[];
 };
 
-export const SearchForm = ({ categoryOptions, mechanicsOptions }: SearchFormProps) => {
-  const { control } = useFormContext<Filters>();
+export const CategoryForm = ({ categoryOptions, mechanicsOptions }: CategoryFormProps) => {
+  const { control } = useFormContext<CategoryFilters>();
 
   return (
-    <Box pt={1} pb={4} sx={(theme) => ({ backgroundColor: theme.palette.secondary.main })}>
+    <Box pt={4} pb={4} sx={(theme) => ({ backgroundColor: theme.palette.secondary.main })}>
       <Container>
-        <Box mb={4}>
-          <Typography variant="h5" textAlign="center">
-            Najděte si hru přímo pro vás
-          </Typography>
-        </Box>
-
         <Grid container rowSpacing={3} columnSpacing={3}>
           <Grid item xs={12} md={6}>
-            <ControlledSelect<Filters, 'playersCount'>
+            <ControlledSelect<CategoryFilters, 'playersCount'>
               control={control}
               name="playersCount"
               label="Pro kolik lidí?"
-              options={FILTER_PLAYERS_COUNT_OPTIONS}
+              options={CATEGORY_PLAYERS_COUNT_OPTIONS}
             />
           </Grid>
 
           <Grid item xs={12} md={6}>
-            <ControlledSelect<Filters, 'playingTime'>
+            <ControlledSelect<CategoryFilters, 'playingTime'>
               control={control}
               name="playingTime"
               label="Jak dlouhá hra?"
-              options={FILTER_PLAYING_TIME_OPTIONS}
+              options={CATEGORY_PLAYING_TIME_OPTIONS}
             />
           </Grid>
 
           <Grid item xs={12} md={6}>
-            <ControlledAutocomplete<Filters, 'categories'>
+            <ControlledAutocomplete<CategoryFilters, 'categories'>
               control={control}
               name="categories"
               label="Kategorie her"
@@ -50,7 +44,7 @@ export const SearchForm = ({ categoryOptions, mechanicsOptions }: SearchFormProp
           </Grid>
 
           <Grid item xs={12} md={6}>
-            <ControlledAutocomplete<Filters, 'mechanics'>
+            <ControlledAutocomplete<CategoryFilters, 'mechanics'>
               control={control}
               name="mechanics"
               label="Herní mechaniky"

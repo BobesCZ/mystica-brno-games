@@ -1,2 +1,2 @@
-export * from './SearchForm';
-export * from './SearchPagination';
+export * from './category-tab';
+export * from './name-tab';

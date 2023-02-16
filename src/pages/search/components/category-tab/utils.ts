@@ -1,7 +1,8 @@
-import { Filters, Game } from '../../types';
-import { FILTER_PLAYING_TIME_INTERVALS } from './config';
+import { Game } from '../../../../types';
+import { CATEGORY_PLAYING_TIME_INTERVALS } from './config';
+import { CategoryFilters } from './types';
 
-const hasPlayersCount = (game: Game, { playersCount }: Filters): boolean => {
+const hasPlayersCount = (game: Game, { playersCount }: CategoryFilters): boolean => {
   switch (playersCount) {
     case 0:
       // Case: allow all options
@@ -16,19 +17,19 @@ const hasPlayersCount = (game: Game, { playersCount }: Filters): boolean => {
   }
 };
 
-const hasPlayingTime = (game: Game, { playingTime }: Filters): boolean => {
-  const { min, max } = FILTER_PLAYING_TIME_INTERVALS[playingTime];
+const hasPlayingTime = (game: Game, { playingTime }: CategoryFilters): boolean => {
+  const { min, max } = CATEGORY_PLAYING_TIME_INTERVALS[playingTime];
 
   return game.playingtime >= min && game.playingtime <= max;
 };
 
-const hasCategories = (game: Game, { categories }: Filters): boolean =>
+const hasCategories = (game: Game, { categories }: CategoryFilters): boolean =>
   categories.every((item) => game.categories.includes(item.value));
 
-const hasMechanics = (game: Game, { mechanics }: Filters): boolean =>
+const hasMechanics = (game: Game, { mechanics }: CategoryFilters): boolean =>
   mechanics.every((item) => game.mechanics.includes(item.value));
 
-export const filterGame = (game: Game, filters: Filters): boolean => {
+export const filterGame = (game: Game, filters: CategoryFilters): boolean => {
   return (
     hasPlayersCount(game, filters) &&
     hasPlayingTime(game, filters) &&

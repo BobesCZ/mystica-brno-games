@@ -1,10 +1,10 @@
-import { Button, Pagination, Stack } from '@mui/material';
-import { PAGINATION_ITEMS_COUNT } from '../config';
-import { UsePaginationReturn } from '../usePagination';
+import { Button, Pagination as MuiPagination, Stack } from '@mui/material';
+import { PAGINATION_ITEMS_COUNT } from './config';
+import { UsePaginationReturn } from './usePagination';
 
 type PaginationProps = Omit<UsePaginationReturn, 'currentPageGameList'>;
 
-export const SearchPagination = ({
+export const Pagination = ({
   showPagination,
   currentPage,
   pageCount,
@@ -20,7 +20,7 @@ export const SearchPagination = ({
         </Button>
       )}
       {showPagination && (
-        <Pagination size="large" count={pageCount} page={currentPage} onChange={handlePageChange} siblingCount={0} />
+        <MuiPagination size="large" count={pageCount} page={currentPage} onChange={handlePageChange} siblingCount={0} />
       )}
     </Stack>
   );

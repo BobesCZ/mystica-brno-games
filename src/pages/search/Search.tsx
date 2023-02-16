@@ -1,22 +1,14 @@
-import { Box, CircularProgress, Container, Typography } from '@mui/material';
-import { useRef } from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
-import { GameList } from '../../components';
-import { Filters } from '../../types';
-import { SearchForm, SearchPagination } from './components';
-import { FILTER_DEFAULT_VALUES } from './config';
-import { useFilteredGames } from './useFilteredGames';
-import { usePagination } from './usePagination';
+import { Box, Container, Tabs, Typography } from '@mui/material';
+import { useState } from 'react';
+import { Tab, TabPanel } from '../../components';
+import { CategoryTab, NameTab } from './components';
 
 export const Search = () => {
-  const methods = useForm<Filters>({
-    defaultValues: FILTER_DEFAULT_VALUES,
-  });
-  const filters = methods.watch();
-  const ref = useRef<HTMLDivElement>(null);
+  const [tabIndex, setTabIndex] = useState(0);
 
-  const { gameFilteredList, categoryOptions, mechanicsOptions, loading } = useFilteredGames({ filters });
-  const { currentPageGameList, ...paginationProps } = usePagination({ gameFilteredList, ref });
+  const handleChange = (_e: React.SyntheticEvent, newValue: number) => {
+    setTabIndex(newValue);
+  };
 
   return (
     <>
@@ -25,26 +17,31 @@ export const Search = () => {
           <Typography variant="h3" textAlign="center">
             Nevíte, co hrát?
           </Typography>
-        </Container>
-      </Box>
 
-      <FormProvider {...methods}>
-        <Box component="form">
-          <SearchForm categoryOptions={categoryOptions} mechanicsOptions={mechanicsOptions} />
+          <Box my={2}>
+            <Typography variant="h5" textAlign="center">
+              Najděte si hru přímo pro vás
+            </Typography>
+          </Box>
+        </Container>
+
+        <Box sx={(theme) => ({ borderBottom: 1, borderColor: 'divider', background: theme.palette.secondary.dark })}>
           <Container>
-            {loading ? (
-              <Box height={600} display="flex" alignItems="center" justifyContent="center">
-                <CircularProgress />
-              </Box>
-            ) : (
-              <Box ref={ref}>
-                <GameList gameList={currentPageGameList} gameTotalCount={gameFilteredList.length} />
-                <SearchPagination {...paginationProps} />
-              </Box>
-            )}
+            <Tabs value={tabIndex} onChange={handleChange} variant="fullWidth">
+              <Tab label="Podle parametrů" />
+              <Tab label="Podle jména" />
+              <Tab label="Novinky" />
+            </Tabs>
           </Container>
         </Box>
-      </FormProvider>
+      </Box>
+
+      <TabPanel value={tabIndex} index={0}>
+        <CategoryTab />
+      </TabPanel>
+      <TabPanel value={tabIndex} index={1}>
+        <NameTab />
+      </TabPanel>
     </>
   );
 };

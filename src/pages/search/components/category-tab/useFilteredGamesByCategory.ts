@@ -1,12 +1,13 @@
 import { useMemo } from 'react';
-import { ControlledAutocompleteOption } from '../../components';
-import { Filters, Game } from '../../types';
+import { ControlledAutocompleteOption } from '../../../../components';
+import { Game } from '../../../../types';
 import { filterGame } from './utils';
 import { uniq } from 'lodash';
-import { useFetchGameList } from '../../fetch';
+import { useFetchGameList } from '../../../../fetch';
+import { CategoryFilters } from './types';
 
 type UseFilteredGamesProps = {
-  filters: Filters;
+  filters: CategoryFilters;
 };
 
 type UseFilteredGamesReturn = {
@@ -16,7 +17,7 @@ type UseFilteredGamesReturn = {
   loading: boolean;
 };
 
-export const useFilteredGames = ({ filters }: UseFilteredGamesProps): UseFilteredGamesReturn => {
+export const useFilteredGamesByCategory = ({ filters }: UseFilteredGamesProps): UseFilteredGamesReturn => {
   const { gameList, loading } = useFetchGameList();
 
   const gameFilteredList = useMemo(
