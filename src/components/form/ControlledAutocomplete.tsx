@@ -11,8 +11,10 @@ type ControlledAutocompleteProps<TFieldValues extends FieldValues, TName extends
   'control'
 > & {
   name: TName;
-  options: ControlledAutocompleteOption[];
+  options: string[];
   label: string;
+  multiple?: boolean;
+  freeSolo?: boolean;
 };
 
 export const ControlledAutocomplete = <TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>>({
@@ -20,18 +22,19 @@ export const ControlledAutocomplete = <TFieldValues extends FieldValues, TName e
   name,
   label,
   options,
+  ...rest
 }: ControlledAutocompleteProps<TFieldValues, TName>) => (
   <Controller<TFieldValues>
     control={control}
     name={name}
     render={({ field: { ref, onChange, ...field } }) => (
       <Autocomplete
-        multiple
         options={options}
-        getOptionLabel={(option) => option.label}
-        isOptionEqualToValue={(option, value) => option.value === value.value}
         onChange={(_, data) => onChange(data)}
+        onInputChange={(_, data) => onChange(data)}
         renderInput={(params) => <TextField {...field} {...params} fullWidth inputRef={ref} label={label} />}
+        blurOnSelect
+        {...rest}
       />
     )}
   />

@@ -10,6 +10,7 @@ type UseFilteredGamesByNameProps = {
 
 type UseFilteredGamesByNameReturn = {
   gameFilteredList: Game[];
+  gameListOptions: string[];
   loading: boolean;
 };
 
@@ -21,5 +22,9 @@ export const useFilteredGamesByName = ({ filters }: UseFilteredGamesByNameProps)
     [gameList, filters],
   );
 
-  return { gameFilteredList, loading };
+  const gameListOptions = useMemo(() => {
+    return (gameList || []).map(({ sourceName }) => sourceName);
+  }, [gameList]);
+
+  return { gameFilteredList, gameListOptions, loading };
 };

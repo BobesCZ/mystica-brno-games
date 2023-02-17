@@ -14,13 +14,13 @@ export const NameTab = () => {
   const filters = methods.watch();
   const ref = useRef<HTMLDivElement>(null);
 
-  const { gameFilteredList, loading } = useFilteredGamesByName({ filters });
+  const { gameFilteredList, gameListOptions, loading } = useFilteredGamesByName({ filters });
   const { currentPageGameList, ...paginationProps } = usePagination({ gameFilteredList, ref });
 
   return (
     <FormProvider {...methods}>
       <Box component="form">
-        <NameForm />
+        <NameForm gameListOptions={gameListOptions} />
         <Container>
           {loading ? (
             <Box height={600} display="flex" alignItems="center" justifyContent="center">
