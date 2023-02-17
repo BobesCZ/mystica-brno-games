@@ -1,9 +1,13 @@
 import { Box, Container, Grid } from '@mui/material';
 import { useFormContext } from 'react-hook-form';
-import { ControlledTextField } from '../../../../../../components';
+import { ControlledAutocomplete } from '../../../../../../components';
 import { NameFilters } from '../../types';
 
-export const NameForm = () => {
+type NameFormProps = {
+  gameListOptions: string[];
+};
+
+export const NameForm = ({ gameListOptions }: NameFormProps) => {
   const { control } = useFormContext<NameFilters>();
 
   return (
@@ -11,7 +15,13 @@ export const NameForm = () => {
       <Container>
         <Grid container rowSpacing={3} columnSpacing={3}>
           <Grid item xs={12}>
-            <ControlledTextField<NameFilters, 'name'> control={control} name="name" label="Název hry" />
+            <ControlledAutocomplete<NameFilters, 'name'>
+              control={control}
+              name="name"
+              label="Název hry"
+              options={gameListOptions}
+              freeSolo
+            />
           </Grid>
         </Grid>
       </Container>

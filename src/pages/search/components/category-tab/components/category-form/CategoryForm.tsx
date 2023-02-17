@@ -1,12 +1,12 @@
 import { Box, Container, Grid } from '@mui/material';
 import { useFormContext } from 'react-hook-form';
-import { ControlledAutocomplete, ControlledAutocompleteOption, ControlledSelect } from '../../../../../../components';
+import { ControlledAutocomplete, ControlledSelect } from '../../../../../../components';
 import { CATEGORY_PLAYERS_COUNT_OPTIONS, CATEGORY_PLAYING_TIME_OPTIONS } from '../../config';
 import { CategoryFilters } from '../../types';
 
 type CategoryFormProps = {
-  categoryOptions: ControlledAutocompleteOption[];
-  mechanicsOptions: ControlledAutocompleteOption[];
+  categoryOptions: string[];
+  mechanicsOptions: string[];
 };
 
 export const CategoryForm = ({ categoryOptions, mechanicsOptions }: CategoryFormProps) => {
@@ -40,6 +40,7 @@ export const CategoryForm = ({ categoryOptions, mechanicsOptions }: CategoryForm
               name="categories"
               label="Kategorie her"
               options={categoryOptions}
+              multiple
             />
           </Grid>
 
@@ -49,6 +50,7 @@ export const CategoryForm = ({ categoryOptions, mechanicsOptions }: CategoryForm
               name="mechanics"
               label="Herní mechaniky"
               options={mechanicsOptions}
+              multiple
             />
           </Grid>
         </Grid>
