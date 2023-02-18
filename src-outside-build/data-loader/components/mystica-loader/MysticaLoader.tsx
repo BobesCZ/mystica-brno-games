@@ -11,7 +11,7 @@ import {
   Typography,
 } from '@mui/material';
 import { useState } from 'react';
-import { saveGameNameList } from '../../../../shared/firebase';
+import { saveGameNameList } from '../../../../src/shared/firebase';
 import { getExternalNameList } from '../../utils';
 
 export const MysticaLoader = () => {
