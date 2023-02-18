@@ -1,5 +1,5 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableRow, Typography } from '@mui/material';
-import { LogRecord, LogRecordState } from '../../../../types';
+import { LogRecord, LogRecordState } from '../../../../src/types';
 import { getRowColor } from './utils';
 
 type Props = {
