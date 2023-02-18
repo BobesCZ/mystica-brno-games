@@ -1,4 +1,4 @@
-import { ControlledSelectOption } from '../../../../components';
+import { ControlledSelectOption } from '../../../../shared/components';
 import { GamePlayingTimeInterval, GamePlayingTimeType } from '../../../../types';
 import { CategoryFilters } from './types';
 

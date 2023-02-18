@@ -1,6 +1,6 @@
 import { Box, Container, Grid } from '@mui/material';
 import { useFormContext } from 'react-hook-form';
-import { ControlledAutocomplete } from '../../../../../../components';
+import { ControlledAutocomplete } from '../../../../../../shared/components';
 import { NameFilters } from '../../types';
 
 type Props = {

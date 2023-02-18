@@ -1,7 +1,7 @@
 import { Box, Button, CircularProgress, Container, Stack, Typography } from '@mui/material';
 import { useState } from 'react';
-import { GameList } from '../../components';
-import { saveGameList, useFetchGameList, useFetchGameNameList, saveFailedGameList } from '../../fetch';
+import { GameList } from '../../shared/components';
+import { useFetchGameNameList, useFetchGameList, saveGameList, saveFailedGameList } from '../../shared/firebase';
 import { Game, LogRecord } from '../../types';
 import { Log, MysticaLoader } from './components';
 import { GAME_LIST_SLICE } from './config';

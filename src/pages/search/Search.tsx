@@ -1,6 +1,6 @@
 import { Box, Container, Tabs, Typography } from '@mui/material';
 import { useState } from 'react';
-import { TabNav, TabPanel } from '../../components';
+import { TabNav, TabPanel } from '../../shared/components';
 import { CategoryTab, NameTab } from './components';
 
 export const Search = () => {

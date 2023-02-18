@@ -2,8 +2,8 @@ import { useMemo } from 'react';
 import { Game } from '../../../../../types';
 import { filterGamebyCategory } from '../utils';
 import { uniq } from 'lodash';
-import { useFetchGameList } from '../../../../../fetch';
 import { CategoryFilters } from '../types';
+import { useFetchGameList } from '../../../../../shared/firebase';
 
 type Props = {
   filters: CategoryFilters;

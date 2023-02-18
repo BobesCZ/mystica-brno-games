@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import { Game } from '../../../types';
+import { Game } from '../../../../types';
 
 export type UsePaginationReturn = {
   currentPageGameList: Game[];

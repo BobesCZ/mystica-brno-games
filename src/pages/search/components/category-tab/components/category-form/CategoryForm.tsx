@@ -1,6 +1,6 @@
 import { Box, Container, Grid } from '@mui/material';
 import { useFormContext } from 'react-hook-form';
-import { ControlledAutocomplete, ControlledSelect } from '../../../../../../components';
+import { ControlledAutocomplete, ControlledSelect } from '../../../../../../shared/components';
 import { CATEGORY_PLAYERS_COUNT_OPTIONS, CATEGORY_PLAYING_TIME_OPTIONS } from '../../config';
 import { CategoryFilters } from '../../types';
 
