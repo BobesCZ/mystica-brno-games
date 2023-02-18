@@ -1,5 +1,5 @@
 import { ChangeEvent, MutableRefObject, useCallback, useMemo, useState } from 'react';
-import { Game } from '../../../types';
+import { Game } from '../../../../types';
 import { PAGINATION_ITEMS_COUNT } from '../config';
 import { UsePaginationReturn } from './types';
 

@@ -1,7 +1,7 @@
 import { KeyboardArrowDown, KeyboardArrowUp, Launch } from '@mui/icons-material';
 import { Box, Card, CardActions, CardContent, CardMedia, Chip, Collapse, Link, Stack, Typography } from '@mui/material';
 import { useState } from 'react';
-import { Game } from '../../types';
+import { Game } from '../../../types';
 
 type Props = {
   game: Game;

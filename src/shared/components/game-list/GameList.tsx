@@ -1,6 +1,6 @@
 import { Alert, AlertTitle, Box, Typography } from '@mui/material';
 import { GameCard } from '../../components';
-import { Game } from '../../types';
+import { Game } from '../../../types';
 
 type Props = {
   gameList?: Game[];

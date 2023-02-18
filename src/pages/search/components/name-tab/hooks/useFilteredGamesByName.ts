@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 import { Game } from '../../../../../types';
 import { filterGameByName } from '../utils';
-import { useFetchGameList } from '../../../../../fetch';
 import { NameFilters } from '../types';
+import { useFetchGameList } from '../../../../../shared/firebase';
 
 type Props = {
   filters: NameFilters;

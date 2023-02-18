@@ -1,5 +1,5 @@
 import { CssBaseline, ThemeProvider } from '@mui/material';
-import { useCustomTheme } from './hooks';
+import { useCustomTheme } from './shared/hooks';
 import { Search } from './pages/';
 
 function App() {
