@@ -1,12 +1,8 @@
 import { MenuItem, TextField } from '@mui/material';
-import { Controller, ControllerProps, ControllerRenderProps, FieldPath, FieldValues } from 'react-hook-form';
+import { Controller, ControllerProps, FieldPath, FieldValues } from 'react-hook-form';
+import { ControlledSelectOption } from './types';
 
-export type ControlledSelectOption<TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>> = {
-  value: ControllerRenderProps<TFieldValues, TName>['value'];
-  label: string;
-};
-
-type ControlledSelectProps<TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>> = Pick<
+type Props<TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>> = Pick<
   ControllerProps<TFieldValues>,
   'control'
 > & {
@@ -20,7 +16,7 @@ export const ControlledSelect = <TFieldValues extends FieldValues, TName extends
   name,
   label,
   options,
-}: ControlledSelectProps<TFieldValues, TName>) => (
+}: Props<TFieldValues, TName>) => (
   <Controller<TFieldValues>
     control={control}
     name={name}

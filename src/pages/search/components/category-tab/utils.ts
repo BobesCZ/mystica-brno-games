@@ -29,11 +29,8 @@ const hasCategories = (game: Game, { categories }: CategoryFilters): boolean =>
 const hasMechanics = (game: Game, { mechanics }: CategoryFilters): boolean =>
   mechanics.every((item) => game.mechanics.includes(item));
 
-export const filterGame = (game: Game, filters: CategoryFilters): boolean => {
-  return (
-    hasPlayersCount(game, filters) &&
-    hasPlayingTime(game, filters) &&
-    hasCategories(game, filters) &&
-    hasMechanics(game, filters)
-  );
-};
+export const filterGamebyCategory = (game: Game, filters: CategoryFilters): boolean =>
+  hasPlayersCount(game, filters) &&
+  hasPlayingTime(game, filters) &&
+  hasCategories(game, filters) &&
+  hasMechanics(game, filters);

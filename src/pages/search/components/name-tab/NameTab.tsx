@@ -5,7 +5,7 @@ import { GameList, Pagination, usePagination } from '../../../../components';
 import { NameForm } from './components';
 import { NAME_DEFAULT_VALUES } from './config';
 import { NameFilters } from './types';
-import { useFilteredGamesByName } from './useFilteredGamesByName';
+import { useFilteredGamesByName } from './hooks';
 
 export const NameTab = () => {
   const methods = useForm<NameFilters>({

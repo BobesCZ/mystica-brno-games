@@ -3,11 +3,11 @@ import { useFormContext } from 'react-hook-form';
 import { ControlledAutocomplete } from '../../../../../../components';
 import { NameFilters } from '../../types';
 
-type NameFormProps = {
+type Props = {
   gameListOptions: string[];
 };
 
-export const NameForm = ({ gameListOptions }: NameFormProps) => {
+export const NameForm = ({ gameListOptions }: Props) => {
   const { control } = useFormContext<NameFilters>();
 
   return (

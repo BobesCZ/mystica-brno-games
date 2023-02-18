@@ -1,2 +1,2 @@
-export * from './Log';
-export * from './MysticaLoader';
+export * from './log';
+export * from './mystica-loader';

@@ -1,3 +1,3 @@
 export * from './config';
+export * from './hooks';
 export * from './Pagination';
-export * from './usePagination';

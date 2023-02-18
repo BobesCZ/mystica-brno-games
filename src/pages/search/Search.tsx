@@ -1,12 +1,12 @@
 import { Box, Container, Tabs, Typography } from '@mui/material';
 import { useState } from 'react';
-import { Tab, TabPanel } from '../../components';
+import { TabNav, TabPanel } from '../../components';
 import { CategoryTab, NameTab } from './components';
 
 export const Search = () => {
   const [tabIndex, setTabIndex] = useState(0);
 
-  const handleChange = (_e: React.SyntheticEvent, newValue: number) => {
+  const handleTabChange = (_e: React.SyntheticEvent, newValue: number) => {
     setTabIndex(newValue);
   };
 
@@ -27,10 +27,10 @@ export const Search = () => {
 
         <Box sx={(theme) => ({ borderBottom: 1, borderColor: 'divider', background: theme.palette.secondary.dark })}>
           <Container>
-            <Tabs value={tabIndex} onChange={handleChange} variant="fullWidth">
-              <Tab label="Podle parametrů" />
-              <Tab label="Podle jména" />
-              <Tab label="Novinky" />
+            <Tabs value={tabIndex} onChange={handleTabChange} variant="fullWidth">
+              <TabNav label="Podle parametrů" />
+              <TabNav label="Podle jména" />
+              <TabNav label="Novinky" />
             </Tabs>
           </Container>
         </Box>

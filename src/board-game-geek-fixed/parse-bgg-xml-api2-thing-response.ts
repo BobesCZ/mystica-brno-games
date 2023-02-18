@@ -15,5 +15,6 @@ export const parseBggXmlApi2ThingResponse: (response: AxiosResponse) => BggThing
   if (!data.items.item) {
     return null; // Not found
   }
+
   return new BggThingResponse(data);
 };

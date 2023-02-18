@@ -1,36 +1,5 @@
-import { createTheme, Theme, ThemeOptions } from '@mui/material';
-
-const darkTheme: ThemeOptions = {
-  palette: {
-    mode: 'dark',
-    primary: {
-      main: '#d95d39',
-    },
-    secondary: {
-      main: '#1d170c',
-    },
-    background: {
-      default: '#292112',
-      paper: '#292112',
-    },
-  },
-};
-
-const lightTheme: ThemeOptions = {
-  palette: {
-    mode: 'light',
-    primary: {
-      main: '#ce4b27',
-    },
-    secondary: {
-      main: '#ede4d4',
-      dark: '#e7dbc5',
-    },
-    background: {
-      default: '#f9f6f1',
-    },
-  },
-};
+import { createTheme, Theme } from '@mui/material';
+import { LIGHT_THEME } from './config';
 
 export const useCustomTheme = (): Theme => {
   // const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
@@ -61,7 +30,7 @@ export const useCustomTheme = (): Theme => {
         fontSize: 24,
       },
     },
-    ...lightTheme,
+    ...LIGHT_THEME,
   });
 
   return theme;

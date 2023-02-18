@@ -1,4 +1,4 @@
+export * from './saveFailedGameList';
 export * from './saveGameList';
 export * from './saveGameNameList';
-export * from './useFetchGameList';
-export * from './useFetchGameNameList';
+export * from './hooks';

@@ -1,26 +1,26 @@
 import { useMemo } from 'react';
-import { Game } from '../../../../types';
-import { filterGame } from './utils';
+import { Game } from '../../../../../types';
+import { filterGamebyCategory } from '../utils';
 import { uniq } from 'lodash';
-import { useFetchGameList } from '../../../../fetch';
-import { CategoryFilters } from './types';
+import { useFetchGameList } from '../../../../../fetch';
+import { CategoryFilters } from '../types';
 
-type UseFilteredGamesProps = {
+type Props = {
   filters: CategoryFilters;
 };
 
-type UseFilteredGamesReturn = {
+type Return = {
   gameFilteredList: Game[];
   categoryOptions: string[];
   mechanicsOptions: string[];
   loading: boolean;
 };
 
-export const useFilteredGamesByCategory = ({ filters }: UseFilteredGamesProps): UseFilteredGamesReturn => {
+export const useFilteredGamesByCategory = ({ filters }: Props): Return => {
   const { gameList, loading } = useFetchGameList();
 
   const gameFilteredList = useMemo(
-    () => (gameList || []).filter((game) => filterGame(game, filters)),
+    () => (gameList || []).filter((game) => filterGamebyCategory(game, filters)),
     [gameList, filters],
   );
 

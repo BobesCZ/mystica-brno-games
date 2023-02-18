@@ -1,8 +1,8 @@
 import { Button, Pagination as MuiPagination, Stack } from '@mui/material';
 import { PAGINATION_ITEMS_COUNT } from './config';
-import { UsePaginationReturn } from './usePagination';
+import { UsePaginationReturn } from './hooks';
 
-type PaginationProps = Omit<UsePaginationReturn, 'currentPageGameList'>;
+type Props = Omit<UsePaginationReturn, 'currentPageGameList'>;
 
 export const Pagination = ({
   showPagination,
@@ -11,17 +11,15 @@ export const Pagination = ({
   handlePageChange,
   showMoreButton,
   handleMoreButton,
-}: PaginationProps) => {
-  return (
-    <Stack alignItems="center" gap={3} mb={4}>
-      {showMoreButton && (
-        <Button variant="contained" size="large" onClick={handleMoreButton}>
-          Načíst dalších {PAGINATION_ITEMS_COUNT} her
-        </Button>
-      )}
-      {showPagination && (
-        <MuiPagination size="large" count={pageCount} page={currentPage} onChange={handlePageChange} siblingCount={0} />
-      )}
-    </Stack>
-  );
-};
+}: Props) => (
+  <Stack alignItems="center" gap={3} mb={4}>
+    {showMoreButton && (
+      <Button variant="contained" size="large" onClick={handleMoreButton}>
+        Načíst dalších {PAGINATION_ITEMS_COUNT} her
+      </Button>
+    )}
+    {showPagination && (
+      <MuiPagination size="large" count={pageCount} page={currentPage} onChange={handlePageChange} siblingCount={0} />
+    )}
+  </Stack>
+);

@@ -1,21 +1,12 @@
-import { Paper, Table, TableBody, TableCell, TableContainer, TableRow, Theme, Typography } from '@mui/material';
-import { LogRecord, LogRecordState } from '../../../types';
+import { Paper, Table, TableBody, TableCell, TableContainer, TableRow, Typography } from '@mui/material';
+import { LogRecord, LogRecordState } from '../../../../types';
+import { getRowColor } from './utils';
 
-type LogProps = {
+type Props = {
   log?: LogRecord[];
 };
 
-const getRowColor = (theme: Theme, status: LogRecordState) => {
-  const mapColors = {
-    [LogRecordState.SUCCESS]: theme.palette.success.dark,
-    [LogRecordState.SKIPPED]: theme.palette.action.disabled,
-    [LogRecordState.ERROR]: theme.palette.error.main,
-  };
-
-  return mapColors[status];
-};
-
-export const Log = ({ log }: LogProps) => {
+export const Log = ({ log }: Props) => {
   const errorCount = (log || []).filter(({ status }) => status === LogRecordState.ERROR).length;
   const skippedCount = (log || []).filter(({ status }) => status === LogRecordState.SKIPPED).length;
 

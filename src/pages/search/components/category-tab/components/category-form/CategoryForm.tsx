@@ -4,12 +4,12 @@ import { ControlledAutocomplete, ControlledSelect } from '../../../../../../comp
 import { CATEGORY_PLAYERS_COUNT_OPTIONS, CATEGORY_PLAYING_TIME_OPTIONS } from '../../config';
 import { CategoryFilters } from '../../types';
 
-type CategoryFormProps = {
+type Props = {
   categoryOptions: string[];
   mechanicsOptions: string[];
 };
 
-export const CategoryForm = ({ categoryOptions, mechanicsOptions }: CategoryFormProps) => {
+export const CategoryForm = ({ categoryOptions, mechanicsOptions }: Props) => {
   const { control } = useFormContext<CategoryFilters>();
 
   return (
