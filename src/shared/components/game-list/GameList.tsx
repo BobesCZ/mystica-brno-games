@@ -9,10 +9,10 @@ type Props = {
 
 export const GameList = ({ gameList, gameTotalCount = 0 }: Props) => (
   <Box py={4}>
-    <Box mt={2} mb={4}>
-      <Typography variant="h4" textAlign="center">
+    <Box mt={1} mb={4}>
+      <Typography variant="h2" textAlign="center">
         Vyhledané hry{' '}
-        <Typography variant="h4" component="span" color="text.secondary">
+        <Typography variant="h2" component="span" color="text.secondary">
           ({gameTotalCount})
         </Typography>
       </Typography>

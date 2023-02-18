@@ -36,24 +36,26 @@ export const GameCard = ({
           <CardMedia component="img" image={image} alt="" sx={{ objectFit: 'contain', height: 250, mb: 3 }} />
         </Box>
 
-        <Typography variant="h5" gutterBottom>
+        <Typography variant="h3" gutterBottom>
           {sourceName}{' '}
-          <Typography variant="h5" component="span" color="text.secondary">
+          <Typography variant="h3" component="span" color="text.secondary">
             ({yearpublished})
           </Typography>
         </Typography>
 
-        <Typography variant="body2" color="text.secondary" gutterBottom>
-          Herní doba: {playingtime} min
-        </Typography>
+        <Stack gap={0.25}>
+          <Typography variant="body2" color="text.secondary">
+            Herní doba: {playingtime} min
+          </Typography>
 
-        <Typography variant="body2" color="text.secondary" gutterBottom>
-          Počet hráčů: {minplayers} - {maxplayers}
-        </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Počet hráčů: {minplayers} - {maxplayers}
+          </Typography>
 
-        <Typography variant="body2" color="text.secondary" gutterBottom>
-          Doporučený věk: od {minage} let
-        </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Doporučený věk: od {minage} let
+          </Typography>
+        </Stack>
 
         <Stack direction="row" mt={2} gap={1} flexWrap="wrap">
           {categories.map((item) => (
@@ -65,7 +67,7 @@ export const GameCard = ({
           <Box mt={2}>
             <Link
               display="inline-block"
-              variant="h6"
+              variant="body1"
               color="text.secondary"
               href={`https://boardgamegeek.com/boardgame/${id}`}
               target="_blank"

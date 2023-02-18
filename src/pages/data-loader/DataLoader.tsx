@@ -77,7 +77,7 @@ export const DataLoader = () => {
 
       <Log log={log} />
 
-      <Typography variant="h5" color={(theme) => theme.palette.success.main} gutterBottom>
+      <Typography variant="h3" color={(theme) => theme.palette.success.main} gutterBottom>
         Úspěšně načteno {tempGameList?.length && `(${tempGameList.length})`}
       </Typography>
 

@@ -17,7 +17,8 @@ export const ControlledAutocomplete = <TFieldValues extends FieldValues, TName e
   name,
   label,
   options,
-  ...rest
+  multiple,
+  freeSolo,
 }: Props<TFieldValues, TName>) => (
   <Controller<TFieldValues>
     control={control}
@@ -26,10 +27,11 @@ export const ControlledAutocomplete = <TFieldValues extends FieldValues, TName e
       <Autocomplete
         options={options}
         onChange={(_, data) => onChange(data)}
-        onInputChange={(_, data) => onChange(data)}
+        onInputChange={freeSolo ? (_, data) => onChange(data) : undefined}
         renderInput={(params) => <TextField {...field} {...params} fullWidth inputRef={ref} label={label} />}
         blurOnSelect
-        {...rest}
+        multiple={multiple}
+        freeSolo={freeSolo}
       />
     )}
   />
