@@ -1,7 +1,7 @@
 import { BggGame, BggSearch, BggThing, BggThingType } from '@code-bucket/board-game-geek';
 import axios from 'axios';
 import { load } from 'cheerio';
-import { maxBy, uniq, uniqBy } from 'lodash';
+import { maxBy, uniq, uniqBy } from 'lodash-es';
 import { parseBggXmlApi2SearchResponse, parseBggXmlApi2ThingResponse } from '../../board-game-geek-fixed';
 import { Game, LogRecord, LogRecordState } from '../../types';
 import { mysticaHtml } from '../../data';
