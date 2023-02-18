@@ -12,7 +12,7 @@ export const Log = ({ log }: Props) => {
 
   return (
     <>
-      <Typography variant="h5" color={(theme) => theme.palette.error.main} gutterBottom>
+      <Typography variant="h3" color={(theme) => theme.palette.error.main} gutterBottom>
         Nenačtené položky {log?.length && `(${errorCount} + ${skippedCount})`}
       </Typography>
       <TableContainer component={Paper} sx={{ my: 4, maxHeight: '500px', overflow: 'auto' }}>

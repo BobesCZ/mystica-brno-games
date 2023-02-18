@@ -17,10 +17,13 @@ type Return = {
 export const useFilteredGamesByName = ({ filters }: Props): Return => {
   const { gameList, loading } = useFetchGameList();
 
-  const gameFilteredList = useMemo(
-    () => (gameList || []).filter((game) => filterGameByName(game, filters)),
-    [gameList, filters],
-  );
+  const gameFilteredList = useMemo(() => {
+    if (filters.name.length < 3) {
+      return [];
+    }
+
+    return (gameList || []).filter((game) => filterGameByName(game, filters));
+  }, [gameList, filters]);
 
   const gameListOptions = useMemo(() => (gameList || []).map(({ sourceName }) => sourceName), [gameList]);
 

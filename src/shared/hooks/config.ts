@@ -29,5 +29,6 @@ export const LIGHT_THEME: ThemeOptions = {
     background: {
       default: '#f9f6f1',
     },
+    divider: '#e1d4b7',
   },
 };
