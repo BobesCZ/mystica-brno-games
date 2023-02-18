@@ -1,17 +1,17 @@
 import { ref } from 'firebase/database';
 import { useEffect, useState } from 'react';
 import { useList } from 'react-firebase-hooks/database';
-import { Game } from '../types';
+import { Game } from '../../types';
 
-import { firebaseDb } from './firebase';
+import { firebaseDb } from '../firebase';
 import { resolveFetchedDataList } from './utils';
 
-type UseFetchGameListReturn = {
+type Return = {
   gameList?: Game[];
   loading: boolean;
 };
 
-export const useFetchGameList = (): UseFetchGameListReturn => {
+export const useFetchGameList = (): Return => {
   const [gameList, setGameList] = useState<Game[]>();
 
   const [gameListSource, loading] = useList(ref(firebaseDb, 'gameList'));

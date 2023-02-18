@@ -11,5 +11,6 @@ export const parseBggXmlApi2SearchResponse: (response: AxiosResponse) => BggSear
   response: AxiosResponse,
 ) => {
   const data = xml2js(response.data, { compact: true }) as IBggSearchResponse;
+
   return new BggSearchResponse(data);
 };

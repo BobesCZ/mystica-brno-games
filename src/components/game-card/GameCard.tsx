@@ -3,12 +3,12 @@ import { Box, Card, CardActions, CardContent, CardMedia, Chip, Collapse, Link, S
 import { useState } from 'react';
 import { Game } from '../../types';
 
-interface GameCardProps {
+type Props = {
   game: Game;
-}
+};
 
-export const GameCard = ({ game }: GameCardProps) => {
-  const {
+export const GameCard = ({
+  game: {
     sourceName,
     id,
     primaryName,
@@ -21,7 +21,8 @@ export const GameCard = ({ game }: GameCardProps) => {
     minage,
     categories,
     mechanics,
-  } = game;
+  },
+}: Props) => {
   const [expanded, setExpanded] = useState(false);
 
   return (

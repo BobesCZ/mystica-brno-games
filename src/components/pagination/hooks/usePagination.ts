@@ -1,23 +1,14 @@
 import { ChangeEvent, MutableRefObject, useCallback, useMemo, useState } from 'react';
-import { Game } from '../../types';
-import { PAGINATION_ITEMS_COUNT } from './config';
+import { Game } from '../../../types';
+import { PAGINATION_ITEMS_COUNT } from '../config';
+import { UsePaginationReturn } from './types';
 
-type usePaginationProps = {
+type Props = {
   gameFilteredList: Game[];
   ref: MutableRefObject<HTMLDivElement | null>;
 };
 
-export type UsePaginationReturn = {
-  currentPageGameList: Game[];
-  showPagination: boolean;
-  currentPage: number;
-  pageCount: number;
-  handlePageChange: (event: ChangeEvent<unknown>, value: number) => void;
-  showMoreButton: boolean;
-  handleMoreButton: () => void;
-};
-
-export const usePagination = ({ gameFilteredList, ref }: usePaginationProps): UsePaginationReturn => {
+export const usePagination = ({ gameFilteredList, ref }: Props): UsePaginationReturn => {
   const [currentPage, setCurrentPage] = useState(1);
   const [currentMoreButtonPage, setCurrentMoreButtonPage] = useState(1);
 

@@ -17,7 +17,15 @@
       }
     }
   },
+  "plugins": ["unused-imports"],
   "rules": {
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-curly-brace-presence": [
+      "error",
+      { "props": "never", "children": "never", "propElementValues": "always" }
+    ],
+    "padding-line-between-statements": ["error", { "blankLine": "always", "prev": "*", "next": "return" }],
+    "unused-imports/no-unused-imports": "error",
+    "arrow-body-style": ["error", "as-needed", { "requireReturnForObjectLiteral": false }]
   }
 }

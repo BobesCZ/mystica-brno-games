@@ -4,7 +4,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { GameList, Pagination, usePagination } from '../../../../components';
 import { CATEGORY_DEFAULT_VALUES } from './config';
 import { CategoryForm } from './components';
-import { useFilteredGamesByCategory } from './useFilteredGamesByCategory';
+import { useFilteredGamesByCategory } from './hooks';
 import { CategoryFilters } from './types';
 
 export const CategoryTab = () => {

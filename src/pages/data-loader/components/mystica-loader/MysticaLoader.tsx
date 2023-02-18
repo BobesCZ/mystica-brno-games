@@ -11,8 +11,8 @@ import {
   Typography,
 } from '@mui/material';
 import { useState } from 'react';
-import { saveGameNameList } from '../../../fetch';
-import { getExternalNameList } from '../utils';
+import { saveGameNameList } from '../../../../fetch';
+import { getExternalNameList } from '../../utils';
 
 export const MysticaLoader = () => {
   const [gameNameListExternal, setGameNameListExternal] = useState<string[]>();

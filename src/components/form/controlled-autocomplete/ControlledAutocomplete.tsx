@@ -1,12 +1,7 @@
 import { Autocomplete, TextField } from '@mui/material';
 import { Controller, ControllerProps, FieldPath, FieldValues } from 'react-hook-form';
 
-export type ControlledAutocompleteOption = {
-  value: string;
-  label: string;
-};
-
-type ControlledAutocompleteProps<TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>> = Pick<
+type Props<TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>> = Pick<
   ControllerProps<TFieldValues>,
   'control'
 > & {
@@ -23,7 +18,7 @@ export const ControlledAutocomplete = <TFieldValues extends FieldValues, TName e
   label,
   options,
   ...rest
-}: ControlledAutocompleteProps<TFieldValues, TName>) => (
+}: Props<TFieldValues, TName>) => (
   <Controller<TFieldValues>
     control={control}
     name={name}
