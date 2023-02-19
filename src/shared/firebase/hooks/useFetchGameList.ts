@@ -7,12 +7,12 @@ import { firebaseDb } from '../firebase';
 import { resolveFetchedDataList } from './utils';
 
 type Return = {
-  gameList?: Game[];
+  gameList: Game[];
   loading: boolean;
 };
 
 export const useFetchGameList = (): Return => {
-  const [gameList, setGameList] = useState<Game[]>();
+  const [gameList, setGameList] = useState<Game[]>([]);
 
   const [gameListSource, loading] = useList(ref(firebaseDb, 'gameList'));
 
