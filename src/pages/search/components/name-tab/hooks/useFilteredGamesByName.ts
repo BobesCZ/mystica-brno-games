@@ -1,8 +1,8 @@
-import { useMemo } from 'react';
+import { useContext, useMemo } from 'react';
 import { Game } from '../../../../../types';
 import { filterGameByName } from '../utils';
 import { NameFilters } from '../types';
-import { useFetchGameList } from '../../../../../shared/firebase';
+import { AppContext } from '../../../../../shared/store';
 
 type Props = {
   filters: NameFilters;
@@ -11,11 +11,11 @@ type Props = {
 type Return = {
   gameFilteredList: Game[];
   gameListOptions: string[];
-  loading: boolean;
+  gameListLoading: boolean;
 };
 
 export const useFilteredGamesByName = ({ filters }: Props): Return => {
-  const { gameList, loading } = useFetchGameList();
+  const { gameList, gameListLoading } = useContext(AppContext);
 
   const gameFilteredList = useMemo(() => {
     if (filters.name.length < 3) {
@@ -27,5 +27,5 @@ export const useFilteredGamesByName = ({ filters }: Props): Return => {
 
   const gameListOptions = useMemo(() => (gameList || []).map(({ sourceName }) => sourceName), [gameList]);
 
-  return { gameFilteredList, gameListOptions, loading };
+  return { gameFilteredList, gameListOptions, gameListLoading };
 };

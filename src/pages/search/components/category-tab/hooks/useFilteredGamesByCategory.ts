@@ -1,9 +1,9 @@
-import { useMemo } from 'react';
+import { useContext, useMemo } from 'react';
 import { Game } from '../../../../../types';
 import { filterGamebyCategory } from '../utils';
 import { uniq } from 'lodash-es';
 import { CategoryFilters } from '../types';
-import { useFetchGameList } from '../../../../../shared/firebase';
+import { AppContext } from '../../../../../shared/store';
 
 type Props = {
   filters: CategoryFilters;
@@ -13,11 +13,11 @@ type Return = {
   gameFilteredList: Game[];
   categoryOptions: string[];
   mechanicsOptions: string[];
-  loading: boolean;
+  gameListLoading: boolean;
 };
 
 export const useFilteredGamesByCategory = ({ filters }: Props): Return => {
-  const { gameList, loading } = useFetchGameList();
+  const { gameList, gameListLoading } = useContext(AppContext);
 
   const gameFilteredList = useMemo(
     () => (gameList || []).filter((game) => filterGamebyCategory(game, filters)),
@@ -28,5 +28,5 @@ export const useFilteredGamesByCategory = ({ filters }: Props): Return => {
 
   const mechanicsOptions = useMemo(() => uniq((gameList || []).flatMap(({ mechanics }) => mechanics)), [gameList]);
 
-  return { gameFilteredList, categoryOptions, mechanicsOptions, loading };
+  return { gameFilteredList, categoryOptions, mechanicsOptions, gameListLoading };
 };

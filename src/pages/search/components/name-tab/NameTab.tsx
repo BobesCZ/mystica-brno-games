@@ -14,7 +14,7 @@ export const NameTab = () => {
   const filters = methods.watch();
   const ref = useRef<HTMLDivElement>(null);
 
-  const { gameFilteredList, gameListOptions, loading } = useFilteredGamesByName({ filters });
+  const { gameFilteredList, gameListOptions, gameListLoading } = useFilteredGamesByName({ filters });
   const { currentPageGameList, ...paginationProps } = usePagination({ gameFilteredList, ref });
 
   return (
@@ -22,7 +22,7 @@ export const NameTab = () => {
       <Box component="form">
         <NameForm gameListOptions={gameListOptions} />
         <Container>
-          {loading ? (
+          {gameListLoading ? (
             <Box height={600} display="flex" alignItems="center" justifyContent="center">
               <CircularProgress />
             </Box>
