@@ -1,7 +1,7 @@
 import { ref } from 'firebase/database';
 import { useEffect, useState } from 'react';
 import { useList } from 'react-firebase-hooks/database';
-import { Game } from '../../../types';
+import { Game } from '../../types';
 
 import { firebaseDb } from '../firebase';
 import { resolveFetchedDataList } from './utils';

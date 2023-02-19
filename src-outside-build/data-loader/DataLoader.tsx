@@ -2,7 +2,7 @@ import { Box, Button, CircularProgress, Container, Stack, Typography } from '@mu
 import { useState } from 'react';
 import { GameList } from '../../src/shared/components';
 import { useFetchGameNameList, useFetchGameList, saveGameList, saveFailedGameList } from '../../src/shared/firebase';
-import { Game, LogRecord } from '../../src/types';
+import { Game, LogRecord } from '../../src/shared/types';
 import { Log, MysticaLoader } from './components';
 import { GAME_LIST_SLICE } from './config';
 import { getGameList } from './utils';

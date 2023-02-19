@@ -1,5 +1,5 @@
 import { useContext, useMemo } from 'react';
-import { Game } from '../../../../../types';
+import { Game } from '../../../../../shared/types';
 import { filterGamebyCategory } from '../utils';
 import { uniq } from 'lodash-es';
 import { CategoryFilters } from '../types';
