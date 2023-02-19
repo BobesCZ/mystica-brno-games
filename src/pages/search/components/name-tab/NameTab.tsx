@@ -19,7 +19,7 @@ export const NameTab = () => {
 
   return (
     <FormProvider {...methods}>
-      <Box component="form">
+      <Box component="form" onSubmit={methods.handleSubmit((_, e) => e?.preventDefault())}>
         <NameForm gameListOptions={gameListOptions} />
         <Container>
           {gameListLoading ? (
