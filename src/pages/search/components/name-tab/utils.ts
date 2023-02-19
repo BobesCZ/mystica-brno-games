@@ -1,4 +1,4 @@
-import { Game } from '../../../../types';
+import { Game } from '../../../../shared/types';
 import { NameFilters } from './types';
 
 export const filterGameByName = (game: Game, { name }: NameFilters): boolean =>

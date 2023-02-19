@@ -1,5 +1,5 @@
 import { ref, update } from 'firebase/database';
-import { Game } from '../../types';
+import { Game } from '../types';
 import { firebaseDb } from './firebase';
 
 export const saveGameList = (gameList: Game[]): void => {

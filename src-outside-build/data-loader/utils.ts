@@ -3,7 +3,7 @@ import axios from 'axios';
 import { load } from 'cheerio';
 import { maxBy, uniq, uniqBy } from 'lodash-es';
 import { parseBggXmlApi2SearchResponse, parseBggXmlApi2ThingResponse } from '../../src/board-game-geek-fixed';
-import { Game, LogRecord, LogRecordState } from '../../src/types';
+import { Game, LogRecord, LogRecordState } from '../../src/shared/types';
 import { mysticaHtml } from '../../src/data';
 import { stringSimilarity } from 'string-similarity-js';
 import { PROCESS_GAME_TIMEOUT } from './config';

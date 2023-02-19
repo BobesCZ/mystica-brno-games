@@ -1,4 +1,4 @@
-import { Game } from '../../../../types';
+import { Game } from '../../../../shared/types';
 import { CATEGORY_PLAYING_TIME_INTERVALS } from './config';
 import { CategoryFilters } from './types';
 

@@ -1,5 +1,5 @@
 import { ControlledSelectOption } from '../../../../shared/components';
-import { GamePlayingTimeInterval, GamePlayingTimeType } from '../../../../types';
+import { GamePlayingTimeInterval, GamePlayingTimeType } from '../../../../shared/types';
 import { CategoryFilters } from './types';
 
 export const CATEGORY_DEFAULT_VALUES: CategoryFilters = {
