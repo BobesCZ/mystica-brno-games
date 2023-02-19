@@ -21,7 +21,7 @@ export const CategoryTab = () => {
 
   return (
     <FormProvider {...methods}>
-      <Box component="form">
+      <Box component="form" onSubmit={methods.handleSubmit((_, e) => e?.preventDefault())}>
         <CategoryForm categoryOptions={categoryOptions} mechanicsOptions={mechanicsOptions} />
         <Container>
           {gameListLoading ? (

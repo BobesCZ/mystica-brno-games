@@ -18,7 +18,7 @@ export const useFilteredGamesByName = ({ filters }: Props): Return => {
   const { gameList, gameListLoading } = useContext(AppContext);
 
   const gameFilteredList = useMemo(() => {
-    if (filters.name.length < 3) {
+    if ((filters.name?.length ?? 0) < 3) {
       return [];
     }
 

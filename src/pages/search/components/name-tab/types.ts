@@ -1,3 +1,3 @@
 export type NameFilters = {
-  name: string;
+  name: string | null;
 };
