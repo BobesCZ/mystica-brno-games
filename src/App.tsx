@@ -3,6 +3,7 @@ import { useCustomTheme } from './shared/hooks';
 import { Search } from './pages/';
 import { AppNav } from './shared/components';
 import { AppContextProvider } from './shared/store';
+import './shared/locales';
 
 function App() {
   const theme = useCustomTheme();
