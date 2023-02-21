@@ -1,7 +1,8 @@
 import { Box, Container, Grid } from '@mui/material';
 import { useFormContext } from 'react-hook-form';
+import { Trans, useTranslation } from 'react-i18next';
 import { ControlledAutocomplete, ControlledSelect } from '../../../../../../shared/components';
-import { CATEGORY_PLAYERS_COUNT_OPTIONS, CATEGORY_PLAYING_TIME_OPTIONS } from '../../config';
+import { getCategoryPlayersCountOptions, getCategoryPlayingTimeOptions } from '../../config';
 import { CategoryFilters } from '../../types';
 
 type Props = {
@@ -10,6 +11,7 @@ type Props = {
 };
 
 export const CategoryForm = ({ categoryOptions, mechanicsOptions }: Props) => {
+  const { t } = useTranslation();
   const { control } = useFormContext<CategoryFilters>();
 
   return (
@@ -20,8 +22,8 @@ export const CategoryForm = ({ categoryOptions, mechanicsOptions }: Props) => {
             <ControlledSelect<CategoryFilters, 'playersCount'>
               control={control}
               name="playersCount"
-              label="Pro kolik lidí?"
-              options={CATEGORY_PLAYERS_COUNT_OPTIONS}
+              label={t('search.form.playersCount.label')}
+              options={getCategoryPlayersCountOptions(t)}
             />
           </Grid>
 
@@ -29,8 +31,8 @@ export const CategoryForm = ({ categoryOptions, mechanicsOptions }: Props) => {
             <ControlledSelect<CategoryFilters, 'playingTime'>
               control={control}
               name="playingTime"
-              label="Jak dlouhá hra?"
-              options={CATEGORY_PLAYING_TIME_OPTIONS}
+              label={t('search.form.playingTime.label')}
+              options={getCategoryPlayingTimeOptions(t)}
             />
           </Grid>
 
@@ -38,8 +40,9 @@ export const CategoryForm = ({ categoryOptions, mechanicsOptions }: Props) => {
             <ControlledAutocomplete<CategoryFilters, 'categories'>
               control={control}
               name="categories"
-              label="Kategorie her"
+              label={t('search.form.categories.label')}
               options={categoryOptions}
+              noOptionsText={<Trans t={t} i18nKey="common.noOptionsText" />}
               multiple
             />
           </Grid>
@@ -48,8 +51,9 @@ export const CategoryForm = ({ categoryOptions, mechanicsOptions }: Props) => {
             <ControlledAutocomplete<CategoryFilters, 'mechanics'>
               control={control}
               name="mechanics"
-              label="Herní mechaniky"
+              label={t('search.form.mechanics.label')}
               options={mechanicsOptions}
+              noOptionsText={<Trans t={t} i18nKey="common.noOptionsText" />}
               multiple
             />
           </Grid>

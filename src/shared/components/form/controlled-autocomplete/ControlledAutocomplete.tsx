@@ -1,4 +1,5 @@
 import { Autocomplete, TextField } from '@mui/material';
+import { ReactNode } from 'react';
 import { Controller, ControllerProps, FieldPath, FieldValues } from 'react-hook-form';
 
 type Props<TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>> = Pick<
@@ -10,6 +11,7 @@ type Props<TFieldValues extends FieldValues, TName extends FieldPath<TFieldValue
   label: string;
   multiple?: boolean;
   freeSolo?: boolean;
+  noOptionsText: ReactNode;
 };
 
 export const ControlledAutocomplete = <TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>>({
@@ -19,6 +21,7 @@ export const ControlledAutocomplete = <TFieldValues extends FieldValues, TName e
   options,
   multiple,
   freeSolo,
+  noOptionsText,
 }: Props<TFieldValues, TName>) => (
   <Controller<TFieldValues>
     control={control}
@@ -32,6 +35,7 @@ export const ControlledAutocomplete = <TFieldValues extends FieldValues, TName e
         blurOnSelect
         multiple={multiple}
         freeSolo={freeSolo}
+        noOptionsText={noOptionsText}
       />
     )}
   />

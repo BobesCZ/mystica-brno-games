@@ -1,5 +1,65 @@
 {
+  "common": {
+    "noOptionsText": "Žádné položky",
+    "showMore": "Více o hře",
+    "showLess": "Skrýt"
+  },
+  "gameCard": {
+    "playingtime": "Herní doba: {{playingtime}} min",
+    "playersCount": " Počet hráčů: {{minplayers}} - {{maxplayers}}",
+    "minage": "Doporučený věk: od {{minage}} let",
+    "goToBgg": "Přejít na BoardGameGeek.com"
+  },
+  "gameList": {
+    "searchResults": "Vyhledané hry",
+    "noResults": {
+      "title": "Nenalezeny žádné hry",
+      "content": "Zkuste změnit parametry vyhledávání."
+    }
+  },
+  "pagination": {
+    "showMore": "Dalších {{itemsCount}} her"
+  },
   "search": {
-    "pageTitle": "Najít hru v Mystice"
+    "pageTitle": "Najít hru v Mystice",
+    "tabnav": {
+      "category": "Podle parametrů",
+      "name": "Podle jména"
+    },
+    "form": {
+      "playersCount": {
+        "label": "Pro kolik lidí?",
+        "options": {
+          "0": "– nezáleží –",
+          "1": "pro 1 hráče",
+          "200": "pro 2 hráče (jen dvojkovky)",
+          "2": "pro 2 hráče",
+          "3": "pro 3 hráče",
+          "4": "pro 4 hráče",
+          "5": "pro 5 hráčů",
+          "6": "pro 6 hráčů",
+          "7": "pro 7 a více hráčů"
+        }
+      },
+      "playingTime": {
+        "label": "Jak dlouhá hra?",
+        "options": {
+          "all": "– nezáleží –",
+          "filler": "filler (do 20 min)",
+          "short": "krátká (21 - 60 min)",
+          "medium": "středně dlouhá (61 - 90 min)",
+          "long": "na celý večer (91 min a více)"
+        }
+      },
+      "categories": {
+        "label": "Kategorie her"
+      },
+      "mechanics": {
+        "label": "Herní mechaniky"
+      },
+      "name": {
+        "label": "Název hry"
+      }
+    }
   }
 }
