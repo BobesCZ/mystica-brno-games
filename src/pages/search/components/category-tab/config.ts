@@ -1,6 +1,7 @@
+import { TFunction } from 'i18next';
 import { ControlledSelectOption } from '../../../../shared/components';
 import { GamePlayingTimeInterval, GamePlayingTimeType } from '../../../../shared/types';
-import { CategoryFilters } from './types';
+import { CategoryFilters, PlayersCount } from './types';
 
 export const CATEGORY_DEFAULT_VALUES: CategoryFilters = {
   playersCount: 2,
@@ -9,25 +10,22 @@ export const CATEGORY_DEFAULT_VALUES: CategoryFilters = {
   mechanics: [],
 };
 
-export const CATEGORY_PLAYERS_COUNT_OPTIONS: ControlledSelectOption<CategoryFilters, 'playersCount'>[] = [
-  { value: 0, label: '– nezáleží –' },
-  { value: 1, label: 'pro 1 hráče' },
-  { value: 200, label: 'pro 2 hráče (jen dvojkovky)' },
-  { value: 2, label: 'pro 2 hráče' },
-  { value: 3, label: 'pro 3 hráče' },
-  { value: 4, label: 'pro 4 hráče' },
-  { value: 5, label: 'pro 5 hráčů' },
-  { value: 6, label: 'pro 6 hráčů' },
-  { value: 7, label: 'pro 7 a více hráčů' },
-];
+export const getCategoryPlayersCountOptions = (
+  t: TFunction,
+): ControlledSelectOption<CategoryFilters, 'playersCount'>[] => {
+  const values: PlayersCount[] = [0, 1, 200, 2, 3, 4, 5, 6, 7];
 
-export const CATEGORY_PLAYING_TIME_OPTIONS: ControlledSelectOption<CategoryFilters, 'playingTime'>[] = [
-  { value: GamePlayingTimeType.ALL, label: '– nezáleží –' },
-  { value: GamePlayingTimeType.FILLER, label: 'filler (do 20 min)' },
-  { value: GamePlayingTimeType.SHORT, label: 'krátká (21 - 60 min)' },
-  { value: GamePlayingTimeType.MEDIUM, label: 'středně dlouhá (61 - 90 min)' },
-  { value: GamePlayingTimeType.LONG, label: 'na celý večer (nad 91 min)' },
-];
+  return values.map((value) => ({
+    value,
+    label: t(`search.form.playersCount.options.${value}`),
+  }));
+};
+
+export const getCategoryPlayingTimeOptions = (t: TFunction): ControlledSelectOption<CategoryFilters, 'playingTime'>[] =>
+  Object.values(GamePlayingTimeType).map((value) => ({
+    value,
+    label: t(`search.form.playingTime.options.${value}`),
+  }));
 
 export const CATEGORY_PLAYING_TIME_INTERVALS: Record<GamePlayingTimeType, GamePlayingTimeInterval> = {
   [GamePlayingTimeType.ALL]: { min: 0, max: 9999 },

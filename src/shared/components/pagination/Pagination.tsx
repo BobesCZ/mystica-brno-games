@@ -1,4 +1,5 @@
 import { Button, Pagination as MuiPagination, Stack } from '@mui/material';
+import { Trans, useTranslation } from 'react-i18next';
 import { PAGINATION_ITEMS_COUNT } from './config';
 import { UsePaginationReturn } from './hooks';
 
@@ -11,15 +12,19 @@ export const Pagination = ({
   handlePageChange,
   showMoreButton,
   handleMoreButton,
-}: Props) => (
-  <Stack alignItems="center" gap={3} mb={4}>
-    {showMoreButton && (
-      <Button variant="contained" size="large" onClick={handleMoreButton}>
-        Načíst dalších {PAGINATION_ITEMS_COUNT} her
-      </Button>
-    )}
-    {showPagination && (
-      <MuiPagination size="large" count={pageCount} page={currentPage} onChange={handlePageChange} siblingCount={0} />
-    )}
-  </Stack>
-);
+}: Props) => {
+  const { t } = useTranslation();
+
+  return (
+    <Stack alignItems="center" gap={3} mb={4}>
+      {showMoreButton && (
+        <Button variant="contained" size="large" onClick={handleMoreButton}>
+          <Trans t={t} i18nKey="pagination.showMore" values={{ itemsCount: PAGINATION_ITEMS_COUNT }} />
+        </Button>
+      )}
+      {showPagination && (
+        <MuiPagination size="large" count={pageCount} page={currentPage} onChange={handlePageChange} siblingCount={0} />
+      )}
+    </Stack>
+  );
+};

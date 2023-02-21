@@ -1,6 +1,7 @@
 import { KeyboardArrowDown, KeyboardArrowUp, Launch } from '@mui/icons-material';
 import { Box, Card, CardActions, CardContent, CardMedia, Chip, Collapse, Link, Stack, Typography } from '@mui/material';
 import { useState } from 'react';
+import { Trans, useTranslation } from 'react-i18next';
 import { Game } from '../../types';
 
 type Props = {
@@ -23,6 +24,7 @@ export const GameCard = ({
     mechanics,
   },
 }: Props) => {
+  const { t } = useTranslation();
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -45,15 +47,15 @@ export const GameCard = ({
 
         <Stack gap={0.25}>
           <Typography variant="body2" color="text.secondary">
-            Herní doba: {playingtime} min
+            <Trans t={t} i18nKey="gameCard.playingtime" values={{ playingtime }} />
           </Typography>
 
           <Typography variant="body2" color="text.secondary">
-            Počet hráčů: {minplayers} - {maxplayers}
+            <Trans t={t} i18nKey="gameCard.playersCount" values={{ minplayers, maxplayers }} />
           </Typography>
 
           <Typography variant="body2" color="text.secondary">
-            Doporučený věk: od {minage} let
+            <Trans t={t} i18nKey="gameCard.minage" values={{ minage }} />
           </Typography>
         </Stack>
 
@@ -71,7 +73,7 @@ export const GameCard = ({
               color="text.secondary"
               href={`https://boardgamegeek.com/boardgame/${id}`}
               target="_blank"
-              title="Přejít na BoardGameGeek.com"
+              title={t('gameCard.goToBgg') ?? ''}
             >
               <Stack direction="row" alignItems="center" mb={1} gap={1}>
                 {primaryName}
@@ -79,7 +81,9 @@ export const GameCard = ({
               </Stack>
             </Link>
 
-            <Typography variant="body2">{description}</Typography>
+            <Typography variant="body2">
+              <span dangerouslySetInnerHTML={{ __html: description }} />
+            </Typography>
 
             <Stack direction="row" mt={2} gap={1} flexWrap="wrap">
               {mechanics.map((item) => (
@@ -103,11 +107,12 @@ export const GameCard = ({
         >
           {expanded ? (
             <>
-              Skrýt <KeyboardArrowUp fontSize="small" />
+              <Trans t={t} i18nKey="common.showLess" />
+              <KeyboardArrowUp fontSize="small" />
             </>
           ) : (
             <>
-              Více o hře
+              <Trans t={t} i18nKey="common.showMore" />
               <KeyboardArrowDown fontSize="small" />
             </>
           )}
