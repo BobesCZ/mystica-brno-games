@@ -14,7 +14,7 @@ export const CategoryTab = () => {
   const filters = methods.watch();
   const ref = useRef<HTMLDivElement>(null);
 
-  const { gameFilteredList, categoryOptions, mechanicsOptions, gameListLoading } = useFilteredGamesByCategory({
+  const { gameFilteredList, gameListLoading, ...options } = useFilteredGamesByCategory({
     filters,
   });
   const { currentPageGameList, ...paginationProps } = usePagination({ gameFilteredList, ref });
@@ -22,7 +22,7 @@ export const CategoryTab = () => {
   return (
     <FormProvider {...methods}>
       <Box component="form" onSubmit={methods.handleSubmit((_, e) => e?.preventDefault())}>
-        <CategoryForm categoryOptions={categoryOptions} mechanicsOptions={mechanicsOptions} />
+        <CategoryForm {...options} />
         <Container>
           {gameListLoading ? (
             <Box height={600} display="flex" alignItems="center" justifyContent="center">

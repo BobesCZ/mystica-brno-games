@@ -1,16 +1,23 @@
 import { Box, Container, Grid } from '@mui/material';
 import { useFormContext } from 'react-hook-form';
 import { Trans, useTranslation } from 'react-i18next';
-import { ControlledAutocomplete, ControlledSelect } from '../../../../../../shared/components';
-import { getCategoryPlayersCountOptions, getCategoryPlayingTimeOptions } from '../../config';
+import {
+  ControlleAutocompleteOption,
+  ControlledAutocomplete,
+  ControlledSelect,
+  ControlledSelectOption,
+} from '../../../../../../shared/components';
+
 import { CategoryFilters } from '../../types';
 
 type Props = {
-  categoryOptions: string[];
-  mechanicsOptions: string[];
+  playersCountOptions: ControlledSelectOption<CategoryFilters, 'playersCount'>[];
+  playingTimeOptions: ControlledSelectOption<CategoryFilters, 'playingTime'>[];
+  categoryOptions: ControlleAutocompleteOption[];
+  mechanicsOptions: ControlleAutocompleteOption[];
 };
 
-export const CategoryForm = ({ categoryOptions, mechanicsOptions }: Props) => {
+export const CategoryForm = ({ playersCountOptions, playingTimeOptions, categoryOptions, mechanicsOptions }: Props) => {
   const { t } = useTranslation();
   const { control } = useFormContext<CategoryFilters>();
 
@@ -23,7 +30,7 @@ export const CategoryForm = ({ categoryOptions, mechanicsOptions }: Props) => {
               control={control}
               name="playersCount"
               label={t('search.form.playersCount.label')}
-              options={getCategoryPlayersCountOptions(t)}
+              options={playersCountOptions}
             />
           </Grid>
 
@@ -32,7 +39,7 @@ export const CategoryForm = ({ categoryOptions, mechanicsOptions }: Props) => {
               control={control}
               name="playingTime"
               label={t('search.form.playingTime.label')}
-              options={getCategoryPlayingTimeOptions(t)}
+              options={playingTimeOptions}
             />
           </Grid>
 
@@ -43,7 +50,6 @@ export const CategoryForm = ({ categoryOptions, mechanicsOptions }: Props) => {
               label={t('search.form.categories.label')}
               options={categoryOptions}
               noOptionsText={<Trans t={t} i18nKey="common.noOptionsText" />}
-              multiple
             />
           </Grid>
 
@@ -54,7 +60,6 @@ export const CategoryForm = ({ categoryOptions, mechanicsOptions }: Props) => {
               label={t('search.form.mechanics.label')}
               options={mechanicsOptions}
               noOptionsText={<Trans t={t} i18nKey="common.noOptionsText" />}
-              multiple
             />
           </Grid>
         </Grid>
