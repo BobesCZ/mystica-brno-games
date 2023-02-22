@@ -24,10 +24,10 @@ const hasPlayingTime = (game: Game, { playingTime }: CategoryFilters): boolean =
 };
 
 const hasCategories = (game: Game, { categories }: CategoryFilters): boolean =>
-  categories.every((item) => game.categories.includes(item));
+  categories.every((item) => game.categories.includes(item.value));
 
 const hasMechanics = (game: Game, { mechanics }: CategoryFilters): boolean =>
-  mechanics.every((item) => game.mechanics.includes(item));
+  mechanics.every((item) => game.mechanics.includes(item.value));
 
 export const filterGamebyCategory = (game: Game, filters: CategoryFilters): boolean =>
   hasPlayersCount(game, filters) &&
