@@ -27,6 +27,7 @@ export const ControlledAutocomplete = <TFieldValues extends FieldValues, TName e
       <Autocomplete
         options={options}
         getOptionLabel={(option) => option.label}
+        groupBy={(option) => option.groupLabel || ''}
         isOptionEqualToValue={(option, value) => option.value === value.value}
         onChange={(_, data) => onChange(data)}
         renderInput={(params) => <TextField {...field} {...params} fullWidth inputRef={ref} label={label} />}
