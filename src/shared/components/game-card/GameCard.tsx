@@ -61,7 +61,7 @@ export const GameCard = ({
 
         <Stack direction="row" mt={2} gap={1} flexWrap="wrap">
           {categories.map((item) => (
-            <Chip key={item} label={item} />
+            <Chip key={item} label={t(`bggCategories.${item}`)} />
           ))}
         </Stack>
 

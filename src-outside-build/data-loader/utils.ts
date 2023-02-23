@@ -1,12 +1,13 @@
 import { BggGame, BggSearch, BggThing, BggThingType } from '@code-bucket/board-game-geek';
 import axios from 'axios';
 import { load } from 'cheerio';
-import { maxBy, uniq, uniqBy } from 'lodash-es';
+import { findKey, maxBy, uniq, uniqBy } from 'lodash-es';
 import { parseBggXmlApi2SearchResponse, parseBggXmlApi2ThingResponse } from '../../src/board-game-geek-fixed';
 import { Game, LogRecord, LogRecordState } from '../../src/shared/types';
 import { mysticaHtml } from '../../src/data';
 import { stringSimilarity } from 'string-similarity-js';
 import { PROCESS_GAME_TIMEOUT } from './config';
+import { CategoryKey, MERGED_CATEGORIES } from '../../src/pages/search/components';
 
 export const getGameFromBggThing = (sourceName: string, bggThing?: BggThing): Game => {
   if (bggThing?.type === BggThingType.boardGame) {
@@ -162,4 +163,12 @@ export const getExternalNameList = (): string[] => {
     .filter((text) => text.length > 1 && !text.includes('ozšíření'));
 
   return uniq(gameNameList);
+};
+
+export const getMergedCategories = (originalCategories?: string[]): CategoryKey[] => {
+  const mergedCategories = (originalCategories || [])
+    .map((category) => findKey(MERGED_CATEGORIES, (item) => item.includes(category)))
+    .filter((item): item is CategoryKey => !!item);
+
+  return uniq(mergedCategories);
 };

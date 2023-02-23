@@ -6,8 +6,12 @@ import { CATEGORY_DEFAULT_VALUES } from './config';
 import { CategoryForm } from './components';
 import { useFilteredGamesByCategory } from './hooks';
 import { CategoryFilters } from './types';
+import { useTranslation } from 'react-i18next';
 
 export const CategoryTab = () => {
+  const {
+    i18n: { resolvedLanguage },
+  } = useTranslation();
   const methods = useForm<CategoryFilters>({
     defaultValues: CATEGORY_DEFAULT_VALUES,
   });
@@ -16,6 +20,7 @@ export const CategoryTab = () => {
 
   const { gameFilteredList, gameListLoading, ...options } = useFilteredGamesByCategory({
     filters,
+    resolvedLanguage,
   });
   const { currentPageGameList, ...paginationProps } = usePagination({ gameFilteredList, ref });
 
