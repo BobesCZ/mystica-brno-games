@@ -7,7 +7,7 @@ import { Game, LogRecord, LogRecordState } from '../../src/shared/types';
 import { mysticaHtml } from '../../src/data';
 import { stringSimilarity } from 'string-similarity-js';
 import { PROCESS_GAME_TIMEOUT } from './config';
-import { CategoryKey, MERGED_CATEGORIES } from '../../src/pages/search/components';
+import { CategoryKey, MechanicKey, MERGED_CATEGORIES, MERGED_MECHANICS } from '../../src/pages/search/components';
 
 export const getGameFromBggThing = (sourceName: string, bggThing?: BggThing): Game => {
   if (bggThing?.type === BggThingType.boardGame) {
@@ -171,4 +171,12 @@ export const getMergedCategories = (originalCategories?: string[]): CategoryKey[
     .filter((item): item is CategoryKey => !!item);
 
   return uniq(mergedCategories);
+};
+
+export const getMergedMechanics = (originalMechanics?: string[]): MechanicKey[] => {
+  const mergedMechanics = (originalMechanics || [])
+    .map((mechanic) => findKey(MERGED_MECHANICS, (item) => item.includes(mechanic)))
+    .filter((item): item is MechanicKey => !!item);
+
+  return uniq(mergedMechanics);
 };
