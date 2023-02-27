@@ -5,6 +5,8 @@ export type Game = Pick<BggThing, 'id' | 'primaryName' | 'yearpublished' | 'imag
     sourceName: string;
     categories: string[];
     mechanics: string[];
+    originalCategories?: string[];
+    originalMechanics?: string[];
   };
 
 export enum GamePlayingTimeType {

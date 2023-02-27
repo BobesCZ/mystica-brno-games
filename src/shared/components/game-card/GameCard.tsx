@@ -61,7 +61,7 @@ export const GameCard = ({
 
         <Stack direction="row" mt={2} gap={1} flexWrap="wrap">
           {categories.map((item) => (
-            <Chip key={item} label={t(`bggCategories.${item}`)} />
+            <Chip key={item} label={t(`bgg.categories.${item}`)} />
           ))}
         </Stack>
 
@@ -87,7 +87,7 @@ export const GameCard = ({
 
             <Stack direction="row" mt={2} gap={1} flexWrap="wrap">
               {mechanics.map((item) => (
-                <Chip key={item} label={item} variant="outlined" />
+                <Chip key={item} label={t(`bgg.mechanics.${item}`)} />
               ))}
             </Stack>
           </Box>
