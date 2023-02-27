@@ -1,12 +1,17 @@
 import { useContext, useMemo } from 'react';
 import { Game } from '../../../../../shared/types';
 import { filterGamebyCategory } from '../utils';
-import { uniq } from 'lodash-es';
-import { CategoryFilters, CategoryGroup } from '../types';
+import { CategoryFilters, CategoryGroup, MechanicGroup } from '../types';
 import { AppContext } from '../../../../../shared/store';
 import { ControlleAutocompleteOption, ControlledSelectOption } from '../../../../../shared/components';
 import { useTranslation } from 'react-i18next';
-import { getCategoriesOption, getMechanicsOption, getPlayersCountOptions, getPlayingTimeOptions } from './utils';
+import {
+  getAutocompleteOptions,
+  getCategoryGroup,
+  getMechanicGroup,
+  getPlayersCountOptions,
+  getPlayingTimeOptions,
+} from './utils';
 
 type Props = {
   filters: CategoryFilters;
@@ -34,25 +39,31 @@ export const useFilteredGamesByCategory = ({ filters, resolvedLanguage }: Props)
   const playersCountOptions = useMemo(() => getPlayersCountOptions(t), [t]);
   const playingTimeOptions = useMemo(() => getPlayingTimeOptions(t), [t]);
 
-  const categoryOptions = useMemo(() => {
-    const uniqItems = uniq((gameList || []).flatMap(({ categories }) => categories));
-    const options = uniqItems.map((item) => getCategoriesOption(t, item));
-    const sortedOptions = options.sort((a, b) => a.label.localeCompare(b.label, resolvedLanguage));
+  const categoryOptions = useMemo(
+    () =>
+      getAutocompleteOptions({
+        gameList,
+        t,
+        resolvedLanguage,
+        key: 'categories',
+        getGroup: getCategoryGroup,
+        GroupEnum: CategoryGroup,
+      }),
+    [gameList, t],
+  );
 
-    return [
-      ...sortedOptions.filter(({ group }) => group === CategoryGroup.Favourites),
-      ...sortedOptions.filter(({ group }) => group === CategoryGroup.Topics),
-      ...sortedOptions.filter(({ group }) => group === CategoryGroup.Other),
-    ];
-  }, [gameList, t]);
-
-  const mechanicsOptions = useMemo(() => {
-    const uniqItems = uniq((gameList || []).flatMap(({ mechanics }) => mechanics));
-    const options = uniqItems.map((item) => getMechanicsOption(t, item));
-    const sortedOptions = options.sort((a, b) => a.label.localeCompare(b.label, resolvedLanguage));
-
-    return sortedOptions;
-  }, [gameList, t]);
+  const mechanicsOptions = useMemo(
+    () =>
+      getAutocompleteOptions({
+        gameList,
+        t,
+        resolvedLanguage,
+        key: 'mechanics',
+        getGroup: getMechanicGroup,
+        GroupEnum: MechanicGroup,
+      }),
+    [gameList, t],
+  );
 
   return {
     gameFilteredList,

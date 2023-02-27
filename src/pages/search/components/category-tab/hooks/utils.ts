@@ -1,9 +1,10 @@
 import { TFunction } from 'i18next';
-import { findKey } from 'lodash-es';
+import { findKey, uniq } from 'lodash-es';
 import { ControlleAutocompleteOption, ControlledSelectOption } from '../../../../../shared/components';
 import { GamePlayingTimeType } from '../../../../../shared/types';
-import { GROUPED_CATEGORIES } from '../config';
-import { CategoryFilters, CategoryGroup, CategoryKey, PlayersCount } from '../types';
+import { GROUPED_CATEGORIES, GROUPED_MECHANICS } from '../config';
+import { CategoryFilters, CategoryGroup, CategoryKey, MechanicGroup, MechanicKey, PlayersCount } from '../types';
+import { GetAutocompleteOptionsProps } from './types';
 
 export const getPlayersCountOptions = (t: TFunction): ControlledSelectOption<CategoryFilters, 'playersCount'>[] => {
   const values: PlayersCount[] = [0, 1, 200, 2, 3, 4, 5, 6, 7];
@@ -20,21 +21,37 @@ export const getPlayingTimeOptions = (t: TFunction): ControlledSelectOption<Cate
     label: t(`search.form.playingTime.options.${value}`),
   }));
 
-const getCategoryGroup = (value: string): string =>
+export const getCategoryGroup = (value: string): string =>
   findKey(GROUPED_CATEGORIES, (item) => item?.includes(value as CategoryKey)) || CategoryGroup.Other;
 
-export const getCategoriesOption = (t: TFunction, value: string): ControlleAutocompleteOption => {
-  const group = getCategoryGroup(value);
+export const getMechanicGroup = (value: string): string =>
+  findKey(GROUPED_MECHANICS, (item) => item?.includes(value as MechanicKey)) || MechanicGroup.Other;
 
-  return {
-    value,
-    label: t(`bggCategories.${value}`) || value,
-    group: group,
-    groupLabel: t(`search.form.categories.groups.${group}`) || '',
-  };
+export const getAutocompleteOptions = ({
+  gameList,
+  t,
+  resolvedLanguage,
+  key,
+  getGroup,
+  GroupEnum,
+}: GetAutocompleteOptionsProps): ControlleAutocompleteOption[] => {
+  const uniqItems = uniq((gameList || []).flatMap((game) => game[key]));
+
+  const options = uniqItems.map((value: string): ControlleAutocompleteOption => {
+    const group = getGroup(value);
+
+    return {
+      value,
+      label: t(`bgg.${key}.${value}`) || value,
+      group: group,
+      groupLabel: t(`search.form.${key}.groups.${group}`) || '',
+    };
+  });
+
+  const sortedOptions = options.sort((a, b) => a.label.localeCompare(b.label, resolvedLanguage));
+
+  return Object.values(GroupEnum).reduce(
+    (acc: ControlleAutocompleteOption[], group) => [...acc, ...sortedOptions.filter((game) => game.group === group)],
+    [],
+  );
 };
-
-export const getMechanicsOption = (t: TFunction, value: string): ControlleAutocompleteOption => ({
-  value,
-  label: value,
-});
