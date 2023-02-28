@@ -1,8 +1,8 @@
-import { BggGame, BggSearch, BggThing, BggThingType } from '@code-bucket/board-game-geek';
+import { BggSearch, BggThing, BggThingType } from '@code-bucket/board-game-geek';
 import axios from 'axios';
 import { load } from 'cheerio';
 import { findKey, maxBy, uniq, uniqBy } from 'lodash-es';
-import { parseBggXmlApi2SearchResponse, parseBggXmlApi2ThingResponse } from '../../src/board-game-geek-fixed';
+import { BggGame, parseBggXmlApi2SearchResponse, parseBggXmlApi2ThingResponse } from '../../src/board-game-geek-fixed';
 import { Game, LogRecord, LogRecordState } from '../../src/shared/types';
 import { mysticaHtml } from '../../src/data';
 import { stringSimilarity } from 'string-similarity-js';
@@ -34,6 +34,7 @@ export const getGameFromBggThing = (sourceName: string, bggThing?: BggThing): Ga
       minage: (bggThing as BggGame).minage,
       categories,
       mechanics,
+      ratings: (bggThing as BggGame).ratings,
     };
   }
 
@@ -146,7 +147,7 @@ export const loadSearchData = async (parsedName: string) => {
 };
 
 export const loadThingData = async (thingId: number) => {
-  const response = await axios.get(`https://api.geekdo.com/xmlapi2/thing?id=${thingId}&versions=1`);
+  const response = await axios.get(`https://api.geekdo.com/xmlapi2/thing?id=${thingId}&versions=1&stats=1`);
   const bggResponse = parseBggXmlApi2ThingResponse(response);
   const thing = bggResponse?.item;
 
