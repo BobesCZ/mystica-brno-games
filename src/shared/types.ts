@@ -1,7 +1,8 @@
-import { BggGame, BggThing } from '@code-bucket/board-game-geek';
+import { BggThing } from '@code-bucket/board-game-geek';
+import { BggGame } from '../board-game-geek-fixed';
 
 export type Game = Pick<BggThing, 'id' | 'primaryName' | 'yearpublished' | 'image' | 'description'> &
-  Pick<BggGame, 'playingtime' | 'minplayers' | 'maxplayers' | 'minage'> & {
+  Pick<BggGame, 'playingtime' | 'minplayers' | 'maxplayers' | 'minage' | 'ratings'> & {
     sourceName: string;
     categories: string[];
     mechanics: string[];

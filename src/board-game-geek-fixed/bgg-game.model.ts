@@ -12,6 +12,7 @@ import {
   BggLinkType,
 } from '@code-bucket/board-game-geek';
 import { BggVersion } from './bgg-version.model';
+import { IBggRatings } from './types';
 
 export interface IBggGame extends IAttributes<IBggThingAttributes> {
   thumbnail: { _text: string };
@@ -28,6 +29,32 @@ export interface IBggGame extends IAttributes<IBggThingAttributes> {
   minage: IAttributes<{ value: string }>;
   link: IBggLink[] | IBggLink;
   versions: { item: IBggVersion[] | IBggVersion };
+  statistics?: {
+    ratings: {
+      average: IAttributes<{ value: string }>;
+      averageweight: IAttributes<{ value: string }>;
+      bayesaverage: IAttributes<{ value: string }>;
+      median: IAttributes<{ value: string }>;
+      numcomments: IAttributes<{ value: string }>;
+      numweights: IAttributes<{ value: string }>;
+      owned: IAttributes<{ value: string }>;
+      ranks: {
+        rank: IAttributes<{
+          bayesaverage: string;
+          friendlyname: string;
+          id: string;
+          name: string;
+          type: string;
+          value: string;
+        }>[];
+      };
+      stddev: IAttributes<{ value: string }>;
+      trading: IAttributes<{ value: string }>;
+      usersrated: IAttributes<{ value: string }>;
+      wanting: IAttributes<{ value: string }>;
+      wishing: IAttributes<{ value: string }>;
+    };
+  };
 }
 
 /**
@@ -50,6 +77,7 @@ export class BggGame {
   public maxplaytime: number;
   public minage: number;
   public versions: BggVersion[];
+  public ratings: IBggRatings;
 
   // Getters
 
@@ -114,5 +142,29 @@ export class BggGame {
       : data.versions.item
       ? [new BggVersion(data.versions.item)]
       : [];
+    this.ratings = {
+      average: Number.parseFloat(data.statistics?.ratings.average._attributes.value || '') ?? -1,
+      averageweight: Number.parseFloat(data.statistics?.ratings.averageweight._attributes.value || '') ?? -1,
+      bayesaverage: Number.parseFloat(data.statistics?.ratings.bayesaverage._attributes.value || '') ?? -1,
+      median: Number.parseFloat(data.statistics?.ratings.median._attributes.value || '') ?? -1,
+      numcomments: Number.parseInt(data.statistics?.ratings.numcomments._attributes.value || '') ?? -1,
+      numweights: Number.parseInt(data.statistics?.ratings.numweights._attributes.value || '') ?? -1,
+      ranks: (data.statistics?.ratings?.ranks?.rank || []).map(
+        ({ _attributes: { bayesaverage, friendlyname, id, name, type, value } }) => ({
+          bayesaverage: Number.parseFloat(bayesaverage),
+          friendlyname,
+          id: Number.parseInt(id),
+          name,
+          type,
+          value: Number.parseInt(value),
+        }),
+      ),
+      owned: Number.parseInt(data.statistics?.ratings.owned._attributes.value || '') ?? -1,
+      stddev: Number.parseFloat(data.statistics?.ratings.stddev._attributes.value || '') ?? -1,
+      trading: Number.parseInt(data.statistics?.ratings.trading._attributes.value || '') ?? -1,
+      usersrated: Number.parseInt(data.statistics?.ratings.usersrated._attributes.value || '') ?? -1,
+      wanting: Number.parseInt(data.statistics?.ratings.wanting._attributes.value || '') ?? -1,
+      wishing: Number.parseInt(data.statistics?.ratings.wishing._attributes.value || '') ?? -1,
+    };
   }
 }
