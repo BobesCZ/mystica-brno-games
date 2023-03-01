@@ -1,9 +1,8 @@
-import { ref } from 'firebase/database';
 import { useEffect, useState } from 'react';
 import { useList } from 'react-firebase-hooks/database';
 import { Game } from '../../types';
+import { GAME_LIST_REF } from '../config';
 
-import { firebaseDb } from '../firebase';
 import { resolveFetchedDataList } from './utils';
 
 type Return = {
@@ -14,7 +13,7 @@ type Return = {
 export const useFetchGameList = (): Return => {
   const [gameList, setGameList] = useState<Game[]>([]);
 
-  const [gameListSource, loading] = useList(ref(firebaseDb, 'gameList'));
+  const [gameListSource, loading] = useList(GAME_LIST_REF);
 
   useEffect(() => {
     if (!loading && gameListSource?.length) {
