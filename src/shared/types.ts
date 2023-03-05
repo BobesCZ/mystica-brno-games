@@ -1,13 +1,22 @@
 import { BggThing } from '@code-bucket/board-game-geek';
-import { BggGame } from '../board-game-geek-fixed';
+import { BggGame, IBggRank } from '../board-game-geek-fixed';
+import { CategoryKey, MechanicKey } from './bggData';
 
-export type Game = Pick<BggThing, 'id' | 'primaryName' | 'yearpublished' | 'image' | 'description'> &
-  Pick<BggGame, 'playingtime' | 'minplayers' | 'maxplayers' | 'minage' | 'ratings'> & {
+type Rank = Pick<IBggRank, 'name' | 'value'>;
+
+type Rating = {
+  value: number;
+  usersCount: number;
+};
+
+export type Game = Pick<BggThing, 'id' | 'primaryName' | 'yearpublished' | 'image'> &
+  Pick<BggGame, 'playingtime' | 'minplayers' | 'maxplayers' | 'minage'> & {
     sourceName: string;
-    categories: string[];
-    mechanics: string[];
-    originalCategories?: string[];
-    originalMechanics?: string[];
+    categories: CategoryKey[];
+    mechanics: MechanicKey[];
+    averageRating: Rating;
+    averageWeight: Rating;
+    ranks: Rank[];
   };
 
 export enum GamePlayingTimeType {

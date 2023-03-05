@@ -1,8 +1,22 @@
 import { KeyboardArrowDown, KeyboardArrowUp, Launch } from '@mui/icons-material';
-import { Box, Card, CardActions, CardContent, CardMedia, Chip, Collapse, Link, Stack, Typography } from '@mui/material';
+import {
+  Box,
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Chip,
+  Collapse,
+  Link,
+  Rating,
+  Stack,
+  Typography,
+} from '@mui/material';
+import { grey } from '@mui/material/colors';
 import { useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { Game } from '../../types';
+import { PlayersCountString } from './components';
 
 type Props = {
   game: Game;
@@ -14,7 +28,6 @@ export const GameCard = ({
     id,
     primaryName,
     image,
-    description,
     yearpublished,
     playingtime,
     minplayers,
@@ -22,6 +35,8 @@ export const GameCard = ({
     minage,
     categories,
     mechanics,
+    averageRating,
+    averageWeight,
   },
 }: Props) => {
   const { t } = useTranslation();
@@ -38,26 +53,34 @@ export const GameCard = ({
           <CardMedia component="img" image={image} alt="" sx={{ objectFit: 'contain', height: 250, mb: 3 }} />
         </Box>
 
-        <Typography variant="h3" gutterBottom>
+        <Typography variant="h3" sx={{ mb: 0.25 }}>
           {sourceName}{' '}
           <Typography variant="h3" component="span" color="text.secondary">
             ({yearpublished})
           </Typography>
         </Typography>
 
-        <Stack gap={0.25}>
-          <Typography variant="body2" color="text.secondary">
-            <Trans t={t} i18nKey="gameCard.playingtime" values={{ playingtime }} />
-          </Typography>
-
-          <Typography variant="body2" color="text.secondary">
-            <Trans t={t} i18nKey="gameCard.playersCount" values={{ minplayers, maxplayers }} />
-          </Typography>
-
-          <Typography variant="body2" color="text.secondary">
-            <Trans t={t} i18nKey="gameCard.minage" values={{ minage }} />
-          </Typography>
+        <Stack
+          display="inline-flex"
+          direction="row"
+          alignItems="center"
+          gap={1}
+          mb={2}
+          title={t('gameCard.usersCount', { usersCount: averageRating.usersCount })}
+        >
+          <Rating size="small" value={averageRating.value / 2} max={5} precision={0.1} readOnly />
+          {averageRating.value > 0 && (
+            <Typography variant="subtitle2" component="span" sx={{ mt: 0.25, lineHeight: 1, color: grey[500] }}>
+              {(averageRating.value * 10).toFixed(0)}%
+            </Typography>
+          )}
         </Stack>
+
+        <Typography variant="body1" color="text.secondary">
+          {minplayers > 0 && <PlayersCountString minplayers={minplayers} maxplayers={maxplayers} />}
+          {minplayers > 0 && playingtime > 0 && <>, </>}
+          {playingtime > 0 && <Trans t={t} i18nKey="gameCard.playingtime" values={{ playingtime }} />}
+        </Typography>
 
         <Stack direction="row" mt={2} gap={1} flexWrap="wrap">
           {categories.map((item) => (
@@ -66,7 +89,7 @@ export const GameCard = ({
         </Stack>
 
         <Collapse in={expanded}>
-          <Box mt={2}>
+          <Box mt={3}>
             <Link
               display="inline-block"
               variant="body1"
@@ -81,13 +104,26 @@ export const GameCard = ({
               </Stack>
             </Link>
 
-            <Typography variant="body2">
-              <span dangerouslySetInnerHTML={{ __html: description }} />
-            </Typography>
+            {averageWeight.value > 0 && (
+              <Typography
+                display="inline-block"
+                variant="body2"
+                color="text.secondary"
+                title={t('gameCard.usersCount', { usersCount: averageWeight.usersCount })}
+              >
+                <Trans t={t} i18nKey="gameCard.weight" values={{ weight: averageWeight.value.toFixed(1) }} />
+              </Typography>
+            )}
+
+            {minage > 0 && (
+              <Typography variant="body2" color="text.secondary">
+                <Trans t={t} i18nKey="gameCard.minage" values={{ minage }} />
+              </Typography>
+            )}
 
             <Stack direction="row" mt={2} gap={1} flexWrap="wrap">
               {mechanics.map((item) => (
-                <Chip key={item} label={t(`bgg.mechanics.${item}`)} />
+                <Chip variant="outlined" key={item} label={t(`bgg.mechanics.${item}`)} />
               ))}
             </Stack>
           </Box>

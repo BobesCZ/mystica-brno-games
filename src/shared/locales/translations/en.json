@@ -5,10 +5,15 @@
     "showLess": "Show less"
   },
   "gameCard": {
-    "playingtime": "Playing Time: {{playingtime}} min",
-    "playersCount": " No. of players: {{minplayers}} - {{maxplayers}}",
+    "playingtime": "{{playingtime}} min",
+    "playersCount_one": "{{minplayers}} player",
+    "playersCount_few": "{{minplayers}} players",
+    "playersCountInterval_few": " {{minplayers}}–{{maxplayers}} players",
+    "playersCountInterval_other": " {{minplayers}}–{{maxplayers}} players",
+    "weight": "Complexity: {{weight}}/5",
     "minage": "Minimum age: {{minage}}+",
-    "goToBgg": "Go to BoardGameGeek.com"
+    "goToBgg": "Go to BoardGameGeek.com",
+    "usersCount": "Voted {{usersCount}} users"
   },
   "gameList": {
     "searchResults": "Search Results",
@@ -46,8 +51,8 @@
         "options": {
           "all": "– all –",
           "filler": "filler (less than 20 min)",
-          "short": "short (21 - 60 min)",
-          "medium": "medium long (61 - 90 min)",
+          "short": "short (21–60 min)",
+          "medium": "medium long (61–90 min)",
           "long": "entire evening (more than 91 min)"
         }
       },

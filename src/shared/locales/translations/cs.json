@@ -5,10 +5,15 @@
     "showLess": "Skrýt"
   },
   "gameCard": {
-    "playingtime": "Herní doba: {{playingtime}} min",
-    "playersCount": " Počet hráčů: {{minplayers}} - {{maxplayers}}",
+    "playingtime": "{{playingtime}} min",
+    "playersCount_one": "{{minplayers}} hráč",
+    "playersCount_few": "{{minplayers}} hráči",
+    "playersCountInterval_few": " {{minplayers}}–{{maxplayers}} hráči",
+    "playersCountInterval_other": " {{minplayers}}–{{maxplayers}} hráčů",
+    "weight": "Obtížnost: {{weight}}/5",
     "minage": "Doporučený věk: od {{minage}} let",
-    "goToBgg": "Přejít na BoardGameGeek.com"
+    "goToBgg": "Přejít na BoardGameGeek.com",
+    "usersCount": "Hlasovalo {{usersCount}} uživatelů"
   },
   "gameList": {
     "searchResults": "Vyhledané hry",
@@ -46,8 +51,8 @@
         "options": {
           "all": "– nezáleží –",
           "filler": "filler (do 20 min)",
-          "short": "krátká (21 - 60 min)",
-          "medium": "středně dlouhá (61 - 90 min)",
+          "short": "krátká (21–60 min)",
+          "medium": "středně dlouhá (61–90 min)",
           "long": "na celý večer (91 min a více)"
         }
       },
