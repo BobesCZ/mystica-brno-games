@@ -23,6 +23,10 @@ export const useCustomTheme = (): Theme => {
         fontSize: 24,
         fontWeight: 700,
       },
+      h4: {
+        fontSize: 20,
+        fontWeight: 700,
+      },
     },
     ...LIGHT_THEME,
   });

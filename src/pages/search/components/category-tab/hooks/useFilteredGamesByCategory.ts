@@ -1,6 +1,6 @@
 import { useContext, useMemo } from 'react';
 import { Game } from '../../../../../shared/types';
-import { filterGamebyCategory } from '../utils';
+import { filterGamebyCategory, getOrderGameBy } from '../utils';
 import { CategoryFilters, CategoryGroup, MechanicGroup } from '../types';
 import { AppContext } from '../../../../../shared/store';
 import { ControlleAutocompleteOption, ControlledSelectOption } from '../../../../../shared/components';
@@ -9,9 +9,11 @@ import {
   getAutocompleteOptions,
   getCategoryGroup,
   getMechanicGroup,
+  getOrderingOptions,
   getPlayersCountOptions,
   getPlayingTimeOptions,
 } from './utils';
+import { orderBy } from 'lodash-es';
 
 type Props = {
   filters: CategoryFilters;
@@ -25,16 +27,18 @@ type Return = {
   playingTimeOptions: ControlledSelectOption<CategoryFilters, 'playingTime'>[];
   categoryOptions: ControlleAutocompleteOption[];
   mechanicsOptions: ControlleAutocompleteOption[];
+  orderingOptions: ControlledSelectOption<CategoryFilters, 'ordering'>[];
 };
 
 export const useFilteredGamesByCategory = ({ filters, resolvedLanguage }: Props): Return => {
   const { t } = useTranslation();
   const { gameList, gameListLoading } = useContext(AppContext);
 
-  const gameFilteredList = useMemo(
-    () => (gameList || []).filter((game) => filterGamebyCategory(game, filters)),
-    [gameList, filters],
-  );
+  const gameFilteredList = useMemo(() => {
+    const list = (gameList || []).filter((game) => filterGamebyCategory(game, filters));
+
+    return orderBy(list, getOrderGameBy(filters), 'desc');
+  }, [gameList, filters]);
 
   const playersCountOptions = useMemo(() => getPlayersCountOptions(t), [t]);
   const playingTimeOptions = useMemo(() => getPlayingTimeOptions(t), [t]);
@@ -65,6 +69,8 @@ export const useFilteredGamesByCategory = ({ filters, resolvedLanguage }: Props)
     [gameList, t],
   );
 
+  const orderingOptions = useMemo(() => getOrderingOptions(t), [t]);
+
   return {
     gameFilteredList,
     gameListLoading,
@@ -72,5 +78,6 @@ export const useFilteredGamesByCategory = ({ filters, resolvedLanguage }: Props)
     playingTimeOptions,
     categoryOptions,
     mechanicsOptions,
+    orderingOptions,
   };
 };

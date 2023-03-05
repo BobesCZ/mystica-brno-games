@@ -1,5 +1,5 @@
 import { CategoryKey, MechanicKey } from '../../../../shared/bggData';
-import { GamePlayingTimeInterval, GamePlayingTimeType } from '../../../../shared/types';
+import { GameOrdering, GamePlayingTimeInterval, GamePlayingTimeType } from '../../../../shared/types';
 import { CategoryFilters, CategoryGroup, MechanicGroup } from './types';
 
 export const CATEGORY_DEFAULT_VALUES: CategoryFilters = {
@@ -7,6 +7,7 @@ export const CATEGORY_DEFAULT_VALUES: CategoryFilters = {
   playingTime: GamePlayingTimeType.FILLER,
   categories: [],
   mechanics: [],
+  ordering: GameOrdering.RATING,
 };
 
 export const CATEGORY_PLAYING_TIME_INTERVALS: Record<GamePlayingTimeType, GamePlayingTimeInterval> = {

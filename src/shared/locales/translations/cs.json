@@ -71,6 +71,13 @@
           "other": "Ostatní"
         }
       },
+      "ordering": {
+        "label": "Řazení",
+        "options": {
+          "name": "Abecedně ",
+          "rating": "Podle hodnocení "
+        }
+      },
       "name": {
         "label": "Název hry"
       }
