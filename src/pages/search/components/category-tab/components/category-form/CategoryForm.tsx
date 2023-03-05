@@ -9,6 +9,7 @@ import {
 } from '../../../../../../shared/components';
 
 import { CategoryFilters } from '../../types';
+import { Alarm, Group } from '@mui/icons-material';
 
 type Props = {
   playersCountOptions: ControlledSelectOption<CategoryFilters, 'playersCount'>[];
@@ -31,6 +32,7 @@ export const CategoryForm = ({ playersCountOptions, playingTimeOptions, category
               name="playersCount"
               label={t('search.form.playersCount.label')}
               options={playersCountOptions}
+              Icon={Group}
             />
           </Grid>
 
@@ -40,6 +42,7 @@ export const CategoryForm = ({ playersCountOptions, playingTimeOptions, category
               name="playingTime"
               label={t('search.form.playingTime.label')}
               options={playingTimeOptions}
+              Icon={Alarm}
             />
           </Grid>
 

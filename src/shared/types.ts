@@ -32,6 +32,11 @@ export type GamePlayingTimeInterval = {
   max: number;
 };
 
+export enum GameOrdering {
+  NAME = 'name',
+  RATING = 'rating',
+}
+
 export enum LogRecordState {
   SUCCESS = 'success',
   SKIPPED = 'skipped',

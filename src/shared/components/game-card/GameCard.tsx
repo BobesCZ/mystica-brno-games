@@ -92,34 +92,36 @@ export const GameCard = ({
           <Box mt={3}>
             <Link
               display="inline-block"
-              variant="body1"
+              variant="h4"
               color="text.secondary"
               href={`https://boardgamegeek.com/boardgame/${id}`}
               target="_blank"
               title={t('gameCard.goToBgg') ?? ''}
             >
-              <Stack direction="row" alignItems="center" mb={1} gap={1}>
+              <Stack direction="row" alignItems="center" mb={1.5} gap={1}>
                 {primaryName}
                 <Launch fontSize="small" />
               </Stack>
             </Link>
 
-            {averageWeight.value > 0 && (
-              <Typography
-                display="inline-block"
-                variant="body2"
-                color="text.secondary"
-                title={t('gameCard.usersCount', { usersCount: averageWeight.usersCount })}
-              >
-                <Trans t={t} i18nKey="gameCard.weight" values={{ weight: averageWeight.value.toFixed(1) }} />
-              </Typography>
-            )}
+            <Stack>
+              {averageWeight.value > 0 && (
+                <Typography
+                  display="inline-block"
+                  variant="body1"
+                  color="text.secondary"
+                  title={t('gameCard.usersCount', { usersCount: averageWeight.usersCount })}
+                >
+                  <Trans t={t} i18nKey="gameCard.weight" values={{ weight: averageWeight.value.toFixed(1) }} />
+                </Typography>
+              )}
 
-            {minage > 0 && (
-              <Typography variant="body2" color="text.secondary">
-                <Trans t={t} i18nKey="gameCard.minage" values={{ minage }} />
-              </Typography>
-            )}
+              {minage > 0 && (
+                <Typography variant="body1" color="text.secondary">
+                  <Trans t={t} i18nKey="gameCard.minage" values={{ minage }} />
+                </Typography>
+              )}
+            </Stack>
 
             <Stack direction="row" mt={2} gap={1} flexWrap="wrap">
               {mechanics.map((item) => (

@@ -1,5 +1,5 @@
 import { CategoryKey, MechanicKey } from '../../../../shared/bggData';
-import { Game } from '../../../../shared/types';
+import { Game, GameOrdering } from '../../../../shared/types';
 import { CATEGORY_PLAYING_TIME_INTERVALS } from './config';
 import { CategoryFilters } from './types';
 
@@ -35,3 +35,13 @@ export const filterGamebyCategory = (game: Game, filters: CategoryFilters): bool
   hasPlayingTime(game, filters) &&
   hasCategories(game, filters) &&
   hasMechanics(game, filters);
+
+export const getOrderGameBy = ({ ordering }: CategoryFilters): ((game: Game) => unknown) => {
+  switch (ordering) {
+    case GameOrdering.NAME:
+      return (game) => game.sourceName;
+
+    default:
+      return (game) => game.averageRating.value;
+  }
+};

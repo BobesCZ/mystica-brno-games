@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { GameList, Pagination, usePagination } from '../../../../shared/components';
 import { CATEGORY_DEFAULT_VALUES } from './config';
-import { CategoryForm } from './components';
+import { CategoryForm, OrderingSelect } from './components';
 import { useFilteredGamesByCategory } from './hooks';
 import { CategoryFilters } from './types';
 import { useTranslation } from 'react-i18next';
@@ -18,7 +18,7 @@ export const CategoryTab = () => {
   const filters = methods.watch();
   const ref = useRef<HTMLDivElement>(null);
 
-  const { gameFilteredList, gameListLoading, ...options } = useFilteredGamesByCategory({
+  const { gameFilteredList, gameListLoading, orderingOptions, ...options } = useFilteredGamesByCategory({
     filters,
     resolvedLanguage,
   });
@@ -35,6 +35,7 @@ export const CategoryTab = () => {
             </Box>
           ) : (
             <Box ref={ref}>
+              <OrderingSelect orderingOptions={orderingOptions} />
               <GameList gameList={currentPageGameList} gameTotalCount={gameFilteredList.length} />
               <Pagination {...paginationProps} />
             </Box>
