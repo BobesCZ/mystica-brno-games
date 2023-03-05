@@ -7,7 +7,7 @@ import { Game, LogRecord, LogRecordState } from '../../src/shared/types';
 import { mysticaHtml } from '../../src/data';
 import { stringSimilarity } from 'string-similarity-js';
 import { PROCESS_GAME_TIMEOUT } from './config';
-import { CategoryKey, MechanicKey, MERGED_CATEGORIES, MERGED_MECHANICS } from '../../src/pages/search/components';
+import { BGG_CATEGORIES, BGG_MECHANICS, CategoryKey, MechanicKey } from '../../src/shared/bggData';
 
 export const getGameFromBggThing = (sourceName: string, bggThing?: BggThing): Game => {
   if (bggThing?.type === BggThingType.boardGame) {
@@ -18,8 +18,23 @@ export const getGameFromBggThing = (sourceName: string, bggThing?: BggThing): Ga
       throw new Error('Game is still unreleased.');
     }
 
-    const categories = (bggThing as BggGame).categories.map((item) => item.value) || [];
-    const mechanics = (bggThing as BggGame).mechanics.map((item) => item.value) || [];
+    const categories = getCategories(bggThing as BggGame);
+    const mechanics = getMechanics(bggThing as BggGame);
+
+    const averageRating = {
+      value: (bggThing as BggGame).ratings.average,
+      usersCount: (bggThing as BggGame).ratings.usersrated,
+    };
+
+    const averageWeight = {
+      value: (bggThing as BggGame).ratings.averageweight,
+      usersCount: (bggThing as BggGame).ratings.numweights,
+    };
+
+    const ranks = (bggThing as BggGame).ratings.ranks.map(({ name, value }) => ({
+      name,
+      value,
+    }));
 
     return {
       sourceName,
@@ -27,14 +42,15 @@ export const getGameFromBggThing = (sourceName: string, bggThing?: BggThing): Ga
       primaryName: bggThing.primaryName,
       yearpublished,
       image: czechVersion?.image || bggThing.image || '',
-      description: (bggThing as BggGame).description,
       playingtime: (bggThing as BggGame).playingtime,
       minplayers: (bggThing as BggGame).minplayers,
       maxplayers: (bggThing as BggGame).maxplayers,
       minage: (bggThing as BggGame).minage,
       categories,
       mechanics,
-      ratings: (bggThing as BggGame).ratings,
+      averageRating,
+      averageWeight,
+      ranks,
     };
   }
 
@@ -166,18 +182,22 @@ export const getExternalNameList = (): string[] => {
   return uniq(gameNameList);
 };
 
-export const getMergedCategories = (originalCategories?: string[]): CategoryKey[] => {
-  const mergedCategories = (originalCategories || [])
-    .map((category) => findKey(MERGED_CATEGORIES, (item) => item.includes(category)))
+export const getCategories = (bggThing: BggGame): CategoryKey[] => {
+  const originalCategories = bggThing.categories.map((item) => item.value) || [];
+
+  const categories = (originalCategories || [])
+    .map((category) => findKey(BGG_CATEGORIES, (item) => item.includes(category)))
     .filter((item): item is CategoryKey => !!item);
 
-  return uniq(mergedCategories);
+  return uniq(categories);
 };
 
-export const getMergedMechanics = (originalMechanics?: string[]): MechanicKey[] => {
-  const mergedMechanics = (originalMechanics || [])
-    .map((mechanic) => findKey(MERGED_MECHANICS, (item) => item.includes(mechanic)))
+export const getMechanics = (bggThing: BggGame): MechanicKey[] => {
+  const originalMechanics = bggThing.mechanics.map((item) => item.value) || [];
+
+  const mechanics = (originalMechanics || [])
+    .map((mechanic) => findKey(BGG_MECHANICS, (item) => item.includes(mechanic)))
     .filter((item): item is MechanicKey => !!item);
 
-  return uniq(mergedMechanics);
+  return uniq(mechanics);
 };

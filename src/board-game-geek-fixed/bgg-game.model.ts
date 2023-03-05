@@ -12,7 +12,7 @@ import {
   BggLinkType,
 } from '@code-bucket/board-game-geek';
 import { BggVersion } from './bgg-version.model';
-import { IBggRatings } from './types';
+import { IBggRank, IBggRatings } from './types';
 
 export interface IBggGame extends IAttributes<IBggThingAttributes> {
   thumbnail: { _text: string };
@@ -121,6 +121,28 @@ export class BggGame {
     return this.links.filter((link) => link.type === BggLinkType.boardGamePublisher);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  private getRank(rank: any): IBggRank | undefined {
+    const {
+      _attributes: { bayesaverage, friendlyname, id, name, type, value },
+    } = rank;
+
+    const parsedValue = Number.parseInt(value);
+
+    if (Number.isNaN(parsedValue)) {
+      return undefined;
+    }
+
+    return {
+      bayesaverage: Number.parseFloat(bayesaverage),
+      friendlyname,
+      id: Number.parseInt(id),
+      name,
+      type,
+      value: parsedValue,
+    };
+  }
+
   constructor(data: IBggGame) {
     this.id = Number.parseInt(data._attributes.id);
     this.type = data._attributes.type;
@@ -149,16 +171,11 @@ export class BggGame {
       median: Number.parseFloat(data.statistics?.ratings.median._attributes.value || '') ?? -1,
       numcomments: Number.parseInt(data.statistics?.ratings.numcomments._attributes.value || '') ?? -1,
       numweights: Number.parseInt(data.statistics?.ratings.numweights._attributes.value || '') ?? -1,
-      ranks: (data.statistics?.ratings?.ranks?.rank || []).map(
-        ({ _attributes: { bayesaverage, friendlyname, id, name, type, value } }) => ({
-          bayesaverage: Number.parseFloat(bayesaverage),
-          friendlyname,
-          id: Number.parseInt(id),
-          name,
-          type,
-          value: Number.parseInt(value),
-        }),
-      ),
+      ranks: [
+        ...(Array.isArray(data.statistics?.ratings?.ranks?.rank)
+          ? (data.statistics?.ratings?.ranks?.rank || []).map((rank) => this.getRank(rank))
+          : [this.getRank(data.statistics?.ratings?.ranks?.rank)]),
+      ].filter((i): i is IBggRank => i !== undefined),
       owned: Number.parseInt(data.statistics?.ratings.owned._attributes.value || '') ?? -1,
       stddev: Number.parseFloat(data.statistics?.ratings.stddev._attributes.value || '') ?? -1,
       trading: Number.parseInt(data.statistics?.ratings.trading._attributes.value || '') ?? -1,

@@ -1,9 +1,10 @@
 import { TFunction } from 'i18next';
 import { findKey, uniq } from 'lodash-es';
+import { CategoryKey, MechanicKey } from '../../../../../shared/bggData';
 import { ControlleAutocompleteOption, ControlledSelectOption } from '../../../../../shared/components';
 import { GamePlayingTimeType } from '../../../../../shared/types';
 import { GROUPED_CATEGORIES, GROUPED_MECHANICS } from '../config';
-import { CategoryFilters, CategoryGroup, CategoryKey, MechanicGroup, MechanicKey, PlayersCount } from '../types';
+import { CategoryFilters, CategoryGroup, MechanicGroup, PlayersCount } from '../types';
 import { GetAutocompleteOptionsProps } from './types';
 
 export const getPlayersCountOptions = (t: TFunction): ControlledSelectOption<CategoryFilters, 'playersCount'>[] => {

@@ -1,3 +1,4 @@
+import { CategoryKey, MechanicKey } from '../../../../shared/bggData';
 import { Game } from '../../../../shared/types';
 import { CATEGORY_PLAYING_TIME_INTERVALS } from './config';
 import { CategoryFilters } from './types';
@@ -24,10 +25,10 @@ const hasPlayingTime = (game: Game, { playingTime }: CategoryFilters): boolean =
 };
 
 const hasCategories = (game: Game, { categories }: CategoryFilters): boolean =>
-  categories.every((item) => game.categories.includes(item.value));
+  categories.every((item) => game.categories.includes(item.value as CategoryKey));
 
 const hasMechanics = (game: Game, { mechanics }: CategoryFilters): boolean =>
-  mechanics.every((item) => game.mechanics.includes(item.value));
+  mechanics.every((item) => game.mechanics.includes(item.value as MechanicKey));
 
 export const filterGamebyCategory = (game: Game, filters: CategoryFilters): boolean =>
   hasPlayersCount(game, filters) &&
