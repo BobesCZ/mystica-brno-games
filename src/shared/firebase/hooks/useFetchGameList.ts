@@ -22,6 +22,7 @@ export const useFetchGameList = (): Return => {
         ...game,
         categories: game?.categories || [],
         mechanics: game?.mechanics || [],
+        ranks: game?.ranks || [],
       }));
 
       setGameList(parsedGameList);

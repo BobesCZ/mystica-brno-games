@@ -2,7 +2,7 @@ import { BggThing } from '@code-bucket/board-game-geek';
 import { BggGame, IBggRank } from '../board-game-geek-fixed';
 import { CategoryKey, MechanicKey } from './bggData';
 
-type Rank = Pick<IBggRank, 'name' | 'value'>;
+export type Rank = Pick<IBggRank, 'name' | 'value'>;
 
 type Rating = {
   value: number;

@@ -13,7 +13,18 @@
     "weight": "Complexity: {{weight}}/5",
     "minage": "Minimum age: {{minage}}+",
     "goToBgg": "Go to BoardGameGeek.com",
-    "usersCount": "Voted {{usersCount}} users"
+    "usersCount": "Voted {{usersCount}} users of BoardGameGeek.com",
+    "rankTag": "{{rank}}. {{rankName}} game in BoardGameGeek.com rank"
+  },
+  "rank": {
+    "boardgame": "best",
+    "strategygames": "strategy",
+    "wargames": "war",
+    "abstracts": "abstract",
+    "familygames": "family",
+    "thematic": "thematic",
+    "partygames": "party",
+    "childrensgames": "children"
   },
   "gameList": {
     "searchResults": "Search Results",
