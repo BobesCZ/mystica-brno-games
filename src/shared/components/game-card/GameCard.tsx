@@ -16,7 +16,8 @@ import { grey } from '@mui/material/colors';
 import { useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { Game } from '../../types';
-import { PlayersCountString } from './components';
+import { PlayersCountString, RankTag } from './components';
+import { MAX_RANK_LIMIT } from './config';
 
 type Props = {
   game: Game;
@@ -37,10 +38,12 @@ export const GameCard = ({
     mechanics,
     averageRating,
     averageWeight,
+    ranks,
   },
 }: Props) => {
   const { t } = useTranslation();
   const [expanded, setExpanded] = useState(false);
+  const filteredRanks = ranks.filter(({ value }) => value <= MAX_RANK_LIMIT);
 
   return (
     <Card
@@ -51,6 +54,18 @@ export const GameCard = ({
       <CardContent>
         <Box position="relative">
           <CardMedia component="img" image={image} alt="" sx={{ objectFit: 'contain', height: 250, mb: 3 }} />
+
+          {filteredRanks.length > 0 && (
+            <Stack
+              alignItems="flex-start"
+              gap={1}
+              sx={(theme) => ({ position: 'absolute', top: theme.spacing(-1.5), left: theme.spacing(-1.5) })}
+            >
+              {filteredRanks.map((rank) => (
+                <RankTag key={rank.name} rank={rank} />
+              ))}
+            </Stack>
+          )}
         </Box>
 
         <Typography variant="h3" sx={{ mb: 0.25 }}>

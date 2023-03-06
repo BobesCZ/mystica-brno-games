@@ -13,7 +13,18 @@
     "weight": "Obtížnost: {{weight}}/5",
     "minage": "Doporučený věk: od {{minage}} let",
     "goToBgg": "Přejít na BoardGameGeek.com",
-    "usersCount": "Hlasovalo {{usersCount}} uživatelů"
+    "usersCount": "Hlasovalo {{usersCount}} uživatelů BoardGameGeek.com",
+    "rankTag": "{{rank}}. {{rankName}} hra v žebříčku BoardGameGeek.com"
+  },
+  "rank": {
+    "boardgame": "nejlepší",
+    "strategygames": "strategická",
+    "wargames": "válečná",
+    "abstracts": "abstraktní",
+    "familygames": "rodinná",
+    "thematic": "tematická",
+    "partygames": "párty",
+    "childrensgames": "dětská"
   },
   "gameList": {
     "searchResults": "Vyhledané hry",
