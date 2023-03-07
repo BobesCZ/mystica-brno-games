@@ -41,7 +41,7 @@ export const usePagination = ({ gameFilteredList, ref }: Props): UsePaginationRe
 
   const hasSecondPage = gameFilteredList.length > PAGINATION_ITEMS_COUNT;
   const showPagination = hasSecondPage && currentMoreButtonPage < 2;
-  const showMoreButton = hasSecondPage && currentPage < 2;
+  const showMoreButton = hasSecondPage && currentPage < 2 && currentMoreButtonPage < pageCount;
 
   return {
     currentPageGameList,
