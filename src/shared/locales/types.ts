@@ -1,9 +1,9 @@
-export enum Lang {
+export enum LocaleLang {
   CS = 'cs',
   EN = 'en',
 }
 
-export type LangOption = {
+export type LocaleLangOption = {
   label: string;
-  value: `${Lang}`;
+  value: `${LocaleLang}`;
 };

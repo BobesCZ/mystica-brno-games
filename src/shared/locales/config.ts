@@ -1,12 +1,12 @@
-import { Lang, LangOption } from './types';
+import { LocaleLang, LocaleLangOption } from './types';
 
-export const langOptions: LangOption[] = [
+export const localeLangOptions: LocaleLangOption[] = [
   {
     label: 'CZ',
-    value: Lang.CS,
+    value: LocaleLang.CS,
   },
   {
     label: 'EN',
-    value: Lang.EN,
+    value: LocaleLang.EN,
   },
 ];
