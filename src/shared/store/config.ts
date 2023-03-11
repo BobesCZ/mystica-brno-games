@@ -1,10 +1,10 @@
 import { noop } from 'lodash-es';
-import { Lang } from '../locales';
+import { LocaleLang } from '../locales';
 import { AppState } from './types';
 
 export const initialState: AppState = {
   gameList: [],
   gameListLoading: false,
-  lang: Lang.CS,
-  setLang: noop,
+  localeLang: LocaleLang.CS,
+  setLocaleLang: noop,
 };

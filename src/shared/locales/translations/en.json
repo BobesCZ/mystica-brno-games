@@ -7,7 +7,7 @@
   "gameCard": {
     "playingtime": "{{playingtime}} min",
     "playersCount_one": "{{minplayers}} player",
-    "playersCount_few": "{{minplayers}} players",
+    "playersCount_other": "{{minplayers}} players",
     "playersCountInterval_few": " {{minplayers}}–{{maxplayers}} players",
     "playersCountInterval_other": " {{minplayers}}–{{maxplayers}} players",
     "weight": "Complexity: {{weight}}/5",

@@ -1,25 +1,25 @@
 import { ToggleButtonGroup, ToggleButton, darken } from '@mui/material';
 import { MouseEvent, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Lang, langOptions } from '../../../../locales';
+import { LocaleLang, localeLangOptions } from '../../../../locales';
 import { AppContext } from '../../../../store';
 
-export const LangSwitch = () => {
+export const LocaleLangSwitch = () => {
   const {
     i18n: { changeLanguage },
   } = useTranslation();
-  const { lang, setLang } = useContext(AppContext);
+  const { localeLang, setLocaleLang } = useContext(AppContext);
 
   const handleLangChange = (_e: MouseEvent<HTMLElement>, newValue: string | null) => {
-    if (newValue !== null && Object.values(Lang).includes(newValue as Lang)) {
-      setLang(newValue as Lang);
+    if (newValue !== null && Object.values(LocaleLang).includes(newValue as LocaleLang)) {
+      setLocaleLang(newValue as LocaleLang);
       changeLanguage(newValue);
     }
   };
 
   return (
-    <ToggleButtonGroup color="secondary" value={lang} exclusive onChange={handleLangChange} size="small">
-      {langOptions.map(({ label, value }) => (
+    <ToggleButtonGroup color="secondary" value={localeLang} exclusive onChange={handleLangChange} size="small">
+      {localeLangOptions.map(({ label, value }) => (
         <ToggleButton
           key={value}
           value={value}

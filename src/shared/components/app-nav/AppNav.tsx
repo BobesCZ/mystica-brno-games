@@ -1,6 +1,6 @@
 import { AppBar, Box, Container, Toolbar, Typography } from '@mui/material';
 import { Trans, useTranslation } from 'react-i18next';
-import { LangSwitch } from './components';
+import { LocaleLangSwitch } from './components';
 
 export const AppNav = () => {
   const { t } = useTranslation();
@@ -15,7 +15,7 @@ export const AppNav = () => {
           <Typography variant="body1" flexGrow={1} sx={{ pt: 0.5 }}>
             <Trans t={t} i18nKey="search.pageTitle" />
           </Typography>
-          <LangSwitch />
+          <LocaleLangSwitch />
         </Toolbar>
       </Container>
     </AppBar>
