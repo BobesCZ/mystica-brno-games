@@ -30,10 +30,10 @@ export const Log = ({ log }: Props) => {
           )
         </Typography>
       )}
-      <TableContainer component={Paper} sx={{ my: 4, maxHeight: '500px', overflow: 'auto' }}>
+      <TableContainer component={Paper} elevation={4} sx={{ my: 4, maxHeight: '500px', overflow: 'auto' }}>
         <Table>
           <TableBody>
-            {log?.map(({ sourceName, status }, index) => (
+            {log?.map(({ sourceName, status, statusMessage }, index) => (
               <TableRow key={`${sourceName}_${index}`} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                 <TableCell component="td" scope="row" sx={(theme) => ({ color: getRowColor(theme, status) })}>
                   {index + 1}
@@ -43,6 +43,9 @@ export const Log = ({ log }: Props) => {
                 </TableCell>
                 <TableCell component="td" scope="row" sx={(theme) => ({ color: getRowColor(theme, status) })}>
                   {status.toUpperCase()}
+                </TableCell>
+                <TableCell component="td" scope="row" sx={(theme) => ({ color: getRowColor(theme, status) })}>
+                  {statusMessage}
                 </TableCell>
               </TableRow>
             ))}
