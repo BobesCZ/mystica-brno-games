@@ -1,87 +1,82 @@
-import { Box, Button, CircularProgress, Container, Stack, Typography } from '@mui/material';
+import { Box, Button, Container, Divider, LinearProgress, Typography } from '@mui/material';
 import { useState } from 'react';
 import { GameList } from '../../src/shared/components';
-import { useFetchGameNameList, useFetchGameList, saveGameList, saveFailedGameList } from '../../src/shared/firebase';
+import { useFetchGameList, updateGameList } from '../../src/shared/firebase';
 import { Game, LogRecord } from '../../src/shared/types';
-import { Log, MysticaLoader } from './components';
+import { Log, StatusOverview } from './components';
 import { GAME_LIST_SLICE } from './config';
-import { getGameList } from './utils';
+import { processGameList } from './utils';
 
 export const DataLoader = () => {
-  const { gameNameList } = useFetchGameNameList();
   const { gameList } = useFetchGameList();
 
-  const [tempGameList, setTempGameList] = useState<Game[]>();
-  const [failedGameList, setFailedGameList] = useState<string[]>();
-  const [log, setLog] = useState<LogRecord[]>();
-
+  const [newGameList, setNewGameList] = useState<Game[]>([]);
+  const [log, setLog] = useState<LogRecord[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  const processingCount = log.length;
+  const processGoalCount = GAME_LIST_SLICE[1] - GAME_LIST_SLICE[0];
+
   const handleLoad = async () => {
-    if (!gameNameList?.length) {
+    if (!gameList.length) {
       return;
     }
 
+    setNewGameList([]);
+    setLog([]);
     setIsLoading(true);
 
-    const {
-      newGameList,
-      newFailedGameList,
-      log: newLog,
-    } = await getGameList(gameNameList.slice(...GAME_LIST_SLICE), gameList);
+    await processGameList(gameList.slice(...GAME_LIST_SLICE), setNewGameList, setLog);
 
-    setTempGameList(newGameList);
-    setFailedGameList(newFailedGameList);
-    setLog(newLog);
     setIsLoading(false);
   };
 
   const handleSave = () => {
-    tempGameList?.length && saveGameList(tempGameList);
-    failedGameList?.length && saveFailedGameList(failedGameList);
+    newGameList.length && updateGameList(newGameList);
   };
 
   return (
     <Container>
-      <MysticaLoader />
+      {/* <CsvLoader /> */}
+
+      <Divider />
 
       <Box my={4}>
-        <Typography variant="h3" gutterBottom>
-          Načtení dat z BGG
+        <Typography variant="h2" gutterBottom>
+          Doplnění dat z BGG
         </Typography>
 
-        <Typography variant="body1" color="text.secondary" gutterBottom>
-          Seznam her v DB obsahuje {gameNameList?.length || 0} položek.
-        </Typography>
+        <StatusOverview gameList={gameList} />
 
-        <Stack direction="row" gap={2}>
-          <Box sx={{ display: 'inline-block', position: 'relative' }}>
-            <Button variant="contained" onClick={handleLoad} disabled={isLoading}>
-              Načíst data z BGG
-            </Button>
-            {isLoading && (
-              <CircularProgress
-                size={20}
-                sx={{ position: 'absolute', top: '50%', left: '50%', marginTop: '-10px', marginLeft: '-10px' }}
-              />
-            )}
-          </Box>
-
-          {tempGameList && (
-            <Button variant="contained" color="error" onClick={handleSave}>
-              Uložit data do DB
-            </Button>
+        <Box sx={{ display: 'inline-block', position: 'relative' }}>
+          <Button variant="contained" color="success" onClick={handleLoad} disabled={isLoading}>
+            Načíst BGG pro hry {GAME_LIST_SLICE[0]}-{GAME_LIST_SLICE[1]}
+          </Button>
+          {isLoading && (
+            <LinearProgress
+              value={(processingCount / processGoalCount) * 100}
+              variant="determinate"
+              color="success"
+              sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+            />
           )}
-        </Stack>
+        </Box>
+        {isLoading && (
+          <Typography color="text.secondary" sx={{ display: 'inline-block', ml: 2 }}>
+            {processingCount} / {processGoalCount}
+          </Typography>
+        )}
       </Box>
 
       <Log log={log} />
 
-      <Typography variant="h3" color={(theme) => theme.palette.success.main} gutterBottom>
-        Úspěšně načteno {tempGameList?.length && `(${tempGameList.length})`}
-      </Typography>
+      {newGameList && !isLoading && (
+        <Button variant="contained" color="error" onClick={handleSave}>
+          Uložit data do DB
+        </Button>
+      )}
 
-      <GameList gameList={tempGameList} gameTotalCount={tempGameList?.length} />
+      <GameList gameList={newGameList} gameTotalCount={newGameList?.length} />
     </Container>
   );
 };

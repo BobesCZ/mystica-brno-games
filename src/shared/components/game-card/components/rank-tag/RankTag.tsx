@@ -19,6 +19,11 @@ export const RankTag = ({ rank: { name, value } }: Props) => {
       title={t('gameCard.rankTag', { rank: value, rankName })}
       sx={(theme) => ({
         boxShadow: theme.shadows[4],
+        borderTopLeftRadius: 0,
+        borderBottomLeftRadius: 0,
+        '.MuiChip-icon': {
+          fontSize: 18,
+        },
       })}
     />
   );

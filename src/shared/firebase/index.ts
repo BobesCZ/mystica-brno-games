@@ -1,4 +1,2 @@
-export * from './saveFailedGameList';
-export * from './saveGameList';
-export * from './saveGameNameList';
+export * from './updateGameList';
 export * from './hooks';

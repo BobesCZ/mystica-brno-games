@@ -37,7 +37,7 @@ export const GameList = ({ gameList, gameTotalCount = 0 }: Props) => {
           })}
         >
           {gameList.map((game) => (
-            <GameCard key={game.id} game={game} />
+            <GameCard key={game.uid} game={game} />
           ))}
         </Box>
       ) : (

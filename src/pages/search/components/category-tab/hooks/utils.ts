@@ -36,7 +36,9 @@ export const getAutocompleteOptions = ({
   getGroup,
   GroupEnum,
 }: GetAutocompleteOptionsProps): ControlleAutocompleteOption[] => {
-  const uniqItems = uniq((gameList || []).flatMap((game) => game[key]));
+  const uniqItems = uniq((gameList || []).flatMap((game) => game[key])).filter(
+    (i): i is CategoryKey | MechanicKey => i !== undefined,
+  );
 
   const options = uniqItems.map((value: string): ControlleAutocompleteOption => {
     const group = getGroup(value);

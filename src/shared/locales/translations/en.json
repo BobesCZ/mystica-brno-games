@@ -14,7 +14,8 @@
     "minage": "Minimum age: {{minage}}+",
     "goToBgg": "Go to BoardGameGeek.com",
     "usersCount": "Voted {{usersCount}} users of BoardGameGeek.com",
-    "rankTag": "{{rank}}. {{rankName}} game in BoardGameGeek.com rank"
+    "rankTag": "{{rank}}. {{rankName}} game in BoardGameGeek.com rank",
+    "noInfo": "No additional information"
   },
   "rank": {
     "boardgame": "best",
@@ -24,7 +25,7 @@
     "familygames": "family",
     "thematic": "thematic",
     "partygames": "party",
-    "childrensgames": "children"
+    "childrensgames": "for children"
   },
   "gameList": {
     "searchResults": "Search Results",
