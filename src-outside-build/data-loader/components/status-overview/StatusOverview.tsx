@@ -17,7 +17,7 @@ export const StatusOverview = ({ gameList }: Props) => {
   );
 
   return (
-    <TableContainer component={Paper} sx={{ my: 4 }}>
+    <TableContainer component={Paper} elevation={4} sx={{ my: 4 }}>
       <Table>
         <TableHead>
           <TableRow>

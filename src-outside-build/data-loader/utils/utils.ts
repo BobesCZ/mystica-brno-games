@@ -30,8 +30,8 @@ export const processGameList = async (
       }
     } catch (error) {
       console.error(error, sourceName);
-      setGameList((prev) => [...prev, { ...game, status: Status.UNFINISHED }]);
-      setLog((prev) => [...prev, { sourceName, status: LogRecordState.ERROR }]);
+      setGameList((prev) => [...prev, { ...game, status: Status.UNFINISHED, statusMessage: `${error}` }]);
+      setLog((prev) => [...prev, { sourceName, status: LogRecordState.ERROR, statusMessage: `${error}` }]);
     }
   }
 };

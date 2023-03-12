@@ -1,4 +1,4 @@
-import { takeWhile, uniqueId } from 'lodash-es';
+import { differenceWith, isEqual, takeWhile, uniqueId } from 'lodash-es';
 import { CsvColumns, CsvGame, CsvGameType } from '../../../../src/data';
 import { Game, Lang, Status } from '../../../../src/shared/types';
 import { CsvGameWithNotes } from './types';
@@ -35,4 +35,26 @@ export const getGameFromCsv = (csvGame: CsvGameWithNotes): Game => {
     notes: csvGame.notes,
     status: Status.NEW,
   };
+};
+
+const isGameEqual = (csvGame: Game, game: Game) =>
+  csvGame.sourceName === game.sourceName &&
+  (csvGame.id === undefined || csvGame.id === game.id) &&
+  isEqual(csvGame.langs, game.langs || []) &&
+  isEqual(csvGame.notes, game.notes || []);
+
+export const getGameListMergedByDiff = (csvGameList: Game[], gameList: Game[]): Game[] => {
+  if (!csvGameList.length || !gameList.length) {
+    return [];
+  }
+
+  const diffGameList = differenceWith(csvGameList, gameList, isGameEqual);
+
+  const mergedGameList = diffGameList.map((csvGame) => {
+    const dbGame = gameList.find(({ sourceName }) => csvGame.sourceName === sourceName);
+
+    return dbGame ? { ...dbGame, id: csvGame.id, langs: csvGame.langs, notes: csvGame.notes } : csvGame;
+  });
+
+  return mergedGameList;
 };

@@ -26,6 +26,7 @@ export type Game = Partial<Pick<BggThing, 'id' | 'primaryName' | 'yearpublished'
     uid: string;
     sourceName: string;
     status: `${Status}`;
+    statusMessage?: string;
     notes?: string[];
     langs?: Lang[];
     categories?: CategoryKey[];
@@ -59,4 +60,4 @@ export enum LogRecordState {
   ERROR = 'error',
 }
 
-export type LogRecord = { sourceName: string; status: LogRecordState };
+export type LogRecord = { sourceName: string; status: LogRecordState; statusMessage?: string };
