@@ -9,14 +9,30 @@ type Rating = {
   usersCount: number;
 };
 
-export type Game = Pick<BggThing, 'id' | 'primaryName' | 'yearpublished' | 'image'> &
-  Pick<BggGame, 'playingtime' | 'minplayers' | 'maxplayers' | 'minage'> & {
+export enum Lang {
+  CZ = 'CZ',
+  ENG = 'ENG',
+  DE = 'DE',
+}
+
+export enum Status {
+  NEW = 'new',
+  FINISHED = 'finished',
+  UNFINISHED = 'unfinished',
+}
+
+export type Game = Partial<Pick<BggThing, 'id' | 'primaryName' | 'yearpublished' | 'image'>> &
+  Partial<Pick<BggGame, 'playingtime' | 'minplayers' | 'maxplayers' | 'minage'>> & {
+    uid: string;
     sourceName: string;
-    categories: CategoryKey[];
-    mechanics: MechanicKey[];
-    averageRating: Rating;
-    averageWeight: Rating;
-    ranks: Rank[];
+    status: `${Status}`;
+    notes?: string[];
+    langs?: Lang[];
+    categories?: CategoryKey[];
+    mechanics?: MechanicKey[];
+    averageRating?: Rating;
+    averageWeight?: Rating;
+    ranks?: Rank[];
   };
 
 export enum GamePlayingTimeType {

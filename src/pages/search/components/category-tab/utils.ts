@@ -14,21 +14,21 @@ const hasPlayersCount = (game: Game, { playersCount }: CategoryFilters): boolean
       return game.minplayers === 2 && game.maxplayers === 2;
 
     default:
-      return playersCount >= game.minplayers && playersCount <= game.maxplayers;
+      return playersCount >= (game.minplayers || 0) && playersCount <= (game.maxplayers || 0);
   }
 };
 
 const hasPlayingTime = (game: Game, { playingTime }: CategoryFilters): boolean => {
   const { min, max } = CATEGORY_PLAYING_TIME_INTERVALS[playingTime];
 
-  return game.playingtime >= min && game.playingtime <= max;
+  return (game.playingtime || 0) >= min && (game.playingtime || 0) <= max;
 };
 
 const hasCategories = (game: Game, { categories }: CategoryFilters): boolean =>
-  categories.every((item) => game.categories.includes(item.value as CategoryKey));
+  categories.every((item) => game?.categories?.includes(item.value as CategoryKey));
 
 const hasMechanics = (game: Game, { mechanics }: CategoryFilters): boolean =>
-  mechanics.every((item) => game.mechanics.includes(item.value as MechanicKey));
+  mechanics.every((item) => game?.mechanics?.includes(item.value as MechanicKey));
 
 export const filterGamebyCategory = (game: Game, filters: CategoryFilters): boolean =>
   hasPlayersCount(game, filters) &&
@@ -42,6 +42,6 @@ export const getOrderGameBy = ({ ordering }: CategoryFilters): ((game: Game) => 
       return (game) => game.sourceName;
 
     default:
-      return (game) => game.averageRating.value;
+      return (game) => game.averageRating?.value || 0;
   }
 };
