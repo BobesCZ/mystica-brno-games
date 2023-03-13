@@ -43,6 +43,27 @@ const isGameEqual = (csvGame: Game, game: Game) =>
   isEqual(csvGame.langs, game.langs || []) &&
   isEqual(csvGame.notes, game.notes || []);
 
+const getSafeUid = (gameList: Game[], csvGameUid: string): string => {
+  const existingUid = gameList.find(({ uid }) => csvGameUid === uid);
+
+  if (!existingUid) {
+    return csvGameUid;
+  }
+
+  let newUid = '';
+
+  while (!newUid) {
+    const tempUid = uniqueId();
+    const existingUid = gameList.find(({ uid }) => tempUid === uid);
+
+    if (!existingUid) {
+      newUid = tempUid;
+    }
+  }
+
+  return newUid;
+};
+
 export const getGameListMergedByDiff = (csvGameList: Game[], gameList: Game[]): Game[] => {
   if (!csvGameList.length || !gameList.length) {
     return [];
@@ -53,7 +74,11 @@ export const getGameListMergedByDiff = (csvGameList: Game[], gameList: Game[]): 
   const mergedGameList = diffGameList.map((csvGame) => {
     const dbGame = gameList.find(({ sourceName }) => csvGame.sourceName === sourceName);
 
-    return dbGame ? { ...dbGame, id: csvGame.id, langs: csvGame.langs, notes: csvGame.notes } : csvGame;
+    if (dbGame) {
+      return { ...dbGame, id: csvGame.id, langs: csvGame.langs, notes: csvGame.notes };
+    }
+
+    return { ...csvGame, uid: getSafeUid(gameList, csvGame.uid) };
   });
 
   return mergedGameList;

@@ -85,6 +85,7 @@ export const CsvLoader = () => {
             <TableHead>
               <TableRow>
                 <TableCell>DB uid</TableCell>
+                <TableCell>status</TableCell>
                 <TableCell>DB sourceName</TableCell>
                 <TableCell>BggId</TableCell>
                 <TableCell>notes</TableCell>
@@ -92,10 +93,13 @@ export const CsvLoader = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {mergedGameList.map(({ uid, id, sourceName, notes, langs }) => (
+              {mergedGameList.map(({ uid, id, sourceName, notes, langs, status }) => (
                 <TableRow key={uid} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                   <TableCell component="td" scope="row">
                     {uid}
+                  </TableCell>
+                  <TableCell component="td" scope="row">
+                    {status.toUpperCase()}
                   </TableCell>
                   <TableCell component="td" scope="row">
                     {sourceName}
