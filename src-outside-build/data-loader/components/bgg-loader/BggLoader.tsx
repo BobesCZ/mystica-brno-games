@@ -67,7 +67,7 @@ export const BggLoader = () => {
 
       <Log log={log} />
 
-      {newGameList && !isLoading && (
+      {!!newGameList.length && !isLoading && (
         <Button variant="contained" color="error" onClick={handleSave}>
           Uložit data do DB
         </Button>
