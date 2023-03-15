@@ -1,8 +1,8 @@
 import { TFunction } from 'i18next';
 import { findKey, uniq } from 'lodash-es';
-import { CategoryKey, MechanicKey } from '../../../../../shared/bggData';
-import { ControlleAutocompleteOption, ControlledSelectOption } from '../../../../../shared/components';
-import { GameOrdering, GamePlayingTimeType } from '../../../../../shared/types';
+import { CategoryKey, MechanicKey } from '../../../../../../shared/bggData';
+import { ControlleAutocompleteOption, ControlledSelectOption } from '../../../../../../shared/components';
+import { GameOrdering, GamePlayingTimeType } from '../../../../../../shared/types';
 import { GROUPED_CATEGORIES, GROUPED_MECHANICS } from '../config';
 import { CategoryFilters, CategoryGroup, MechanicGroup, PlayersCount } from '../types';
 import { GetAutocompleteOptionsProps } from './types';

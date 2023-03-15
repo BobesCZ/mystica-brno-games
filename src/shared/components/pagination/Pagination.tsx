@@ -15,7 +15,7 @@ export const Pagination = ({
 }: Props) => {
   const { t } = useTranslation();
 
-  return (
+  return showMoreButton || showPagination ? (
     <Stack alignItems="center" gap={3} mb={4}>
       {showMoreButton && (
         <Button variant="contained" size="large" onClick={handleMoreButton}>
@@ -23,8 +23,19 @@ export const Pagination = ({
         </Button>
       )}
       {showPagination && (
-        <MuiPagination size="large" count={pageCount} page={currentPage} onChange={handlePageChange} siblingCount={0} />
+        <MuiPagination
+          size="large"
+          count={pageCount}
+          page={currentPage}
+          onChange={handlePageChange}
+          siblingCount={0}
+          sx={{
+            '.MuiPaginationItem-root': {
+              lineHeight: 1,
+            },
+          }}
+        />
       )}
     </Stack>
-  );
+  ) : null;
 };

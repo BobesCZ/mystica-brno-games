@@ -1,7 +1,7 @@
 import { Box, Container, Tabs } from '@mui/material';
 import { SyntheticEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { TabNav, TabPanel } from '../../shared/components';
+import { TabNav, TabPanel } from '../../../shared/components';
 import { CategoryTab, NameTab } from './components';
 
 export const Search = () => {

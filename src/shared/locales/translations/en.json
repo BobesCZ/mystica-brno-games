@@ -4,12 +4,15 @@
     "showMore": "Show more",
     "showLess": "Show less"
   },
+  "meta": {
+    "title": "Catalog of games - Mystica Brno"
+  },
   "gameCard": {
     "playingtime": "{{playingtime}} min",
     "playersCount_one": "{{minplayers}} player",
     "playersCount_other": "{{minplayers}} players",
-    "playersCountInterval_few": " {{minplayers}}–{{maxplayers}} players",
-    "playersCountInterval_other": " {{minplayers}}–{{maxplayers}} players",
+    "playersCountInterval_few": "{{minplayers}}–{{maxplayers}} players",
+    "playersCountInterval_other": "{{minplayers}}–{{maxplayers}} players",
     "weight": "Complexity: {{weight}}/5",
     "minage": "Minimum age: {{minage}}+",
     "goToBgg": "Go to BoardGameGeek.com",
@@ -25,7 +28,8 @@
     "familygames": "family",
     "thematic": "thematic",
     "partygames": "party",
-    "childrensgames": "for children"
+    "childrensgames": "for children",
+    "cgs": "TCG/LCG"
   },
   "gameList": {
     "searchResults": "Search Results",
@@ -325,5 +329,45 @@
       "workerPlacement": "Worker Placement",
       "zoneOfControl": "Zone of Control"
     }
+  },
+  "faq": {
+    "pageTitle": "Frequently Asked Questions",
+    "content": [
+      {
+        "q": "This page is controlled by Mystica?",
+        "a": "No, this is only fan project. We collaborate with Mystica on better list of games."
+      },
+      {
+        "q": "Why this exists when there is a list of games already on Mystica page?",
+        "a": "A list of game is useful when you know what you want to play. If you want to try a new game for 5 people with playing time less than 60 minutes, you have to search for games manually until you find what you were looking for. We did this searching for you, so you can find a game to your liking on the spot."
+      },
+      {
+        "q": "Is the list of games up to date?",
+        "a": "It is as up to date as the list of games on Mystica page."
+      },
+      {
+        "q": "Are game's information correct?",
+        "a": "All information about game including image are automatically downloaded from BoardGameGeek.com only according to game's name. That's why it's possible that different edition, language version or even different game is shown. When in doubt, ask Mystica's staff about your particular game."
+      },
+      {
+        "q": "Is there a way to know if the game is in Czech/English?",
+        "a": "Not now. Try to find the game on Mystica page, some games have CZ/ENG in their name."
+      },
+      {
+        "q": "Can I book a game on this page?",
+        "a": "No, this is only a game catalog with no other features."
+      },
+      {
+        "q": "What does (arbitrary board game term) mean?",
+        "a": "We don't know. Probably it comes from BoardGameGeek.com."
+      },
+      {
+        "q": "How can I support you?",
+        "a": "Tell your playmates about us. Do not send us money under any circumstances, we have so much money that we have nowhere to put it."
+      }
+    ]
+  },
+  "footer": {
+    "goToMystica": "Oficiální seznam her"
   }
 }

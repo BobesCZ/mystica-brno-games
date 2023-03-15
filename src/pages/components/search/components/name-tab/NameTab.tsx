@@ -1,7 +1,7 @@
 import { Box, CircularProgress, Container } from '@mui/material';
 import { useRef } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { GameList, Pagination, usePagination } from '../../../../shared/components';
+import { GameList, Pagination, usePagination } from '../../../../../shared/components';
 import { NameForm } from './components';
 import { NAME_DEFAULT_VALUES } from './config';
 import { NameFilters } from './types';

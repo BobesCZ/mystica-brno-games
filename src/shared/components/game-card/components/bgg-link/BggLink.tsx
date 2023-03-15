@@ -1,6 +1,7 @@
 import { Launch } from '@mui/icons-material';
 import { Link, Stack } from '@mui/material';
 import { useTranslation } from 'react-i18next';
+import { Urls } from '../../../../../pages';
 import { Game } from '../../../../types';
 
 type Props = {
@@ -16,7 +17,7 @@ export const BggLink = ({ id, primaryName }: Props) => {
       display="inline-block"
       variant="h4"
       color="text.secondary"
-      href={`https://boardgamegeek.com/boardgame/${id}`}
+      href={`${Urls.EXTERNAL_BGG}${id}`}
       target="_blank"
       title={t('gameCard.goToBgg') ?? ''}
     >

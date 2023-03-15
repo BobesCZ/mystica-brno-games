@@ -1,3 +1,4 @@
+export * from './app-footer';
 export * from './app-nav';
 export * from './form';
 export * from './game-card';

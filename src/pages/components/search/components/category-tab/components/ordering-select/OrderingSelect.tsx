@@ -1,8 +1,7 @@
 import { Sort } from '@mui/icons-material';
 import { Stack } from '@mui/material';
 import { useFormContext } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
-import { ControlledSelect, ControlledSelectOption } from '../../../../../../shared/components';
+import { ControlledSelect, ControlledSelectOption } from '../../../../../../../shared/components';
 import { CategoryFilters } from '../../types';
 
 type Props = {
@@ -10,7 +9,6 @@ type Props = {
 };
 
 export const OrderingSelect = ({ orderingOptions }: Props) => {
-  const { t } = useTranslation();
   const { control } = useFormContext<CategoryFilters>();
 
   return (
