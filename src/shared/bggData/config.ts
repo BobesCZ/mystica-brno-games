@@ -280,3 +280,15 @@ export const BGG_MECHANICS = {
   ],
   zoneOfControl: 'Zone of Control',
 };
+
+export const BGG_RANK_NAMES = [
+  'boardgame',
+  'strategygames',
+  'wargames',
+  'abstracts',
+  'familygames',
+  'thematic',
+  'partygames',
+  'childrensgames',
+  'cgs',
+] as const;

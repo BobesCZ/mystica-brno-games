@@ -9,7 +9,7 @@ type Props = {
 
 export const RankTag = ({ rank: { name, value } }: Props) => {
   const { t } = useTranslation();
-  const rankName = t(`rank.${name}`);
+  const rankName = t(`rank.form.rankName.options.${name}`);
 
   return (
     <Chip
