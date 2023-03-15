@@ -21,15 +21,23 @@
     "noInfo": "O této hře nemáme více informací"
   },
   "rank": {
-    "boardgame": "nejlepší",
-    "strategygames": "strategická",
-    "wargames": "válečná",
-    "abstracts": "abstraktní",
-    "familygames": "rodinná",
-    "thematic": "tematická",
-    "partygames": "párty",
-    "childrensgames": "pro děti",
-    "cgs": "TCG/LCG"
+    "pageTitle": "Nejlepší hry",
+    "form": {
+      "rankName": {
+        "label": "Žebříček her",
+        "options": {
+          "boardgame": "nejlepší",
+          "strategygames": "strategická",
+          "wargames": "válečná",
+          "abstracts": "abstraktní",
+          "familygames": "rodinná",
+          "thematic": "tematická",
+          "partygames": "párty",
+          "childrensgames": "pro děti",
+          "cgs": "TCG/LCG"
+        }
+      }
+    }
   },
   "gameList": {
     "searchResults": "Vyhledané hry",

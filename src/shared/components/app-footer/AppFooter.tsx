@@ -16,6 +16,7 @@ export const AppFooter = () => {
 
           <Stack gap={1.5} mt={2.5}>
             <FooterLink to={Urls.SEARCH} i18nKey="search.pageTitle" />
+            <FooterLink to={Urls.RANK} i18nKey="rank.pageTitle" />
             <FooterLink to={Urls.FAQ} i18nKey="faq.pageTitle" />
             <FooterLink to={Urls.EXTERNAL_MYSTICA} i18nKey="footer.goToMystica" external />
           </Stack>

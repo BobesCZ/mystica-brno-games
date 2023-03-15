@@ -21,15 +21,23 @@
     "noInfo": "No additional information"
   },
   "rank": {
-    "boardgame": "best",
-    "strategygames": "strategy",
-    "wargames": "war",
-    "abstracts": "abstract",
-    "familygames": "family",
-    "thematic": "thematic",
-    "partygames": "party",
-    "childrensgames": "for children",
-    "cgs": "TCG/LCG"
+    "pageTitle": "Best games",
+    "form": {
+      "rankName": {
+        "label": "Game rank",
+        "options": {
+          "boardgame": "best",
+          "strategygames": "strategy",
+          "wargames": "war",
+          "abstracts": "abstract",
+          "familygames": "family",
+          "thematic": "thematic",
+          "partygames": "party",
+          "childrensgames": "for children",
+          "cgs": "TCG/LCG"
+        }
+      }
+    }
   },
   "gameList": {
     "searchResults": "Search Results",
