@@ -6,7 +6,7 @@ import {
   ControlledAutocomplete,
   ControlledSelect,
   ControlledSelectOption,
-} from '../../../../../../shared/components';
+} from '../../../../../../../shared/components';
 
 import { CategoryFilters } from '../../types';
 import { Alarm, Group } from '@mui/icons-material';

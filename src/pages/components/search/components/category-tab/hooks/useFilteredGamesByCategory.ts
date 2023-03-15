@@ -1,9 +1,9 @@
 import { useContext, useMemo } from 'react';
-import { Game } from '../../../../../shared/types';
+import { Game } from '../../../../../../shared/types';
 import { filterGamebyCategory, getOrderGameBy } from '../utils';
 import { CategoryFilters, CategoryGroup, MechanicGroup } from '../types';
-import { AppContext } from '../../../../../shared/store';
-import { ControlleAutocompleteOption, ControlledSelectOption } from '../../../../../shared/components';
+import { AppContext } from '../../../../../../shared/store';
+import { ControlleAutocompleteOption, ControlledSelectOption } from '../../../../../../shared/components';
 import { useTranslation } from 'react-i18next';
 import {
   getAutocompleteOptions,

@@ -1,21 +1,29 @@
-import { CssBaseline, ThemeProvider } from '@mui/material';
+import { Box, CssBaseline, Stack, ThemeProvider } from '@mui/material';
 import { useCustomTheme } from './shared/hooks';
-import { Search } from './pages/';
-import { AppNav } from './shared/components';
+import { AppRoutes } from './pages/';
+import { AppFooter, AppNav } from './shared/components';
 import { AppContextProvider } from './shared/store';
 import './shared/locales';
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
   const theme = useCustomTheme();
 
   return (
-    <AppContextProvider>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <AppNav />
-        <Search />
-      </ThemeProvider>
-    </AppContextProvider>
+    <BrowserRouter>
+      <AppContextProvider>
+        <ThemeProvider theme={theme}>
+          <Stack sx={{ minHeight: '100vh' }}>
+            <CssBaseline />
+            <AppNav />
+            <Box flexGrow={1}>
+              <AppRoutes />
+            </Box>
+            <AppFooter />
+          </Stack>
+        </ThemeProvider>
+      </AppContextProvider>
+    </BrowserRouter>
   );
 }
 

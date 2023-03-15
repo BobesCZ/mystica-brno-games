@@ -1,8 +1,8 @@
 import { useContext, useMemo } from 'react';
-import { Game } from '../../../../../shared/types';
+import { Game } from '../../../../../../shared/types';
 import { filterGameByName } from '../utils';
 import { NameFilters } from '../types';
-import { AppContext } from '../../../../../shared/store';
+import { AppContext } from '../../../../../../shared/store';
 
 type Props = {
   filters: NameFilters;

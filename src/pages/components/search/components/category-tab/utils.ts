@@ -1,5 +1,5 @@
-import { CategoryKey, MechanicKey } from '../../../../shared/bggData';
-import { Game, GameOrdering } from '../../../../shared/types';
+import { CategoryKey, MechanicKey } from '../../../../../shared/bggData';
+import { Game, GameOrdering } from '../../../../../shared/types';
 import { CATEGORY_PLAYING_TIME_INTERVALS } from './config';
 import { CategoryFilters } from './types';
 

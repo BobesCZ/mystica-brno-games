@@ -1,5 +1,5 @@
 import { TFunction } from 'i18next';
-import { Game } from '../../../../../shared/types';
+import { Game } from '../../../../../../shared/types';
 import { CategoryGroup, MechanicGroup } from '../types';
 
 export type GetAutocompleteOptionsProps = {

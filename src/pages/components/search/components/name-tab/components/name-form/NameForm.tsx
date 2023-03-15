@@ -1,7 +1,7 @@
 import { Box, Container, Grid } from '@mui/material';
 import { useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { ControlledTextField } from '../../../../../../shared/components';
+import { ControlledTextField } from '../../../../../../../shared/components';
 import { NameFilters } from '../../types';
 
 export const NameForm = () => {
