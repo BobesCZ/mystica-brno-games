@@ -43,6 +43,8 @@ const isGameEqual = (csvGame: Game, game: Game) =>
   isEqual(csvGame.langs, game.langs || []) &&
   isEqual(csvGame.notes, game.notes || []);
 
+const isGameExists = (game: Game, csvGame: Game) => game.sourceName === csvGame.sourceName;
+
 const getSafeUid = (gameList: Game[], csvGameUid: string): string => {
   const existingUid = gameList.find(({ uid }) => csvGameUid === uid);
 
@@ -71,7 +73,7 @@ export const getGameListMergedByDiff = (csvGameList: Game[], gameList: Game[]): 
 
   const diffGameList = differenceWith(csvGameList, gameList, isGameEqual);
 
-  const mergedGameList = diffGameList.map((csvGame) => {
+  return diffGameList.map((csvGame) => {
     const dbGame = gameList.find(({ sourceName }) => csvGame.sourceName === sourceName);
 
     if (dbGame) {
@@ -80,6 +82,12 @@ export const getGameListMergedByDiff = (csvGameList: Game[], gameList: Game[]): 
 
     return { ...csvGame, uid: getSafeUid(gameList, csvGame.uid) };
   });
+};
 
-  return mergedGameList;
+export const getGameListDeletedByDiff = (csvGameList: Game[], gameList: Game[]): Game[] => {
+  if (!csvGameList.length || !gameList.length) {
+    return [];
+  }
+
+  return differenceWith(gameList, csvGameList, isGameExists);
 };

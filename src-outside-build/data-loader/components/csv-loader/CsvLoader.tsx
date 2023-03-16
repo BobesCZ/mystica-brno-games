@@ -1,4 +1,5 @@
 import {
+  Alert,
   Box,
   Button,
   Paper,
@@ -14,12 +15,13 @@ import {
 import { useMemo } from 'react';
 import { dataCsv } from '../../../../src/data';
 import { updateGameList, useFetchGameList } from '../../../../src/shared/firebase';
-import { getGameFromCsv, getGameListMergedByDiff, mergeNotesToCsvGame } from './utils';
+import { getGameFromCsv, getGameListDeletedByDiff, getGameListMergedByDiff, mergeNotesToCsvGame } from './utils';
 
 export const CsvLoader = () => {
   const { gameList } = useFetchGameList();
   const csvGameList = useMemo(() => mergeNotesToCsvGame(dataCsv).map(getGameFromCsv), [dataCsv]);
   const mergedGameList = useMemo(() => getGameListMergedByDiff(csvGameList, gameList), [csvGameList, gameList]);
+  const removedGameList = useMemo(() => getGameListDeletedByDiff(csvGameList, gameList), [csvGameList, gameList]);
 
   const handleSaveGameList = () => {
     if (!mergedGameList?.length) {
@@ -79,7 +81,11 @@ export const CsvLoader = () => {
         Změny oproti DB
       </Typography>
 
-      {!!mergedGameList.length && (
+      {gameList.length === csvGameList.length && (
+        <Alert severity="success">V DB i v CSV je {gameList.length} položek</Alert>
+      )}
+
+      {(!!mergedGameList.length || !!removedGameList.length) && (
         <TableContainer component={Paper} elevation={4} sx={{ my: 4, maxHeight: '500px', overflow: 'auto' }}>
           <Table stickyHeader>
             <TableHead>
@@ -117,6 +123,22 @@ export const CsvLoader = () => {
                       <Typography key={item}>{item}</Typography>
                     ))}
                   </TableCell>
+                </TableRow>
+              ))}
+              {removedGameList.map(({ uid, sourceName }) => (
+                <TableRow key={uid} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                  <TableCell component="td" scope="row">
+                    {uid}
+                  </TableCell>
+                  <TableCell component="td" scope="row">
+                    MISSING IN DB
+                  </TableCell>
+                  <TableCell component="td" scope="row">
+                    {sourceName}
+                  </TableCell>
+                  <TableCell component="td" scope="row"></TableCell>
+                  <TableCell component="td" scope="row"></TableCell>
+                  <TableCell component="td" scope="row"></TableCell>
                 </TableRow>
               ))}
             </TableBody>
