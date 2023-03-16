@@ -108,7 +108,7 @@ export const GameCard = ({
         )}
 
         {status !== Status.FINISHED && (
-          <Typography variant="subtitle2" sx={{ color: grey[500] }}>
+          <Typography variant="subtitle2" sx={{ mt: 1, color: grey[500] }}>
             <Trans t={t} i18nKey="gameCard.noInfo" />
           </Typography>
         )}

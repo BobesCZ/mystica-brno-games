@@ -1,6 +1,6 @@
 import { useContext, useMemo } from 'react';
-import { Game } from '../../../../../../shared/types';
-import { filterGamebyCategory, getOrderGameBy } from '../utils';
+import { Game, GameOrdering } from '../../../../../../shared/types';
+import { filterGamebyCategory, orderGameByRating } from '../utils';
 import { CategoryFilters, CategoryGroup, MechanicGroup } from '../types';
 import { AppContext } from '../../../../../../shared/store';
 import { ControlleAutocompleteOption, ControlledSelectOption } from '../../../../../../shared/components';
@@ -37,7 +37,11 @@ export const useFilteredGamesByCategory = ({ filters, resolvedLanguage }: Props)
   const gameFilteredList = useMemo(() => {
     const list = (gameList || []).filter((game) => filterGamebyCategory(game, filters));
 
-    return orderBy(list, getOrderGameBy(filters), 'desc');
+    if (filters.ordering === GameOrdering.NAME) {
+      return list.sort((a, b) => a.sourceName.localeCompare(b.sourceName, resolvedLanguage));
+    }
+
+    return orderBy(list, orderGameByRating, 'desc');
   }, [gameList, filters]);
 
   const playersCountOptions = useMemo(() => getPlayersCountOptions(t), [t]);
