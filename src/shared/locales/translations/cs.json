@@ -370,10 +370,23 @@
         "a": "Nevíme. Pravděpodobně to vymysleli na BoardGameGeek.com."
       },
       {
+        "q": "Máte knihu přání a stížností?",
+        "a": "Ano, přát si a nadávat nám můžete <feedbackLink>zde</feedbackLink>"
+      },
+      {
         "q": "Jak vás můžu podpořit?",
         "a": "Řekněte o nás svým spoluhráčům. V žádném případě nám neposílejte peníze, máme jich tolik, že už se nám ani nikam nevejdou."
       }
     ]
+  },
+  "feedback": {
+    "pageTitle": "Napsat autorům",
+    "contentParagraph": "Máte připomínky či nápady na zlepšení? Dejte nám vědět!",
+    "form": {
+      "label": "Vaše zpráva",
+      "submit": "Odeslat",
+      "success": "Děkujeme za zprávu! Naše interní Oddělení reklamací už si bere do rukou baseballové pálky a vyráží potrestat toho, kdo za to může."
+    }
   },
   "footer": {
     "goToMystica": "Oficiální seznam her"

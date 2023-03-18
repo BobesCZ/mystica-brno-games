@@ -1,2 +1,2 @@
-export * from './updateGameList';
 export * from './hooks';
+export * from './utils';

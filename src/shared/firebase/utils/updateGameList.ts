@@ -1,6 +1,6 @@
 import { update } from 'firebase/database';
-import { Game } from '../types';
-import { GAME_LIST_REF } from './config';
+import { Game } from '../../types';
+import { GAME_LIST_REF } from '../config';
 import { validateFirebaseValue } from './utils';
 
 export const updateGameList = (gameList: Game[]): void => {

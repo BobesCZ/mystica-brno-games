@@ -23,7 +23,7 @@ export const CategoryForm = ({ playersCountOptions, playingTimeOptions, category
   const { control } = useFormContext<CategoryFilters>();
 
   return (
-    <Box pt={4} pb={4} sx={(theme) => ({ backgroundColor: theme.palette.secondary.main })}>
+    <Box py={4} sx={(theme) => ({ backgroundColor: theme.palette.secondary.main })}>
       <Container>
         <Grid container rowSpacing={3} columnSpacing={3}>
           <Grid item xs={12} md={6}>
