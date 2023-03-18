@@ -370,10 +370,23 @@
         "a": "We don't know. Probably it comes from BoardGameGeek.com."
       },
       {
+        "q": "Do you have Book of Wishes & Complaints?",
+        "a": "Yes, you can wish and complaint <feedbackLink>here</feedbackLink>"
+      },
+      {
         "q": "How can I support you?",
         "a": "Tell your playmates about us. Do not send us money under any circumstances, we have so much money that we have nowhere to put it."
       }
     ]
+  },
+  "feedback": {
+    "pageTitle": "Contact us",
+    "contentParagraph": "Do you have any feedback? Let us know!",
+    "form": {
+      "label": "Your message",
+      "submit": "Send",
+      "success": "Thanks for your message! Our internal Claims Department is already picking up baseball bats and setting out to punish whoever is responsible for your inconvenience."
+    }
   },
   "footer": {
     "goToMystica": "Oficiální seznam her"

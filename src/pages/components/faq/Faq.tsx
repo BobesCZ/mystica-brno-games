@@ -1,11 +1,14 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, Link } from '@mui/material';
 import { Container } from '@mui/system';
 import { range } from 'lodash-es';
 import { Trans, useTranslation } from 'react-i18next';
+import { Link as RouterLink } from 'react-router-dom';
+import { Urls } from '../../config';
 
 export const Faq = () => {
   const { t } = useTranslation();
-  const content = range(8);
+  const content = range(9);
+  const feedbackLink = <Link component={RouterLink} to={Urls.FEEDBACK}></Link>;
 
   return (
     <Container maxWidth="md" sx={{ mb: 10 }}>
@@ -21,7 +24,7 @@ export const Faq = () => {
             <Trans t={t} i18nKey={`faq.content.${i}.q`} />
           </Typography>
           <Typography>
-            <Trans t={t} i18nKey={`faq.content.${i}.a`} />
+            <Trans t={t} i18nKey={`faq.content.${i}.a`} components={{ feedbackLink }} />
           </Typography>
         </Box>
       ))}

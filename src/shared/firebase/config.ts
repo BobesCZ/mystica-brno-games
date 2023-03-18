@@ -9,3 +9,4 @@ enum DB {
 const CURRENT_DB: `${DB}` = DB.TEST;
 
 export const GAME_LIST_REF = ref(firebaseDb, `${CURRENT_DB}/gameList`);
+export const FEEDBACK_REF = ref(firebaseDb, `${CURRENT_DB}/feedback`);
