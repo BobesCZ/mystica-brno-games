@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getDatabase } from 'firebase/database';
+import { getAnalytics } from 'firebase/analytics';
 
 const firebaseConfig = import.meta.env.VITE_FIREBASE_API_KEY && {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -16,4 +17,6 @@ const firebaseApp = firebaseConfig ? initializeApp(firebaseConfig) : undefined;
 
 const firebaseDb = getDatabase(firebaseApp, import.meta.env.VITE_FIREBASE_DATABASE_URL);
 
-export { firebaseApp, firebaseDb };
+const firebaseAnalytics = getAnalytics(firebaseApp);
+
+export { firebaseApp, firebaseDb, firebaseAnalytics };
