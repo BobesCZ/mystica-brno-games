@@ -3,6 +3,7 @@ import { Container } from '@mui/system';
 import { range } from 'lodash-es';
 import { Trans, useTranslation } from 'react-i18next';
 import { Link as RouterLink } from 'react-router-dom';
+import { PageTitle } from '../../../shared/components';
 import { Urls } from '../../config';
 
 export const Faq = () => {
@@ -11,23 +12,21 @@ export const Faq = () => {
   const feedbackLink = <Link component={RouterLink} to={Urls.FEEDBACK}></Link>;
 
   return (
-    <Container maxWidth="md" sx={{ mb: 10 }}>
-      <Box mt={5} mb={3}>
-        <Typography variant="h2" textAlign="center">
-          <Trans t={t} i18nKey="faq.pageTitle" />
-        </Typography>
-      </Box>
+    <>
+      <PageTitle i18nKey="faq.pageTitle" />
 
-      {content.map((i) => (
-        <Box key={i} my={4}>
-          <Typography variant="h3" gutterBottom>
-            <Trans t={t} i18nKey={`faq.content.${i}.q`} />
-          </Typography>
-          <Typography>
-            <Trans t={t} i18nKey={`faq.content.${i}.a`} components={{ feedbackLink }} />
-          </Typography>
-        </Box>
-      ))}
-    </Container>
+      <Container maxWidth="md" sx={{ mt: 4, mb: 12 }}>
+        {content.map((i) => (
+          <Box key={i} my={4}>
+            <Typography variant="h3" gutterBottom>
+              <Trans t={t} i18nKey={`faq.content.${i}.q`} />
+            </Typography>
+            <Typography>
+              <Trans t={t} i18nKey={`faq.content.${i}.a`} components={{ feedbackLink }} />
+            </Typography>
+          </Box>
+        ))}
+      </Container>
+    </>
   );
 };

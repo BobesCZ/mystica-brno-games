@@ -5,7 +5,7 @@ import { RANK_DEFAULT_VALUES } from './config';
 import { RankForm } from './components';
 import { RankFilters } from './types';
 import { useFilteredGamesByRank } from './hooks';
-import { GameList, Pagination, usePagination } from '../../../shared/components';
+import { GameList, PageTitle, Pagination, usePagination } from '../../../shared/components';
 
 export const Rank = () => {
   const methods = useForm<RankFilters>({
@@ -20,22 +20,26 @@ export const Rank = () => {
   const { currentPageGameList, ...paginationProps } = usePagination({ gameFilteredList, ref });
 
   return (
-    <FormProvider {...methods}>
-      <Box component="form" onSubmit={methods.handleSubmit((_, e) => e?.preventDefault())}>
-        <RankForm {...options} />
-        <Container>
-          {gameListLoading ? (
-            <Box height={600} display="flex" alignItems="center" justifyContent="center">
-              <CircularProgress />
-            </Box>
-          ) : (
-            <Box ref={ref}>
-              <GameList gameList={currentPageGameList} gameTotalCount={gameFilteredList.length} />
-              <Pagination {...paginationProps} />
-            </Box>
-          )}
-        </Container>
-      </Box>
-    </FormProvider>
+    <>
+      <PageTitle i18nKey="rank.pageTitle" dense />
+
+      <FormProvider {...methods}>
+        <Box component="form" onSubmit={methods.handleSubmit((_, e) => e?.preventDefault())}>
+          <RankForm {...options} />
+          <Container>
+            {gameListLoading ? (
+              <Box height={600} display="flex" alignItems="center" justifyContent="center">
+                <CircularProgress />
+              </Box>
+            ) : (
+              <Box ref={ref}>
+                <GameList gameList={currentPageGameList} gameTotalCount={gameFilteredList.length} />
+                <Pagination {...paginationProps} />
+              </Box>
+            )}
+          </Container>
+        </Box>
+      </FormProvider>
+    </>
   );
 };

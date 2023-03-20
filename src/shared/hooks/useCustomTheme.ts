@@ -19,31 +19,39 @@ export const useCustomTheme = (): Theme => {
     typography: {
       fontFamily: ['Fuzzy Bubbles', 'cursive'].join(','),
       fontSize: 16,
-      h3: {
-        fontSize: 24,
-        fontWeight: 700,
-      },
-      h4: {
-        fontSize: 20,
-        fontWeight: 700,
-      },
     },
     ...LIGHT_THEME,
   });
 
   theme.typography.h1 = {
-    fontSize: 40,
+    fontSize: 26,
     fontWeight: 700,
     [theme.breakpoints.up('lg')]: {
-      fontSize: 48,
+      fontSize: 40,
     },
   };
 
   theme.typography.h2 = {
-    fontSize: 32,
+    fontSize: 24,
     fontWeight: 700,
     [theme.breakpoints.up('lg')]: {
       fontSize: 36,
+    },
+  };
+
+  theme.typography.h3 = {
+    fontSize: 22,
+    fontWeight: 700,
+    [theme.breakpoints.up('lg')]: {
+      fontSize: 24,
+    },
+  };
+
+  theme.typography.h4 = {
+    fontSize: 18,
+    fontWeight: 700,
+    [theme.breakpoints.up('lg')]: {
+      fontSize: 20,
     },
   };
 

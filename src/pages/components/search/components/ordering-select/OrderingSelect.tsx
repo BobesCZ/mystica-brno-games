@@ -1,7 +1,7 @@
 import { Sort } from '@mui/icons-material';
 import { Stack } from '@mui/material';
 import { useFormContext } from 'react-hook-form';
-import { ControlledSelect, ControlledSelectOption } from '../../../../../../../shared/components';
+import { ControlledSelect, ControlledSelectOption } from '../../../../../shared/components';
 import { CategoryFilters } from '../../types';
 
 type Props = {

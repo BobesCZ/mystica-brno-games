@@ -1,5 +1,5 @@
-import { ControlleAutocompleteOption } from '../../../../../shared/components';
-import { GameOrdering, GamePlayingTimeType } from '../../../../../shared/types';
+import { ControlleAutocompleteOption } from '../../../shared/components';
+import { GamePlayingTimeType, GameOrdering } from '../../../shared/types';
 
 export type PlayersCount = 0 | 1 | 2 | 200 | 3 | 4 | 5 | 6 | 7;
 

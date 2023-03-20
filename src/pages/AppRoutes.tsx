@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
-import { Faq, Feedback, Rank, Search } from '.';
+import { Faq, Feedback, Name, Rank, Search } from '.';
 import { Urls } from './config';
 
 export const AppRoutes = () => {
@@ -17,6 +17,7 @@ export const AppRoutes = () => {
   return (
     <Routes>
       <Route path={Urls.SEARCH} element={<Search />} />
+      <Route path={Urls.NAME} element={<Name />} />
       <Route path={Urls.FAQ} element={<Faq />} />
       <Route path={Urls.FEEDBACK} element={<Feedback />} />
       <Route path={Urls.RANK} element={<Rank />} />
