@@ -1,4 +1,4 @@
-import { Game } from '../../../../../shared/types';
+import { Game } from '../../../shared/types';
 import { NameFilters } from './types';
 
 const normalizeString = (value: string) =>

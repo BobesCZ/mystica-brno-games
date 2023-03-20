@@ -5,7 +5,7 @@
     "showLess": "Skrýt"
   },
   "meta": {
-    "title": "Katalog her - Mystica Brno"
+    "title": "Mystica Brno"
   },
   "gameCard": {
     "playingtime": "{{playingtime}} min",
@@ -50,11 +50,7 @@
     "showMore": "Dalších {{itemsCount}} her"
   },
   "search": {
-    "pageTitle": "Najít hru v Mystice",
-    "tabnav": {
-      "category": "Podle parametrů",
-      "name": "Podle jména"
-    },
+    "pageTitle": "Najít hru podle parametrů",
     "form": {
       "playersCount": {
         "label": "Pro kolik lidí?",
@@ -101,7 +97,12 @@
           "name": "Abecedně ",
           "rating": "Podle hodnocení "
         }
-      },
+      }
+    }
+  },
+  "name": {
+    "pageTitle": "Najít hru podle jména",
+    "form": {
       "name": {
         "label": "Název hry"
       }

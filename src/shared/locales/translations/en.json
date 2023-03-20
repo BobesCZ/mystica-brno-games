@@ -5,7 +5,7 @@
     "showLess": "Show less"
   },
   "meta": {
-    "title": "Catalog of games - Mystica Brno"
+    "title": "Mystica Brno"
   },
   "gameCard": {
     "playingtime": "{{playingtime}} min",
@@ -50,11 +50,7 @@
     "showMore": "Load more {{itemsCount}}"
   },
   "search": {
-    "pageTitle": "Find game in Mystica",
-    "tabnav": {
-      "category": "By category",
-      "name": "By name"
-    },
+    "pageTitle": "Find game by parameters",
     "form": {
       "playersCount": {
         "label": "How many people?",
@@ -101,7 +97,12 @@
           "name": "Alphabetical",
           "rating": "By rating"
         }
-      },
+      }
+    }
+  },
+  "name": {
+    "pageTitle": "Find game by name",
+    "form": {
       "name": {
         "label": "Game name"
       }

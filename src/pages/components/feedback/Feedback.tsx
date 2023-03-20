@@ -7,6 +7,7 @@ import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { FeedbackForm } from './components';
 import { FeedbackRecord } from '../../../shared/types';
 import { updateFeedback } from '../../../shared/firebase';
+import { PageTitle } from '../../../shared/components';
 
 export const Feedback = () => {
   const { t } = useTranslation();
@@ -25,28 +26,26 @@ export const Feedback = () => {
   const isSubmitted = methods.formState.isSubmitSuccessful;
 
   return (
-    <Container maxWidth="sm" sx={{ mb: 10 }}>
-      <Box mt={5} mb={3}>
-        <Typography variant="h2" textAlign="center">
-          <Trans t={t} i18nKey="feedback.pageTitle" />
+    <>
+      <PageTitle i18nKey="feedback.pageTitle" />
+
+      <Container maxWidth="sm" sx={{ mt: 4, mb: 12 }}>
+        <Typography textAlign="center">
+          <Trans t={t} i18nKey="feedback.contentParagraph" />
         </Typography>
-      </Box>
 
-      <Typography variant="body1" textAlign="center">
-        <Trans t={t} i18nKey="feedback.contentParagraph" />
-      </Typography>
-
-      <FormProvider {...methods}>
-        <Box component="form" py={4} onSubmit={methods.handleSubmit(onSubmit)}>
-          {isSubmitted ? (
-            <Alert variant="outlined" severity="success">
-              <Trans t={t} i18nKey="feedback.form.success" />
-            </Alert>
-          ) : (
-            <FeedbackForm />
-          )}
-        </Box>
-      </FormProvider>
-    </Container>
+        <FormProvider {...methods}>
+          <Box component="form" mt={3} onSubmit={methods.handleSubmit(onSubmit)}>
+            {isSubmitted ? (
+              <Alert variant="outlined" severity="success">
+                <Trans t={t} i18nKey="feedback.form.success" />
+              </Alert>
+            ) : (
+              <FeedbackForm />
+            )}
+          </Box>
+        </FormProvider>
+      </Container>
+    </>
   );
 };

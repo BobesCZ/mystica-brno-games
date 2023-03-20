@@ -1,5 +1,5 @@
-import { CategoryKey, MechanicKey } from '../../../../../shared/bggData';
-import { GameOrdering, GamePlayingTimeInterval, GamePlayingTimeType } from '../../../../../shared/types';
+import { CategoryKey, MechanicKey } from '../../../shared/bggData';
+import { GameOrdering, GamePlayingTimeInterval, GamePlayingTimeType } from '../../../shared/types';
 import { CategoryFilters, CategoryGroup, MechanicGroup } from './types';
 
 export const CATEGORY_DEFAULT_VALUES: CategoryFilters = {

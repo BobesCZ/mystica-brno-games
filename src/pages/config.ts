@@ -1,5 +1,6 @@
 export enum Urls {
   SEARCH = '/',
+  NAME = '/name',
   FAQ = '/faq',
   FEEDBACK = '/feedback',
   RANK = '/rank',

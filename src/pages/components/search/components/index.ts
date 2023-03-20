@@ -1,2 +1,2 @@
-export * from './category-tab';
-export * from './name-tab';
+export * from './category-form';
+export * from './ordering-select';
