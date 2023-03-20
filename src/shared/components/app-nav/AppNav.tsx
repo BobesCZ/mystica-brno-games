@@ -1,6 +1,6 @@
 import { AppBar, Box, Container, Link, Toolbar, Typography } from '@mui/material';
 import { Trans, useTranslation } from 'react-i18next';
-import { LocaleLangSwitch } from './components';
+import { AppMenu, LocaleLangSwitch } from './components';
 import { Link as RouterLink } from 'react-router-dom';
 import { Urls } from '../../../pages';
 export const AppNav = () => {
@@ -19,6 +19,9 @@ export const AppNav = () => {
             <Trans t={t} i18nKey="meta.title" />
           </Typography>
           <LocaleLangSwitch />
+          <Box ml={2} mr={-1}>
+            <AppMenu />
+          </Box>
         </Toolbar>
       </Container>
     </AppBar>
