@@ -55,5 +55,21 @@ export const useCustomTheme = (): Theme => {
     },
   };
 
+  theme.typography.body1 = {
+    ...theme.typography.body1,
+    fontSize: 16,
+    [theme.breakpoints.up('lg')]: {
+      fontSize: 18,
+    },
+  };
+
+  theme.typography.body2 = {
+    ...theme.typography.body2,
+    fontSize: 14,
+    [theme.breakpoints.up('lg')]: {
+      fontSize: 16,
+    },
+  };
+
   return theme;
 };

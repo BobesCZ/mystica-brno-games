@@ -16,14 +16,13 @@ export const FooterLink = ({ to, i18nKey, external }: Props) => {
     <Link
       component={RouterLink}
       to={to}
-      variant="body1"
       underline="hover"
       color="secondary.main"
       target={external ? '_blank' : undefined}
     >
-      <Stack direction="row" alignItems="center" gap={0.5}>
+      <Stack direction="row" alignItems="center" gap={0.75}>
         <Trans t={t} i18nKey={i18nKey} />
-        {external && <Launch fontSize="inherit" />}
+        {external && <Launch fontSize="inherit" sx={{ mb: 0.5 }} />}
       </Stack>
     </Link>
   );

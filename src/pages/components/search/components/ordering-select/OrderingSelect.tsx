@@ -25,6 +25,10 @@ export const OrderingSelect = ({ orderingOptions }: Props) => {
           '.MuiInput-root:before': {
             display: 'none',
           },
+          '.MuiSelect-select.MuiSelect-standard.MuiInputBase-input.MuiInput-input.MuiInputBase-inputAdornedStart': {
+            pr: 3.5,
+            pb: 0.25,
+          },
         }}
         Icon={Sort}
       />

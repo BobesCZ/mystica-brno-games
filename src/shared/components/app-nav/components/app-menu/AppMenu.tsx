@@ -34,6 +34,10 @@ export const AppMenu = () => {
 
             <MenuLink to={Urls.FAQ} i18nKey="faq.pageTitle" />
             <MenuLink to={Urls.FEEDBACK} i18nKey="feedback.pageTitle" />
+
+            <Divider sx={{ my: 1 }} />
+
+            <MenuLink to={Urls.EXTERNAL_MYSTICA} i18nKey="footer.goToMystica" external />
           </List>
         </Box>
       </Drawer>

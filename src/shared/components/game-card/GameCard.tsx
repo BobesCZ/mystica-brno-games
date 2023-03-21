@@ -3,7 +3,7 @@ import { grey } from '@mui/material/colors';
 import { useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { Game, Status } from '../../types';
-import { BggLink, CardImage, NoteTag, PlayersCountString, RankTag, ShowMoreToggler } from './components';
+import { BggLink, CardImage, NoteTag, PlayersCountString, RankTag, ShowMoreToggler, ZhLink } from './components';
 import { MAX_RANK_LIMIT } from './config';
 
 type Props = {
@@ -78,7 +78,7 @@ export const GameCard = ({
               title={t('gameCard.usersCount', { usersCount: averageRating.usersCount })}
             >
               <Rating size="small" value={averageRating.value / 2} max={5} precision={0.1} readOnly />
-              <Typography variant="subtitle2" component="span" sx={{ mt: 0.25, lineHeight: 1, color: grey[500] }}>
+              <Typography variant="body2" component="span" sx={{ mt: 0.25, lineHeight: 1, color: grey[500] }}>
                 {(averageRating.value * 10).toFixed(0)}%
               </Typography>
             </Stack>
@@ -108,7 +108,7 @@ export const GameCard = ({
         )}
 
         {status !== Status.FINISHED && (
-          <Typography variant="subtitle2" sx={{ mt: 1, color: grey[500] }}>
+          <Typography variant="body2" sx={{ mt: 1, color: grey[500] }}>
             <Trans t={t} i18nKey="gameCard.noInfo" />
           </Typography>
         )}
@@ -117,6 +117,7 @@ export const GameCard = ({
           <Collapse in={expanded}>
             <Box mt={3}>
               <BggLink id={id} primaryName={primaryName} />
+              <ZhLink sourceName={sourceName} />
 
               <Stack>
                 {!!averageWeight?.value && (
@@ -137,11 +138,18 @@ export const GameCard = ({
                 )}
               </Stack>
 
-              <Stack direction="row" mt={2} gap={1} flexWrap="wrap">
-                {mechanics?.map((item) => (
-                  <Chip variant="outlined" key={item} label={t(`bgg.mechanics.${item}`)} />
-                ))}
-              </Stack>
+              {!!mechanics?.length && (
+                <>
+                  <Typography variant="h4" mt={2} mb={1}>
+                    <Trans t={t} i18nKey="search.form.mechanics.label" />
+                  </Typography>
+                  <Stack direction="row" gap={1} flexWrap="wrap">
+                    {mechanics?.map((item) => (
+                      <Chip variant="outlined" key={item} label={t(`bgg.mechanics.${item}`)} />
+                    ))}
+                  </Stack>
+                </>
+              )}
             </Box>
           </Collapse>
         )}
