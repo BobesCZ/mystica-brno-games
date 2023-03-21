@@ -16,6 +16,7 @@
     "weight": "Obtížnost: {{weight}}/5",
     "minage": "Doporučený věk: od {{minage}} let",
     "goToBgg": "Přejít na BoardGameGeek.com",
+    "goToZh": "Vyhledat na Zatrolenkách",
     "usersCount": "Hlasovalo {{usersCount}} uživatelů BoardGameGeek.com",
     "rankTag": "{{rank}}. {{rankName}} hra v žebříčku BoardGameGeek.com",
     "noInfo": "O této hře nemáme více informací"
@@ -104,7 +105,7 @@
     "pageTitle": "Najít hru podle jména",
     "form": {
       "name": {
-        "label": "Název hry"
+        "label": "Název hry (český nebo původní)"
       }
     }
   },

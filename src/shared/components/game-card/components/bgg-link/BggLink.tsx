@@ -4,10 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Urls } from '../../../../../pages';
 import { Game } from '../../../../types';
 
-type Props = {
-  id: Game['id'];
-  primaryName: Game['primaryName'];
-};
+type Props = Pick<Game, 'id' | 'primaryName'>;
 
 export const BggLink = ({ id, primaryName }: Props) => {
   const { t } = useTranslation();
@@ -21,9 +18,9 @@ export const BggLink = ({ id, primaryName }: Props) => {
       target="_blank"
       title={t('gameCard.goToBgg') ?? ''}
     >
-      <Stack direction="row" alignItems="center" mb={1.5} gap={1}>
+      <Stack direction="row" alignItems="center" mb={0.5} gap={1}>
         {primaryName}
-        <Launch fontSize="small" />
+        <Launch fontSize="inherit" />
       </Stack>
     </Link>
   ) : null;

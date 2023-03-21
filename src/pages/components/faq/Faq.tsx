@@ -17,8 +17,8 @@ export const Faq = () => {
 
       <Container maxWidth="md" sx={{ mt: 4, mb: 12 }}>
         {content.map((i) => (
-          <Box key={i} my={4}>
-            <Typography variant="h3" gutterBottom>
+          <Box key={i} my={3}>
+            <Typography variant="h4" gutterBottom>
               <Trans t={t} i18nKey={`faq.content.${i}.q`} />
             </Typography>
             <Typography>

@@ -7,5 +7,7 @@ const normalizeString = (value: string) =>
     .replace(/[\u0300-\u036f]/g, '')
     .toLowerCase();
 
-export const filterGameByName = (game: Game, { name }: NameFilters): boolean =>
-  !!name && normalizeString(game.sourceName).includes(normalizeString(name));
+export const filterGameByName = ({ sourceName, primaryName }: Game, { name }: NameFilters): boolean =>
+  !!name &&
+  (normalizeString(sourceName).includes(normalizeString(name)) ||
+    (!!primaryName && normalizeString(primaryName).includes(normalizeString(name))));
