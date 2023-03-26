@@ -17,8 +17,7 @@
     "minage": "Minimum age: {{minage}}+",
     "goToBgg": "Go to BoardGameGeek.com",
     "goToZh": "Search game on Zatrolene-hry.cz",
-    "usersCount": "Voted {{usersCount}} users of BoardGameGeek.com",
-    "rankTag": "{{rank}}. {{rankName}} game in BoardGameGeek.com rank",
+    "usersCount": "{{usersCount}} votes",
     "noInfo": "No additional information"
   },
   "rank": {
@@ -72,8 +71,8 @@
         "options": {
           "all": "– all –",
           "filler": "filler (less than 20 min)",
-          "short": "short (21–60 min)",
-          "medium": "medium long (61–90 min)",
+          "short": "short (21–59 min)",
+          "medium": "medium long (60–90 min)",
           "long": "entire evening (more than 91 min)"
         }
       },

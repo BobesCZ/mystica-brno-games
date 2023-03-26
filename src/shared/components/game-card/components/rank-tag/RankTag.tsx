@@ -16,7 +16,6 @@ export const RankTag = ({ rank: { name, value } }: Props) => {
       color="primary"
       icon={<EmojiEvents fontSize="small" />}
       label={`${value}. ${rankName}`}
-      title={t('gameCard.rankTag', { rank: value, rankName })}
       sx={(theme) => ({
         boxShadow: theme.shadows[4],
         borderTopLeftRadius: 0,

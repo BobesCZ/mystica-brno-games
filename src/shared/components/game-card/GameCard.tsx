@@ -1,4 +1,4 @@
-import { Box, Card, CardActions, CardContent, Chip, Collapse, Rating, Stack, Typography } from '@mui/material';
+import { Box, Card, CardActions, CardContent, Chip, Collapse, Rating, Stack, Tooltip, Typography } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import { useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
@@ -31,7 +31,10 @@ export const GameCard = ({
     status,
   },
 }: Props) => {
-  const { t } = useTranslation();
+  const {
+    t,
+    i18n: { resolvedLanguage },
+  } = useTranslation();
   const [expanded, setExpanded] = useState(false);
   const filteredRanks = (ranks || [])?.filter(({ value }) => value <= MAX_RANK_LIMIT);
 
@@ -70,18 +73,20 @@ export const GameCard = ({
 
         {!!averageRating?.value && (
           <Box display="flex" mb={2}>
-            <Stack
-              display="inline-flex"
-              direction="row"
-              alignItems="center"
-              gap={1}
-              title={t('gameCard.usersCount', { usersCount: averageRating.usersCount })}
+            <Tooltip
+              arrow
+              enterTouchDelay={100}
+              title={t('gameCard.usersCount', {
+                usersCount: averageRating.usersCount.toLocaleString(resolvedLanguage),
+              })}
             >
-              <Rating size="small" value={averageRating.value / 2} max={5} precision={0.1} readOnly />
-              <Typography variant="body2" component="span" sx={{ mt: 0.25, lineHeight: 1, color: grey[500] }}>
-                {(averageRating.value * 10).toFixed(0)}%
-              </Typography>
-            </Stack>
+              <Stack display="inline-flex" direction="row" alignItems="center" gap={1}>
+                <Rating size="small" value={averageRating.value / 2} max={5} precision={0.1} readOnly />
+                <Typography variant="body2" component="span" sx={{ mt: 0.25, lineHeight: 1, color: grey[500] }}>
+                  {(averageRating.value * 10).toFixed(0)}%
+                </Typography>
+              </Stack>
+            </Tooltip>
           </Box>
         )}
 
@@ -121,14 +126,19 @@ export const GameCard = ({
 
               <Stack>
                 {!!averageWeight?.value && (
-                  <Typography
-                    display="inline-block"
-                    variant="body1"
-                    color="text.secondary"
-                    title={t('gameCard.usersCount', { usersCount: averageWeight.usersCount })}
-                  >
-                    <Trans t={t} i18nKey="gameCard.weight" values={{ weight: averageWeight.value.toFixed(1) }} />
-                  </Typography>
+                  <Box display="inline-flex">
+                    <Tooltip
+                      arrow
+                      enterTouchDelay={100}
+                      title={t('gameCard.usersCount', {
+                        usersCount: averageWeight.usersCount.toLocaleString(resolvedLanguage),
+                      })}
+                    >
+                      <Typography variant="body1" color="text.secondary">
+                        <Trans t={t} i18nKey="gameCard.weight" values={{ weight: averageWeight.value.toFixed(1) }} />
+                      </Typography>
+                    </Tooltip>
+                  </Box>
                 )}
 
                 {!!minage && (

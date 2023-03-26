@@ -13,8 +13,8 @@ export const CATEGORY_DEFAULT_VALUES: CategoryFilters = {
 export const CATEGORY_PLAYING_TIME_INTERVALS: Record<GamePlayingTimeType, GamePlayingTimeInterval> = {
   [GamePlayingTimeType.ALL]: { min: 0, max: 9999 },
   [GamePlayingTimeType.FILLER]: { min: 1, max: 20 },
-  [GamePlayingTimeType.SHORT]: { min: 21, max: 60 },
-  [GamePlayingTimeType.MEDIUM]: { min: 61, max: 90 },
+  [GamePlayingTimeType.SHORT]: { min: 21, max: 59 },
+  [GamePlayingTimeType.MEDIUM]: { min: 60, max: 90 },
   [GamePlayingTimeType.LONG]: { min: 91, max: 9999 },
 };
 
