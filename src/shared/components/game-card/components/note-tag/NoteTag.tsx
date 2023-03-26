@@ -1,21 +1,22 @@
 import { Add } from '@mui/icons-material';
-import { Chip } from '@mui/material';
+import { Chip, Tooltip } from '@mui/material';
 
 type Props = {
   note: string;
 };
 
 export const NoteTag = ({ note }: Props) => (
-  <Chip
-    variant="outlined"
-    label={note}
-    title={note}
-    icon={<Add />}
-    sx={{
-      borderRadius: 0,
-      '.MuiChip-icon': {
-        fontSize: 18,
-      },
-    }}
-  />
+  <Tooltip arrow enterDelay={700} enterTouchDelay={100} title={note}>
+    <Chip
+      variant="outlined"
+      label={note}
+      icon={<Add />}
+      sx={{
+        borderRadius: 0,
+        '.MuiChip-icon': {
+          fontSize: 18,
+        },
+      }}
+    />
+  </Tooltip>
 );
