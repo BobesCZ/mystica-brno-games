@@ -3,7 +3,8 @@
  * Data are exported as JSON
  */
 import dataCsv from './data.csv';
+import dataJson from './mystica-brno-hry-default-rtdb-prod-export.json';
 
-export { dataCsv };
+export { dataCsv, dataJson };
 
 export * from './types';
