@@ -3,8 +3,19 @@ import { grey } from '@mui/material/colors';
 import { useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { Game, Status } from '../../types';
-import { BggLink, CardImage, NoteTag, PlayersCountString, RankTag, ShowMoreToggler, ZhLink } from './components';
+import {
+  BggLink,
+  CardImage,
+  GameInfoItem,
+  GameWeight,
+  NoteTag,
+  PlayersCountString,
+  RankTag,
+  ShowMoreToggler,
+  ZhLink,
+} from './components';
 import { MAX_RANK_LIMIT } from './config';
+import { Group, Alarm } from '@mui/icons-material';
 
 type Props = {
   game: Game;
@@ -60,6 +71,7 @@ export const GameCard = ({
               ))}
             </Stack>
           )}
+          {!!averageWeight?.value && <GameWeight averageWeight={averageWeight} />}
         </Box>
 
         <Typography variant="h3" sx={{ mb: 0.25 }}>
@@ -72,7 +84,7 @@ export const GameCard = ({
         </Typography>
 
         {!!averageRating?.value && (
-          <Box display="flex" mb={2}>
+          <Box display="flex" mb={1.5}>
             <Tooltip
               arrow
               enterTouchDelay={100}
@@ -90,14 +102,17 @@ export const GameCard = ({
           </Box>
         )}
 
-        <Typography variant="body1" color="text.secondary">
-          {!!minplayers && <PlayersCountString minplayers={minplayers} maxplayers={maxplayers} />}
-          {!!minplayers && !!playingtime && <>, </>}
-          {!!playingtime && <Trans t={t} i18nKey="gameCard.playingtime" values={{ playingtime }} />}
-        </Typography>
+        <Stack gap={1.5} direction="row">
+          <GameInfoItem Icon={Group}>
+            {!!minplayers && <PlayersCountString minplayers={minplayers} maxplayers={maxplayers} />}
+          </GameInfoItem>
+          <GameInfoItem Icon={Alarm}>
+            {!!playingtime && <Trans t={t} i18nKey="gameCard.playingtime" values={{ playingtime }} />}
+          </GameInfoItem>
+        </Stack>
 
         {!!categories?.length && (
-          <Stack direction="row" mt={2} gap={1} flexWrap="wrap">
+          <Stack direction="row" my={2} gap={1} flexWrap="wrap">
             {categories.map((item) => (
               <Chip key={item} label={t(`bgg.categories.${item}`)} />
             ))}
@@ -124,29 +139,11 @@ export const GameCard = ({
               <BggLink id={id} primaryName={primaryName} />
               <ZhLink sourceName={sourceName} />
 
-              <Stack>
-                {!!averageWeight?.value && (
-                  <Box display="inline-flex">
-                    <Tooltip
-                      arrow
-                      enterTouchDelay={100}
-                      title={t('gameCard.usersCount', {
-                        usersCount: averageWeight.usersCount.toLocaleString(resolvedLanguage),
-                      })}
-                    >
-                      <Typography variant="body1" color="text.secondary">
-                        <Trans t={t} i18nKey="gameCard.weight" values={{ weight: averageWeight.value.toFixed(1) }} />
-                      </Typography>
-                    </Tooltip>
-                  </Box>
-                )}
-
-                {!!minage && (
-                  <Typography variant="body1" color="text.secondary">
-                    <Trans t={t} i18nKey="gameCard.minage" values={{ minage }} />
-                  </Typography>
-                )}
-              </Stack>
+              {!!minage && (
+                <Typography variant="body1" color="text.secondary">
+                  <Trans t={t} i18nKey="gameCard.minage" values={{ minage }} />
+                </Typography>
+              )}
 
               {!!mechanics?.length && (
                 <>

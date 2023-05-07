@@ -13,7 +13,7 @@
     "playersCount_few": "{{minplayers}} hráči",
     "playersCountInterval_few": "{{minplayers}}–{{maxplayers}} hráči",
     "playersCountInterval_other": "{{minplayers}}–{{maxplayers}} hráčů",
-    "weight": "Obtížnost: {{weight}}/5",
+    "weight": "Obtížnost hry na škále 1–5",
     "minage": "Doporučený věk: od {{minage}} let",
     "goToBgg": "Přejít na BoardGameGeek.com",
     "goToZh": "Vyhledat na Zatrolenkách",

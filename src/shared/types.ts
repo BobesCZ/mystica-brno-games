@@ -7,7 +7,7 @@ export type Rank = {
   value: IBggRank['value'];
 };
 
-type Rating = {
+export type Rating = {
   value: number;
   usersCount: number;
 };
