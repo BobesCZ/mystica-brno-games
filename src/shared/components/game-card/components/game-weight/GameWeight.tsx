@@ -2,7 +2,8 @@ import { Box, Tooltip, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { Rating } from '../../../../types';
 import { Bookmark } from '@mui/icons-material';
-import { getIconColor } from './utils';
+import { getColorByWeightLevel, getWeightLevel } from './utils';
+import { floor } from 'lodash-es';
 
 type Props = {
   averageWeight: Rating;
@@ -10,9 +11,11 @@ type Props = {
 
 export const GameWeight = ({ averageWeight }: Props) => {
   const { t } = useTranslation();
+  const value = floor(averageWeight.value, 1);
+  const weightLevel = getWeightLevel(value);
 
   return (
-    <Tooltip arrow enterTouchDelay={100} title={t('gameCard.weight')}>
+    <Tooltip arrow enterTouchDelay={100} title={t(`gameCard.weight.${weightLevel}`)}>
       <Box
         sx={(theme) => ({
           position: 'absolute',
@@ -24,7 +27,7 @@ export const GameWeight = ({ averageWeight }: Props) => {
         <Bookmark
           sx={(theme) => ({
             fontSize: 64,
-            color: getIconColor(averageWeight, theme),
+            color: getColorByWeightLevel(weightLevel, theme),
             filter: `drop-shadow(0px 4px 2px rgba(0,0,0,0.2))`,
           })}
         />
@@ -41,7 +44,7 @@ export const GameWeight = ({ averageWeight }: Props) => {
           }}
         >
           <Typography variant="body2" component="div" color="white">
-            {averageWeight.value.toFixed(1)}
+            {value.toFixed(1)}
           </Typography>
         </Box>
       </Box>

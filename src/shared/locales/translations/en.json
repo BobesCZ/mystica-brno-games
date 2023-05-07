@@ -13,7 +13,12 @@
     "playersCount_other": "{{minplayers}} players",
     "playersCountInterval_few": "{{minplayers}}–{{maxplayers}} players",
     "playersCountInterval_other": "{{minplayers}}–{{maxplayers}} players",
-    "weight": "Game complexity on scale 1–5",
+    "weight": {
+      "light": "Light game (complexity 1–5)",
+      "mediumHeavy": "Medium light game (complexity 1–5)",
+      "heavy": "Heavy game (complexity 1–5)",
+      "hardcore": "Hardcore game (complexity 1–5)"
+    },
     "minage": "Minimum age: {{minage}}+",
     "goToBgg": "Go to BoardGameGeek.com",
     "goToZh": "Search game on Zatrolene-hry.cz",
@@ -95,7 +100,8 @@
         "label": "Result order",
         "options": {
           "name": "Alphabetical",
-          "rating": "By rating"
+          "rating": "By rating",
+          "weight": "By complexity"
         }
       }
     }
