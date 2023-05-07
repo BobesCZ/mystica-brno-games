@@ -112,7 +112,7 @@ export const GameCard = ({
         </Stack>
 
         {!!categories?.length && (
-          <Stack direction="row" my={2} gap={1} flexWrap="wrap">
+          <Stack direction="row" mt={2} gap={1} flexWrap="wrap">
             {categories.map((item) => (
               <Chip key={item} label={t(`bgg.categories.${item}`)} />
             ))}
@@ -135,7 +135,7 @@ export const GameCard = ({
 
         {status === Status.FINISHED && (
           <Collapse in={expanded}>
-            <Box mt={3}>
+            <Stack mt={3} alignItems="flex-start" gap={1} mb={1}>
               <BggLink id={id} primaryName={primaryName} />
               <ZhLink sourceName={sourceName} />
 
@@ -144,20 +144,20 @@ export const GameCard = ({
                   <Trans t={t} i18nKey="gameCard.minage" values={{ minage }} />
                 </Typography>
               )}
+            </Stack>
 
-              {!!mechanics?.length && (
-                <>
-                  <Typography variant="h4" mt={2} mb={1}>
-                    <Trans t={t} i18nKey="search.form.mechanics.label" />
-                  </Typography>
-                  <Stack direction="row" gap={1} flexWrap="wrap">
-                    {mechanics?.map((item) => (
-                      <Chip variant="outlined" key={item} label={t(`bgg.mechanics.${item}`)} />
-                    ))}
-                  </Stack>
-                </>
-              )}
-            </Box>
+            {!!mechanics?.length && (
+              <>
+                <Typography variant="h4" mt={1.5} mb={1}>
+                  <Trans t={t} i18nKey="search.form.mechanics.label" />
+                </Typography>
+                <Stack direction="row" gap={1} flexWrap="wrap">
+                  {mechanics?.map((item) => (
+                    <Chip variant="outlined" key={item} label={t(`bgg.mechanics.${item}`)} />
+                  ))}
+                </Stack>
+              </>
+            )}
           </Collapse>
         )}
       </CardContent>
