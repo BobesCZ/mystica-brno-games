@@ -1,6 +1,6 @@
 import { useContext, useMemo } from 'react';
 import { Game, GameOrdering } from '../../../../shared/types';
-import { filterGamebyCategory, orderGameByRating } from '../utils';
+import { filterGamebyCategory, orderGameByRating, orderGameByWeight } from '../utils';
 import { CategoryFilters, CategoryGroup, MechanicGroup } from '../types';
 import { AppContext } from '../../../../shared/store';
 import { ControlleAutocompleteOption, ControlledSelectOption } from '../../../../shared/components';
@@ -39,6 +39,10 @@ export const useFilteredGamesByCategory = ({ filters, resolvedLanguage }: Props)
 
     if (filters.ordering === GameOrdering.NAME) {
       return list.sort((a, b) => a.sourceName.localeCompare(b.sourceName, resolvedLanguage));
+    }
+
+    if (filters.ordering === GameOrdering.WEIGHT) {
+      return orderBy(list, orderGameByWeight, 'desc');
     }
 
     return orderBy(list, orderGameByRating, 'desc');

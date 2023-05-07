@@ -13,7 +13,12 @@
     "playersCount_few": "{{minplayers}} hráči",
     "playersCountInterval_few": "{{minplayers}}–{{maxplayers}} hráči",
     "playersCountInterval_other": "{{minplayers}}–{{maxplayers}} hráčů",
-    "weight": "Obtížnost hry na škále 1–5",
+    "weight": {
+      "light": "Lehká hra (obtížnost 1–5)",
+      "mediumHeavy": "Středně těžká hra (obtížnost 1–5)",
+      "heavy": "Těžká hra (obtížnost 1–5)",
+      "hardcore": "Hardcore hra (obtížnost 1–5)"
+    },
     "minage": "Doporučený věk: od {{minage}} let",
     "goToBgg": "Přejít na BoardGameGeek.com",
     "goToZh": "Vyhledat na Zatrolenkách",
@@ -94,8 +99,9 @@
       "ordering": {
         "label": "Řazení",
         "options": {
-          "name": "Abecedně ",
-          "rating": "Podle hodnocení "
+          "name": "Abecedně",
+          "rating": "Podle hodnocení",
+          "weight": "Podle obtížnosti"
         }
       }
     }
@@ -167,8 +173,8 @@
     "mechanics": {
       "areaMajorityInfluence": "Kontrola území (Area Control)",
       "cooperativeGame": "Kooperativní",
-      "deckBagAndPoolBuilding": "Budování balíčku (Deck Building)",
-      "pushYourLuck": "Zkus štěstí (Push Your Luck)",
+      "deckBagAndPoolBuilding": "Tvorba balíčku (Deck Building)",
+      "pushYourLuck": "Pokoušej štěstí (Push Your Luck)",
       "rolePlaying": "Hraní rolí (Role Playing)",
       "acting": "Acting",
       "actionDrafting": "Action Drafting",

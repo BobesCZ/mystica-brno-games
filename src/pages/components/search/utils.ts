@@ -37,3 +37,5 @@ export const filterGamebyCategory = (game: Game, filters: CategoryFilters): bool
   hasMechanics(game, filters);
 
 export const orderGameByRating: (game: Game) => unknown = (game) => game.averageRating?.value || 0;
+
+export const orderGameByWeight: (game: Game) => unknown = (game) => game.averageWeight?.value || 0;

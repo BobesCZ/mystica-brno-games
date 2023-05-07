@@ -55,6 +55,7 @@ export type GamePlayingTimeInterval = {
 export enum GameOrdering {
   NAME = 'name',
   RATING = 'rating',
+  WEIGHT = 'weight',
 }
 
 export enum LogRecordState {
