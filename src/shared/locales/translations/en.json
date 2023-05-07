@@ -13,7 +13,7 @@
     "playersCount_other": "{{minplayers}} players",
     "playersCountInterval_few": "{{minplayers}}–{{maxplayers}} players",
     "playersCountInterval_other": "{{minplayers}}–{{maxplayers}} players",
-    "weight": "Complexity: {{weight}}/5",
+    "weight": "Game complexity on scale 1–5",
     "minage": "Minimum age: {{minage}}+",
     "goToBgg": "Go to BoardGameGeek.com",
     "goToZh": "Search game on Zatrolene-hry.cz",
