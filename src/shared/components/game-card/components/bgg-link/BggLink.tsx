@@ -18,7 +18,7 @@ export const BggLink = ({ id, primaryName }: Props) => {
         href={`${Urls.EXTERNAL_BGG}${id}`}
         target="_blank"
       >
-        <Stack direction="row" alignItems="center" mb={0.5} gap={1}>
+        <Stack direction="row" alignItems="center" gap={1}>
           {primaryName}
           <Launch fontSize="inherit" />
         </Stack>
