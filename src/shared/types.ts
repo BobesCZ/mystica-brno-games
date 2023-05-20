@@ -1,10 +1,8 @@
-import { BggThing } from '@code-bucket/board-game-geek';
-import { BggGame, IBggRank } from '../board-game-geek-fixed';
+import { BggGame, BggRank, BggThing } from '@code-bucket/board-game-geek';
 import { CategoryKey, MechanicKey, RankNameKey } from './bggData';
 
-export type Rank = {
+export type Rank = Pick<BggRank, 'value'> & {
   name: `${RankNameKey}`;
-  value: IBggRank['value'];
 };
 
 export type Rating = {
