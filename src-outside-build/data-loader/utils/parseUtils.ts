@@ -1,6 +1,5 @@
-import { BggThing, BggThingType } from '@code-bucket/board-game-geek';
+import { BggGame, BggThing, BggThingType } from '@code-bucket/board-game-geek';
 import { findKey, uniq } from 'lodash-es';
-import { BggGame } from '../../../src/board-game-geek-fixed';
 import { Game, Rank } from '../../../src/shared/types';
 import { BGG_CATEGORIES, BGG_MECHANICS, CategoryKey, MechanicKey, RankNameKey } from '../../../src/shared/bggData';
 
@@ -15,16 +14,21 @@ export const getGameFromBggThing = (game: Game, bggThing?: BggThing): Game => {
 
     const categories = getCategories(bggThing as BggGame);
     const mechanics = getMechanics(bggThing as BggGame);
+    const ratings = (bggThing as BggGame).ratings;
 
-    const averageRating = {
-      value: (bggThing as BggGame).ratings.average,
-      usersCount: (bggThing as BggGame).ratings.usersrated,
-    };
+    const averageRating = ratings
+      ? {
+          value: ratings.average,
+          usersCount: ratings.usersrated,
+        }
+      : undefined;
 
-    const averageWeight = {
-      value: (bggThing as BggGame).ratings.averageweight,
-      usersCount: (bggThing as BggGame).ratings.numweights,
-    };
+    const averageWeight = ratings
+      ? {
+          value: ratings.averageweight,
+          usersCount: ratings.numweights,
+        }
+      : undefined;
 
     const ranks = getRanks(bggThing as BggGame);
 
@@ -70,7 +74,7 @@ const getMechanics = (bggThing: BggGame): MechanicKey[] => {
 };
 
 const getRanks = (bggThing: BggGame): Rank[] =>
-  bggThing.ratings.ranks.map(({ name, value }) => ({
+  (bggThing.ratings?.ranks || []).map(({ name, value }) => ({
     name: name as RankNameKey,
     value,
   }));
