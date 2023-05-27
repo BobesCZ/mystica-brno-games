@@ -8,6 +8,7 @@ import {
   CardImage,
   GameInfoItem,
   GameWeight,
+  LangItem,
   NoteTag,
   PlayersCountString,
   RankTag,
@@ -32,6 +33,7 @@ export const GameCard = ({
     playingtime,
     minplayers,
     maxplayers,
+    langs,
     minage,
     categories,
     mechanics,
@@ -83,8 +85,15 @@ export const GameCard = ({
           )}
         </Typography>
 
-        {!!averageRating?.value && (
-          <Box display="flex" mb={1.5}>
+        <Stack gap={0.75} direction="row" mb={1.5}>
+          {!!langs?.length && (
+            <Stack direction="row" alignItems="center" gap={1}>
+              {langs?.map((lang) => (
+                <LangItem key={lang} lang={lang} />
+              ))}
+            </Stack>
+          )}
+          {!!averageRating?.value && (
             <Tooltip
               arrow
               enterTouchDelay={100}
@@ -99,8 +108,8 @@ export const GameCard = ({
                 </Typography>
               </Stack>
             </Tooltip>
-          </Box>
-        )}
+          )}
+        </Stack>
 
         <Stack gap={1.5} direction="row">
           <GameInfoItem Icon={Group}>

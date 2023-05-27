@@ -81,6 +81,15 @@
           "long": "na celý večer (91 min a více)"
         }
       },
+      "langs": {
+        "label": "Jazyková verze",
+        "options": {
+          "all": "– nezáleží –",
+          "cz": "česky",
+          "eng": "anglicky",
+          "de": "německy"
+        }
+      },
       "categories": {
         "label": "Kategorie her",
         "groups": {

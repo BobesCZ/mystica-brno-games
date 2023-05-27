@@ -14,11 +14,18 @@ import { Alarm, Group } from '@mui/icons-material';
 type Props = {
   playersCountOptions: ControlledSelectOption<CategoryFilters, 'playersCount'>[];
   playingTimeOptions: ControlledSelectOption<CategoryFilters, 'playingTime'>[];
+  langsOptions: ControlleAutocompleteOption[];
   categoryOptions: ControlleAutocompleteOption[];
   mechanicsOptions: ControlleAutocompleteOption[];
 };
 
-export const CategoryForm = ({ playersCountOptions, playingTimeOptions, categoryOptions, mechanicsOptions }: Props) => {
+export const CategoryForm = ({
+  playersCountOptions,
+  playingTimeOptions,
+  langsOptions,
+  categoryOptions,
+  mechanicsOptions,
+}: Props) => {
   const { t } = useTranslation();
   const { control } = useFormContext<CategoryFilters>();
 
@@ -62,6 +69,16 @@ export const CategoryForm = ({ playersCountOptions, playingTimeOptions, category
               name="mechanics"
               label={t('search.form.mechanics.label')}
               options={mechanicsOptions}
+              noOptionsText={<Trans t={t} i18nKey="common.noOptionsText" />}
+            />
+          </Grid>
+
+          <Grid item xs={12} md={6}>
+            <ControlledAutocomplete<CategoryFilters, 'langs'>
+              control={control}
+              name="langs"
+              label={t('search.form.langs.label')}
+              options={langsOptions}
               noOptionsText={<Trans t={t} i18nKey="common.noOptionsText" />}
             />
           </Grid>

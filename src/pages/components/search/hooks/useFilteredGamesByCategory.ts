@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import {
   getAutocompleteOptions,
   getCategoryGroup,
+  getLangsOptions,
   getMechanicGroup,
   getOrderingOptions,
   getPlayersCountOptions,
@@ -25,6 +26,7 @@ type Return = {
   gameListLoading: boolean;
   playersCountOptions: ControlledSelectOption<CategoryFilters, 'playersCount'>[];
   playingTimeOptions: ControlledSelectOption<CategoryFilters, 'playingTime'>[];
+  langsOptions: ControlleAutocompleteOption[];
   categoryOptions: ControlleAutocompleteOption[];
   mechanicsOptions: ControlleAutocompleteOption[];
   orderingOptions: ControlledSelectOption<CategoryFilters, 'ordering'>[];
@@ -50,6 +52,7 @@ export const useFilteredGamesByCategory = ({ filters, resolvedLanguage }: Props)
 
   const playersCountOptions = useMemo(() => getPlayersCountOptions(t), [t]);
   const playingTimeOptions = useMemo(() => getPlayingTimeOptions(t), [t]);
+  const langsOptions = useMemo(() => getLangsOptions(t), [t]);
 
   const categoryOptions = useMemo(
     () =>
@@ -84,6 +87,7 @@ export const useFilteredGamesByCategory = ({ filters, resolvedLanguage }: Props)
     gameListLoading,
     playersCountOptions,
     playingTimeOptions,
+    langsOptions,
     categoryOptions,
     mechanicsOptions,
     orderingOptions,

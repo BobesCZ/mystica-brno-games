@@ -5,6 +5,7 @@ import { CategoryFilters, CategoryGroup, MechanicGroup } from './types';
 export const CATEGORY_DEFAULT_VALUES: CategoryFilters = {
   playersCount: 2,
   playingTime: GamePlayingTimeType.FILLER,
+  langs: [],
   categories: [],
   mechanics: [],
   ordering: GameOrdering.RATING,

@@ -1,5 +1,5 @@
 import { CategoryKey, MechanicKey } from '../../../shared/bggData';
-import { Game } from '../../../shared/types';
+import { Game, Lang } from '../../../shared/types';
 import { CATEGORY_PLAYING_TIME_INTERVALS } from './config';
 import { CategoryFilters } from './types';
 
@@ -24,6 +24,9 @@ const hasPlayingTime = (game: Game, { playingTime }: CategoryFilters): boolean =
   return (game.playingtime || 0) >= min && (game.playingtime || 0) <= max;
 };
 
+const hasLangs = (game: Game, { langs }: CategoryFilters): boolean =>
+  !langs.length || langs.some((item) => game?.langs?.includes(item.value as Lang));
+
 const hasCategories = (game: Game, { categories }: CategoryFilters): boolean =>
   categories.every((item) => game?.categories?.includes(item.value as CategoryKey));
 
@@ -33,6 +36,7 @@ const hasMechanics = (game: Game, { mechanics }: CategoryFilters): boolean =>
 export const filterGamebyCategory = (game: Game, filters: CategoryFilters): boolean =>
   hasPlayersCount(game, filters) &&
   hasPlayingTime(game, filters) &&
+  hasLangs(game, filters) &&
   hasCategories(game, filters) &&
   hasMechanics(game, filters);
 

@@ -81,6 +81,15 @@
           "long": "entire evening (more than 91 min)"
         }
       },
+      "langs": {
+        "label": "Language",
+        "options": {
+          "all": "– all –",
+          "cz": "Czech",
+          "eng": "English",
+          "de": "German"
+        }
+      },
       "categories": {
         "label": "Game categories",
         "groups": {
